@@ -44,7 +44,7 @@ read answer
 
 if echo "$answer" | grep -iq "^y";
 then 
-  reoot
+  reboot
 else
   echo not rebooting, you should reboot now, except you know what you do...
 fi
