@@ -12,7 +12,9 @@ echo
 echo -e "\e[91mzabbix-server-pgsql und zabbix-frontend-php\e[39m installieren? (y/n)?"
 read answer
 
-if echo "$answer" | grep -iq "^y" ;then
+if echo "$answer" | grep -iq "^y" ;
+then
+  apt-get install postgresql-all
   apt-get install zabbix-server-pgsql
   apt-get install zabbix-frontend-php
 
