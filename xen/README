@@ -1,9 +1,11 @@
-__        __                                 
-\ \      / /_ _ _ __ _ __  _   _ _ __   __ _ 
- \ \ /\ / / _` | '__| '_ \| | | | '_ \ / _` |
-  \ V  V / (_| | |  | | | | |_| | | | | (_| |
-   \_/\_/ \__,_|_|  |_| |_|\__,_|_| |_|\__, |
-                                       |___/ 
+
+
+          __        __                                 
+          \ \      / /_ _ _ __ _ __  _   _ _ __   __ _ 
+           \ \ /\ / / _` | '__| '_ \| | | | '_ \ / _` |
+            \ V  V / (_| | |  | | | | |_| | | | | (_| |
+             \_/\_/ \__,_|_|  |_| |_|\__,_|_| |_|\__, |
+                                                 |___/ 
 
 
 
@@ -17,5 +19,21 @@ und je nach dem auch sehr beissig werden...
 
 sed -i 's/Kätzchen/super duper herrenrassen Löwen/g' wäre irgendwie
 noch idiotischer
+
+
+apt-get install git
+
+apt-get clone https://github.com/braindef/installation-scripts
+
+cd installation-scripts
+
+cd xen
+./xen-stage1.sh
+reboot
+./xen-stage2.sh
+
+cd createVMs
+
+z.B. createDATA.sh (aber vorher sinnvollerweise da noch ein anderes Passwort eintragen)
 
 
