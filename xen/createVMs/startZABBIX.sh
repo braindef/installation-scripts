@@ -10,8 +10,9 @@ echo -e "
 
 to leave console type\e[32m {Ctrl} {AltGr} + ] \e[39msimultaneously
 
+Press [ENTER] to continue
 "
-
+read answer
 
 xl console zabbix
 
