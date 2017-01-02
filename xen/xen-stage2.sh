@@ -103,4 +103,6 @@ fi
 vim -c "syntax on" /etc/resolv.conf
 
 
-./role.d/createROLES.sh
+cd ./role.d
+./createROLES.sh
+
