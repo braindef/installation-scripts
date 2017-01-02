@@ -13,9 +13,10 @@ cp /etc/network/interfaces /etc/network/interfaces.$(date +%y%m&d%H%M%S)
 
 echo -e "
 
-Edit\e[33m /etc/network/interfaces\e[39m for you? [y/n]
-this script appends the lines, maybe you have to\e[32m deactivate (#) older lines\e[39m"
+this script appends the lines, maybe you have to\e[33m deactivate (#) older lines\e[39m
 
+modify\e[33m /etc/network/interfaces\e[39m for you?\e[32m [y/n]\e[39m
+"
 read answer
 
 if echo "$answer" | grep -iq "^y";
@@ -64,7 +65,6 @@ vim -c "syntax on" /etc/xen/xl.conf
 
 echo -e "
 
-
 restart \e[32m network interfaces?\e[39m [y/n]"
 
 read answer
@@ -75,15 +75,13 @@ ifdown eth0
 ifdown eth1
 ifdown xenbr0
 
-ifup eth0
-ifup eth1
 ifup xenbr0
+fi
 
 ifconfig
-"
 
 echo "# More loop-devices
-options loop max_loop=64" >> /etc/modprobe.d/loop.conf
+options loop max_loop=64" > /etc/modprobe.d/loop.conf
 
 lsmod
 modprobe loop
