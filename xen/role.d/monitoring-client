@@ -34,4 +34,4 @@ chroot ${prefix} /usr/bin/apt-get update
 #
 #  Install the packages
 #
-installDebianPackage ${prefix} zabbix-agent zabbix-frontend-php zabbix-server-pgsql
+installDebianPackage ${prefix} zabbix-agent snmpd nmap snmp
