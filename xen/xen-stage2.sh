@@ -62,6 +62,15 @@ read answer
 vim -c "syntax on" /etc/xen/xl.conf
 
 
+echo -e "
+
+
+restart \e[32m network interfaces?\e[39m [y/n]"
+
+read answer
+
+if echo "$answer" | grep -iq "^y";
+then 
 ifdown eth0
 ifdown eth1
 ifdown xenbr0
@@ -71,7 +80,7 @@ ifup eth1
 ifup xenbr0
 
 ifconfig
-
+"
 
 echo "# More loop-devices
 options loop max_loop=64" >> /etc/modprobe.d/loop.conf
