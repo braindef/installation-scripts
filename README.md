@@ -1,3 +1,5 @@
+<pre>
+
 marc@debian:~/installation-scripts/xen$ figlet -f banner Diverse Scripte
 ######                                       
 #     # # #    # ###### #####   ####  ###### 
@@ -16,3 +18,5 @@ marc@debian:~/installation-scripts/xen$ figlet -f banner Diverse Scripte
  #####   ####  #    # # #        #   ###### 
                                             
 marc@debian:~/installation-scripts/xen$ 
+
+</pre>
