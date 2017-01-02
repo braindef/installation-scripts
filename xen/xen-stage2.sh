@@ -9,7 +9,7 @@ sleep 2
 
 xl list
 
-cp /etc/network/interfaces /etc/network/interfaces.$(date +%y%m&d%H%M%S)
+cp /etc/network/interfaces /etc/network/interfaces.$(date +%y%m%d%H%M%S)
 
 echo -e "
 
