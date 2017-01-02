@@ -1,0 +1,30 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet dhcp
+
+auto wlan0
+#iface wlan0 inet static
+iface wlan0 inet dhcp
+ wireless-essid FreifunkRombachtaeli
+ wireless-mode managed
+ #address 192.168.179.78
+ #netmask 255.255.255.0
+ #gateway 192.168.179.3
+
+#auto wlan1
+#iface wlan1 inet static
+#  wireless-essid MOBILE
+#  wireless-mode managed
+#  address 192.168.1.40
+#  netmask 255.255.255.0
+#  post-up route add -net 192.168.179.0/24 gw 192.168.1.1 dev wlan0
+
+

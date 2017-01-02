@@ -1,0 +1,2 @@
+#!/bin/bash
+echo "Tagebuch (Schachnovelle v15.3.1)" >>$(date +%Y%m%d-%H%M.txt) && date >>$(date +%Y%m%d-%H%M.txt) && vim $(date +%Y%m%d-%H%M.txt)
