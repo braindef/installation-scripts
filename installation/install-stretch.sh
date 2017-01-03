@@ -144,6 +144,7 @@ apt-get -y install kdenlive
 apt-get -y install snmp
 apt-get -y install virtualbox
 apt-get -y install kazam 
+apt-get -y install screenkey
 apt-get -y install jigdo-file
 apt-get -y install qrencode 
 apt-get -y install posterazor 
