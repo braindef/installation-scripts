@@ -83,6 +83,9 @@ echo -e "\e[91m/etc/zabbix/zabbix_server.conf\e[39m kompillieren? (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
   /usr/sbin/zabbix_server -n 1 -c /etc/zabbix/zabbix_server.conf
+ 
+  echo press [ENTER] to continue
+  read answer 
 else
   echo "not compiling /etc/zabbix/zabbix_server.conf"
 fi
