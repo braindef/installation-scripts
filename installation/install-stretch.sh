@@ -75,7 +75,7 @@ else
     echo Not using Tor-Network
 fi
 
-sudo apt-get -y install tor tor-arm
+apt-get -y install tor tor-arm
 
 echo
 echo
