@@ -114,7 +114,12 @@ max_input_time = 300
 date.timezone = Europe/Zurich
 " >> /etc/php5/apache2/php.ini
 
-/etc/init.d/apache2 restart
+
+/usr/sbin/a2enmod php
+
+/usr/sbin/apache2ctl restart
+
+#/etc/init.d/apache2 restart
 
 chmod o+w /etc/zabbix
 
