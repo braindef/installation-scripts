@@ -60,6 +60,13 @@ else
   echo "not installing db"
 fi
 
+echo
+
+
+echo -e "\e[91m/etc/zabbix/zabbix_server.conf\e[39m modifiziere? (y/n)?"
+read answer
+if echo "$answer" | grep -iq "^y" ;
+then
 echo "
 NodeID=0
 ListenPort=10051
@@ -68,6 +75,7 @@ DBName=zabbix
 DBUser=zabbix
 DBPassword=1234
 " >> /etc/zabbix/zabbix_server.conf
+fi
 
 echo
 echo -e "\e[91m/etc/zabbix/zabbix_server.conf\e[39m editieren? (y/n)?"
