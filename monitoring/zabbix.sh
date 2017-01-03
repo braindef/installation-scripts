@@ -130,7 +130,7 @@ date.timezone = Europe/Zurich
 
 /usr/sbin/apache2ctl restart
 
-#/etc/init.d/apache2 restart
+/etc/init.d/apache2 restart
 
 chmod o+w /etc/zabbix
 
