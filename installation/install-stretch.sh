@@ -15,8 +15,8 @@ fontSourceDir="~/Daten.2015/Buero/Vorlagen/fonts"
 echo 
 echo 
 echo
-echo -e "Bitte mit sudo starten, z.B.: \e[91msudo ./install.sh\e[39m, sudo muss zuerst installiert werden mit 'apt-get install sudo'?"
-echo -e "Run with sudo, eg: \e[91msudo ./install.sh\e[39m, you must install sudo first with 'apt-get install sudo'?"
+echo -e "Bitte mit sudo starten, z.B.: \e[91msudo ./install.sh\e[39m, sudo muss zuerst installiert werden mit 'apt-get -y install sudo'?"
+echo -e "Run with sudo, eg: \e[91msudo ./install.sh\e[39m, you must install sudo first with 'apt-get -y install sudo'?"
 
 printf "continue? (y/n)"
 read answer
@@ -45,7 +45,7 @@ wget -r -l4 -A sign http://cdimage.debian.org/debian-cd/8.3.0
 cd ..
 
 for i in $(ls -d $(date +%y)* |grep -v sum); do find ./$i -exec cat '{}' >$i.sums  \; && echo ---; done
-apt-get install diffuse && diffuse $(date +%y)*.sums
+apt-get -y install diffuse && diffuse $(date +%y)*.sums
 
 else
   echo -e "lade Debian Schlüssel nicht runter"
@@ -61,7 +61,7 @@ read answer
 if echo "$answer" | grep -iq "^y" ;then
 apt-get update
 apt-get upgrade
-apt-get install torsocks apt-transport-tor
+apt-get -y install torsocks apt-transport-tor
 mv /etc/apt/sources.list /etc/apt/sources.list.bak$(date +%y%m%d%H%M%S)
 
 echo "
@@ -75,7 +75,7 @@ else
     echo Not using Tor-Network
 fi
 
-sudo apt-get install tor tor-arm
+sudo apt-get -y install tor tor-arm
 
 echo
 echo
@@ -113,19 +113,66 @@ apt-get update && apt-get upgrade
 #vi /etc/apt/sources.list
 
 #debian jessie
-#apt-get install sudo gdm3 gnome gnome-shell inkscape gimp libreoffice nmap keepassx vim icedove gnome-commander iceweasel libreoffice-help-de libreoffice-l10n-de clive mc pam-usb* xsane md5deep rsync redshift extundelete gconf-editor  gparted chromium rdfind kdenlive snmp virtualbox kazam stopmotion jigdo-file qrencode posterazor audacity build-essential pkg-config  libdbus-1-dev apt-xapian-index apt-file figlet gconf-editor git nmon tcpdump iptraf mumble font-manager quassel libreoffice-l10n-de pidgin
+#apt-get -y install sudo gdm3 gnome gnome-shell inkscape gimp libreoffice nmap keepassx vim icedove gnome-commander iceweasel libreoffice-help-de libreoffice-l10n-de clive mc pam-usb* xsane md5deep rsync redshift extundelete gconf-editor  gparted chromium rdfind kdenlive snmp virtualbox kazam stopmotion jigdo-file qrencode posterazor audacity build-essential pkg-config  libdbus-1-dev apt-xapian-index apt-file figlet gconf-editor git nmon tcpdump iptraf mumble font-manager quassel libreoffice-l10n-de pidgin
 
 #Debian stretch
-apt-get install sudo gdm3 lightdm lxde gnome gnome-shell inkscape gimp libreoffice nmap keepassx vim icedove gnome-commander iceweasel libreoffice-help-de libreoffice-l10n-de  mc  xsane md5deep rsync redshift extundelete gconf-editor gparted chromium rdfind kdenlive snmp virtualbox kazam jigdo-file qrencode posterazor audacity build-essential pkg-config  libdbus-1-dev apt-xapian-index apt-file figlet gconf-editor git nmon tcpdump iptraf mumble font-manager quassel  libreoffice-l10n-de pidgin cups-pdf
+apt-get -y install sudo
+apt-get -y install gdm3
+apt-get -y install lightdm lxde
+apt-get -y install gnome gnome-shell
+apt-get -y install inkscape gimp libreoffice
+apt-get -y install nmap
+apt-get -y install keepassx 
+apt-get -y install vim
+apt-get -y install icedove
+#apt-get -y install gnome-commander
+apt-get -y install iceweasel
+apt-get -y install libreoffice-help-de libreoffice-l10n-de 
+#apt-get -y install mc 
+#apt-get -y install xsane 
+apt-get -y install md5deep
+apt-get -y install rsync 
+apt-get -y install redshift
+apt-get -y install extundelete
+apt-get -y install gconf-editor
+apt-get -y install gparted
+apt-get -y install chromium
+apt-get -y install rdfind
+apt-get -y install kdenlive
+apt-get -y install snmp
+apt-get -y install virtualbox
+apt-get -y install kazam 
+apt-get -y install jigdo-file
+apt-get -y install qrencode 
+apt-get -y install posterazor 
+apt-get -y install audacity 
+apt-get -y install build-essential
+apt-get -y install pkg-config 
+apt-get -y install libdbus-1-dev
+apt-get -y install apt-xapian-index
+apt-get -y install apt-file
+apt-file update
+apt-get -y install figlet
+apt-get -y install gconf-editor
+apt-get -y install git
+apt-get -y install nmon
+apt-get -y install tcpdump
+apt-get -y install iptraf
+apt-get -y install mumble
+apt-get -y install font-manager 
+apt-get -y install quassel 
+apt-get -y install libreoffice-l10n-de
+apt-get -y install pidgin
+apt-get -y install cups-pdf
 
-apt-get install arduro alsa-gnome alsa-base bluez
-apt-get install xmms
-apt-get install mixxx
-apt-get install wine
-apt-get install epiphany-browser
+apt-get -y install arduro alsa-gnome alsa-base bluez
+apt-get -y install xmms
+apt-get -y install mixxx
+apt-get -y install wine
+apt-get -y install epiphany-browser
 
 #trisquel linux
-#apt-get install sudo gdm3 gnome gnome-shell inkscape gimp libreoffice nmap keepassx vim icedove gnome-commander  libreoffice-help-de libreoffice-l10n-de clive mc pam-usb* xsane md5deep rsync redshift extundelete gconf-editor tripwire gparted chromium rdfind kdenlive snmp virtualbox kazam stopmotion jigdo-file qrencode posterazor audacity build-essential pkg-config  libdbus-1-dev apt-xapian-index apt-file figlet gconf-editor git nmon tcpdump iptraf mumble font-manager quassel smuxi
+#apt-get -y install sudo gdm3 gnome gnome-shell inkscape gimp libreoffice nmap keepassx vim icedove gnome-commander  libreoffice-help-de libreoffice-l10n-de clive mc pam-usb* xsane md5deep rsync redshift extundelete gconf-editor tripwire gparted chromium rdfind kdenlive snmp virtualbox kazam stopmotion jigdo-file qrencode posterazor audacity build-essential pkg-config  libdbus-1-dev apt-xapian-index apt-file figlet gconf-editor git nmon tcpdump iptraf mumble font-manager quassel smuxi
 
 #apt-file ist um einzelne dateien in den apt-repositories zu suchen, gut z.B. wenn man beim schreiben von code libraries oder headerdateien (.h) sucht
 sudo apt-file update
@@ -241,9 +288,12 @@ read answer
 #fi
 gsettings set org.gnome.nautilus.preferences default-folder-viewer 'list-view'
 
-sudo apt-get install youtube-dl
-sudo apt-get install torbrowser-launcher
+#sudo apt-get -y install youtube-dl
+apt-get install -y python-pip
+pip install youtube-dl
 
-xdg-open $fontSourceDir
+sudo apt-get -y install torbrowser-launcher
+
+#xdg-open $fontSourceDir
 
 
