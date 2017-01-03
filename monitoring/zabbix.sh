@@ -24,7 +24,7 @@ then
   read -p "Press [Enter] after adding it in /etc/apt/sources.list an an apt-get update && apt-get upgrade on another virtal console ([ctrl][alt][F2-F6])"
 
   apt-get install snmp-mibs-downloader
-  echo -e "\e[91mpostgresql\e[39m reachable? (y/n)?"
+  echo -e "\e[91mpostgresql\e[39m reachable? (next line should show it, port 5432)"
   nmap localhost | grep 5432
   read -p "Press [Enter] to continue"
 
