@@ -17,6 +17,8 @@ then
   apt-get -y install postgresql-all
   apt-get -y install zabbix-server-pgsql
   apt-get -y install apache2
+  apt-get -y install php
+
   apt-get -y install php-pgsql
   apt-get -y install zabbix-frontend-php
 
