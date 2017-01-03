@@ -14,9 +14,11 @@ read answer
 
 if echo "$answer" | grep -iq "^y" ;
 then
-  apt-get install postgresql-all
-  apt-get install zabbix-server-pgsql
-  apt-get install zabbix-frontend-php
+  apt-get -y install postgresql-all
+  apt-get -y install zabbix-server-pgsql
+  apt-get -y install apache2
+  apt-get -y install php-pgsql
+  apt-get -y install zabbix-frontend-php
 
   echo -e "\e[91mnon-free\e[39m required for snmp-mibs-downloader"
   read -p "Press [Enter] after adding it in /etc/apt/sources.list an an apt-get update && apt-get upgrade on another virtal console ([ctrl][alt][F2-F6])"
