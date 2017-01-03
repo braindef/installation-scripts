@@ -116,6 +116,7 @@ date.timezone = Europe/Zurich
 
 
 /usr/sbin/a2enmod php
+/usr/sbin/a2enmod php7.0
 
 /usr/sbin/apache2ctl restart
 
