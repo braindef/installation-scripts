@@ -114,6 +114,14 @@ max_input_time = 300
 date.timezone = Europe/Zurich
 " >> /etc/php5/apache2/php.ini
 
+echo "
+max_execution_time = 300
+memory_limit = 128M
+post_max_size = 16M
+upload_max_filesize = 2M
+max_input_time = 300
+date.timezone = Europe/Zurich
+" >> /etc/php/7.0/apache2/php.ini
 
 /usr/sbin/a2enmod php
 
