@@ -238,8 +238,9 @@ printf "install tripwire?"
 
 read answer
 if echo "$answer" | grep -iq "^y" ;then
-sudo tripwire -m i
-sudo tripwire -m u
+apt-get -f install tripwire
+tripwire -m i
+tripwire -m u
 else
   echo Erstelle kene Tripwire Signaturen
   echo Not creating Tripwire Signatures
