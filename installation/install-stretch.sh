@@ -11,6 +11,8 @@ echo "script configured for Debian $codename"
 
 fontSourceDir="~/Daten.2015/Buero/Vorlagen/fonts"
 
+apt-get update
+apt-get upgrade
 
 echo 
 echo 
