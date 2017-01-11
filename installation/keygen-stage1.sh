@@ -2,7 +2,7 @@
 
 ssh-keygen -t dsa
 
-echo (ohne Passwort)
+echo ohne Passwort
 
 
 cat ~/.ssh/*.pub >> ~/.ssh/authorized_keys
