@@ -19,7 +19,9 @@ oonideckgen -o my_decks/
 
 /usr/local/bin/ooniprobe -i /root/my_decks/web-full.yaml
 
-echo add ooniproble 4x to crontab?
+echo "
+
+add ooniproble 4x to crontab?"
 read input
 if echo $input  |grep -iq ^y
 then
