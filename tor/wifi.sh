@@ -1,3 +1,3 @@
 #!/bin/bash
 
-apt-get install wifi-tools
+apt-get install wireless-tools
