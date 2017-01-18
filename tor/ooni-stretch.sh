@@ -10,3 +10,10 @@ pip install -r requirements.txt
 pip install -r requirements-dev.txt
 python setup.py install
 ooniprobe -s
+
+
+cd ~
+mkdir my_decks
+ooniresources --update-inputs --update-geoip
+oonideckgen -o my_decks/
+
