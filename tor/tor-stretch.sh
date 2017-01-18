@@ -69,6 +69,7 @@ then
 #iface lo inet loopback
 
 # The primary network interface (WAN)
+#auto eth0
 #allow-hotplug eth0
 #iface eth0 inet dhcp
 #iface eth0 inet static
@@ -79,6 +80,7 @@ then
 #
 #
 # The secondary network interface (LAN)
+#auto eth0
 #allow-hotplug eth1
 #iface eth1 inet dhcp
 #iface eth1 inet static
@@ -88,6 +90,7 @@ then
 #
 #
 # The tertiary network interface (WLAN) 
+#auto wlan0
 #allow-hotplug wlan0
 #iface wlan0 inet dhcp
 # wireless-essid FREIfunRombachtaeli
