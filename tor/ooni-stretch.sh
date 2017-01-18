@@ -1,5 +1,6 @@
 #!/bin/bash
-rm -rf /ooni-probe/
+rm -rfv ./ooni-probe/
+
 
 sudo apt-get install python-pip python-virtualenv virtualenv
 sudo apt-get install libgeoip-dev libffi-dev libdumbnet-dev libssl-dev libpcap-dev
