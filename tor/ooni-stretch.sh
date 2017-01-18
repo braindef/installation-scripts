@@ -17,4 +17,6 @@ mkdir my_decks
 ooniresources --update-inputs --update-geoip
 oonideckgen -o my_decks/
 
-ooniprobe -i /root/my_decks/web-full.yaml
+/usr/local/bin/ooniprobe -i /root/my_decks/web-full.yaml
+
+(crontab -l 2>/dev/null ; echo @daily /usr/local/bin/ooniprobe -i /root/my_decks/web-full.yaml) | crontab -
