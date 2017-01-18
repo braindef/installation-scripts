@@ -105,7 +105,7 @@ echo -e "Modify \e[31m/etc/udev/rules.d/70-persistent-net.rules\e[0m file auotma
 read input
 if echo "$input" | grep -iq "^y"
 then
- ifconfig -a |grep HWaddr |cut  -d r -f3 >> /etc/udev/rules.d/70-persistent-net.rules
+ifconfig -a |grep ether |cut -d " "  -f10 >> /etc/udev/rules.d/70-persistent-net.rules
 fi
 
 sudo vim /etc/udev/rules.d/70-persistent-net.rules
@@ -211,4 +211,4 @@ then
  ./ooni-stretch.sh
 fi
 
-ifconfig -a |grep HWaddr |cut  -d r -f3
+ifconfig -a |grep ether |cut -d  -f10
