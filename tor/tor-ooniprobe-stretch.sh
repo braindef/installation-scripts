@@ -110,7 +110,7 @@ sudo apt-get install tor tor-arm vim figlet
 
 echo -e "\e[32m"
 /usr/bin/figlet -w 180 tor und ooniprobe installieren
-echo auf Debian jessie 8.1.0
+echo auf Debian stretch 8.1.0
 echo -e "\e[0m"
 echo
 echo
