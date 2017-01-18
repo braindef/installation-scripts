@@ -1,0 +1,41 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+#allow-hotplug eth0
+#iface eth0 inet dhcp
+
+auto eth0
+allow-hotplug eth0
+iface eth0 inet dhcp
+
+#auto wlan0
+#allow-hotplug wlan0
+#iface wlan0 inet dhcp
+# wireless-essid FREIfunkRombachtaeli
+
+
+auto wlp3s0
+allow-hotplug wlp3s0
+iface wlp3s0 inet static
+ wireless-essid FREIfunkRombachtaeli
+ address 192.168.179.4
+ netmask 255.255.255.0
+ post-up route add -net 192.168.178.0/24 gw 192.168.179.1
+
+#auto xenbr0
+#allow-hotplug xenbr0
+#iface xenbr0 inet static
+#  bridge_ports eth0
+#  address 192.168.179.202
+#  broadcast 192.168.179.255
+#  netmask 255.255.255.0
+#  gateway 192.168.179.1
+#  dns-nameservers 192.168.179.1
+
