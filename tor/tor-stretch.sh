@@ -73,7 +73,7 @@ then
 #allow-hotplug eth0
 #iface eth0 inet dhcp
 #iface eth0 inet static
-#  address 192.168.1.4
+#  address 192.168.179.4
 #  netmask 255.255.255.0
 #  post-up route add -net 192.168.178.0/24 gw 192.168.179.1
 # # absichtlch kein Gateway
@@ -84,7 +84,7 @@ then
 #allow-hotplug eth1
 #iface eth1 inet dhcp
 #iface eth1 inet static
-#  address 192.168.1.3
+#  address 192.168.179.3
 #  netmask 255.255.255.0
 #  post-up route add -net 192.168.178.0/24 gw 192.168.179.1
 #
@@ -96,7 +96,7 @@ then
 # wireless-essid FREIfunkRombachtaeli
 # wireless-mode managed
 #iface wlan0 inet static
-#  address 192.168.1.4
+#  address 192.168.179.4
 #  netmask 255.255.255.0
 #  post-up route add -net 192.168.178.0/24 gw 192.168.179.1
 " | tee -a /etc/network/interfaces
