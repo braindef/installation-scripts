@@ -91,6 +91,7 @@ then
 #allow-hotplug wlan0
 #iface wlan0 inet dhcp
 # wireless-essid FREIfunRombachtaeli
+# wireless-mode managed
 #iface wlan0 inet static
 #  address 192.168.1.4
 #  netmask 255.255.255.0
