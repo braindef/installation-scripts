@@ -21,17 +21,17 @@ oonideckgen -o my_decks/
 
 echo "
 
-add ooniproble 4x to crontab?"
+start ooniproble 4x per day (crontab entry)?"
 read input
 if echo $input  |grep -iq ^y
 then
-(crontab -l 2>/dev/null ; echo "$(( ( RANDOM % 10 )  + 1 )) $(( ( RANDOM % 10 )  + 1 )) * * * ~/installation-scripts/tor/ooni-probe/venv/bin/ooniprobe -i ~/my_decks/web-full.yaml") | crontab -
+(crontab -l 2>/dev/null ; echo "$(( ( RANDOM % 59 )  + 1 )) $(( ( RANDOM % 23 )  + 1 )) * * * ~/installation-scripts/tor/ooni-probe/venv/bin/ooniprobe -i ~/my_decks/web-full.yaml") | crontab -
 
-(crontab -l 2>/dev/null ; echo "$(( ( RANDOM % 10 )  + 1 )) $(( ( RANDOM % 10 )  + 1 )) * * * ~/installation-scripts/tor/ooni-probe/venv/bin/ooniprobe -i ~/my_decks/web-full.yaml") | crontab -
+(crontab -l 2>/dev/null ; echo "$(( ( RANDOM % 59 )  + 1 )) $(( ( RANDOM % 23 )  + 1 )) * * * ~/installation-scripts/tor/ooni-probe/venv/bin/ooniprobe -i ~/my_decks/web-full.yaml") | crontab -
 
-(crontab -l 2>/dev/null ; echo "$(( ( RANDOM % 10 )  + 1 )) $(( ( RANDOM % 10 )  + 1 )) * * * ~/installation-scripts/tor/ooni-probe/venv/bin/ooniprobe -i ~/my_decks/web-full.yaml") | crontab -
+(crontab -l 2>/dev/null ; echo "$(( ( RANDOM % 59 )  + 1 )) $(( ( RANDOM % 23 )  + 1 )) * * * ~/installation-scripts/tor/ooni-probe/venv/bin/ooniprobe -i ~/my_decks/web-full.yaml") | crontab -
 
-(crontab -l 2>/dev/null ; echo "$(( ( RANDOM % 10 )  + 1 )) $(( ( RANDOM % 10 )  + 1 )) * * * ~/installation-scripts/tor/ooni-probe/venv/bin/ooniprobe -i ~/my_decks/web-full.yaml") | crontab -
+(crontab -l 2>/dev/null ; echo "$(( ( RANDOM % 59 )  + 1 )) $(( ( RANDOM % 23 )  + 1 )) * * * ~/installation-scripts/tor/ooni-probe/venv/bin/ooniprobe -i ~/my_decks/web-full.yaml") | crontab -
 
 fi
 ~/installation-scripts/tor/ooni-probe/venv/bin/ooniprobe -i ~/my_decks/web-full.yaml
