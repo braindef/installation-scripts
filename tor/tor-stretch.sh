@@ -58,8 +58,8 @@ then
 
  echo "
 
-Beispiel Konfiguration für 2 Netzwerkkarten /etc/network/interfaces
--------------------------------------------------------------------
+#Beispiel Konfiguration für 2 Netzwerkkarten /etc/network/interfaces
+#-------------------------------------------------------------------
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
 #source /etc/network/interfaces.d/*
@@ -90,6 +90,7 @@ Beispiel Konfiguration für 2 Netzwerkkarten /etc/network/interfaces
 # The tertiary network interface (WLAN) 
 #allow-hotplug wlan0
 #iface wlan0 inet dhcp
+# wireless-essid FREIfunRombachtaeli
 #iface wlan0 inet static
 #  address 192.168.1.4
 #  netmask 255.255.255.0
