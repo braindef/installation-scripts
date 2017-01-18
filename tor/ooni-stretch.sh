@@ -17,3 +17,4 @@ mkdir my_decks
 ooniresources --update-inputs --update-geoip
 oonideckgen -o my_decks/
 
+ooniprobe -i /root/my_decks/web-full.yaml
