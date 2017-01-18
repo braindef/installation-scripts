@@ -179,5 +179,5 @@ vim /etc/snmp/snmpd.conf
 
 #/usr/local/bin/ooniprobe -i ~/my_decks/deck-ch/default-user.deck
 
-./ooni.sh
+./ooni-stretch.sh
 
