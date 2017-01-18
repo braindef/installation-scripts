@@ -19,4 +19,12 @@ oonideckgen -o my_decks/
 
 /usr/local/bin/ooniprobe -i /root/my_decks/web-full.yaml
 
-(crontab -l 2>/dev/null ; echo @daily /usr/local/bin/ooniprobe -i /root/my_decks/web-full.yaml) | crontab -
+echo add ooniproble 4x to crontab?
+read input
+if echo $input  |grep -iq ^y
+then
+(crontab -l 2>/dev/null ; echo 1 1 * * * ~/installation-scripts/tor/ooni-probe/venv/bin/ooniprobe -i ~/my_decks/web-full.yaml) | crontab -
+
+fi
+~/installation-scripts/tor/ooni-probe/venv/bin/ooniprobe -i ~/my_decks/web-full.yaml
+
