@@ -211,4 +211,3 @@ then
  ./ooni-stretch.sh
 fi
 
-ifconfig -a |grep ether |cut -d  -f10
