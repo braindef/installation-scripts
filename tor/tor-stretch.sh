@@ -93,7 +93,7 @@ then
 #auto wlan0
 #allow-hotplug wlan0
 #iface wlan0 inet dhcp
-# wireless-essid FREIfunRombachtaeli
+# wireless-essid FREIfunkRombachtaeli
 # wireless-mode managed
 #iface wlan0 inet static
 #  address 192.168.1.4
