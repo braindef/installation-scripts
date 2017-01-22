@@ -12,14 +12,16 @@ sudo apt-get install jackd
 sudo apt-get install qjackctl
 sudo apt-get install a2jmidid
 sudo apt-get install ardour3
+sudo apt-get install ardour
+
 "
 
 #Section Software Synthesizer / Sampler addons/software/plugins 
-sudo apt-get install phasex
-sudo apt-get install fluidsynth
+#sudo apt-get install phasex
+#sudo apt-get install fluidsynth
 #sudo apt-get install qsynth
 
-$(which jackd) &
+#$(which jackd) &
 
 $(which qjackctl) &
 
@@ -27,11 +29,11 @@ sleep 3
 
 echo -e "
 
-press ENTER in this terminal-window when your jackd server is started
-
-
 
 	\e[92m▶\e[0m Start
+
+
+press \e[33mENTER in this terminal-window\e[0m when your jackd server is started
 
 "
 read $input
@@ -41,14 +43,20 @@ $(which a2jmidid) -j default &
 #$(which a2j_control) start &
 
 #Secion starting the software Synthesizers
-$(which fluidsynth) &
-$(which phasex) &
+#$(which fluidsynth) &
+#$(which phasex) &
 
 echo "to compile avldrums
+
 git clone git://github.com/x42/avldrums.lv2.git
 cd avldrums.lv2
 make submodules
 make
 sudo make install PREFIX=/usr
 "
+
+$(which ardour2)
+
+$(which ardour3)
+
 
