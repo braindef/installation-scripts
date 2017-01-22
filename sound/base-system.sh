@@ -23,7 +23,7 @@ $(which jackd) &
 
 $(which qjackctl) &
 
-sleep 5
+sleep 3
 
 echo -e "
 
@@ -44,10 +44,11 @@ $(which a2jmidid) -j default &
 $(which fluidsynth) &
 $(which phasex) &
 
+echo "to compile avldrums
 git clone git://github.com/x42/avldrums.lv2.git
 cd avldrums.lv2
 make submodules
 make
 sudo make install PREFIX=/usr
-fluidsynth
-phasex
+"
+
