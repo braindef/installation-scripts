@@ -12,7 +12,6 @@ sudo apt-get install jackd
 sudo apt-get install qjackctl
 sudo apt-get install a2jmidid
 sudo apt-get install ardour3
-sudo apt-get install ardour
 
 "
 
@@ -62,9 +61,9 @@ make
 sudo make install PREFIX=/usr
 "
 
+#Section Sequencer Software
 echo -e "Starting Sequencer Software"
 sleep 3
-$(which ardour2)
 
 $(which ardour3)
 
