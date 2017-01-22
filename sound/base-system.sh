@@ -39,12 +39,19 @@ press \e[33mENTER in this terminal-window\e[0m when your jackd server is started
 read $input
 
 #Section starting the jack-midi backend as a background process
+
+echo -e "Starting jack-midi-backend"
 $(which a2jmidid) -j default &
 $(which a2j_control) start &
 
+sleep 3
+
 #Secion starting the software Synthesizers
+echo -3 "Starting software synthesizers"
 $(which fluidsynth) &
 $(which phasex) &
+
+sleep 3
 
 echo "to compile avldrums
 
@@ -55,6 +62,8 @@ make
 sudo make install PREFIX=/usr
 "
 
+echo -e "Starting Sequencer Software"
+sleep 3
 $(which ardour2)
 
 $(which ardour3)
