@@ -9,12 +9,15 @@ sudo apt-get install libglu1-mesa-dev
 sudo apt-get install lv2-dev 
 sudo apt-get install libfluidsynth-dev
 "
+
+sudo apt-get update && sudo apt-get upgrade
+
 sudo apt-get install jackd
 sudo apt-get install qjackctl
 sudo apt-get install a2jmidid
 sudo apt-get install ardour3
 
-sudo dpkg-reconfigure -p high jackd
+#sudo dpkg-reconfigure -p high jackd
 
 #Section Software Synthesizer / Sampler addons/software/plugins 
 sudo apt-get install phasex
@@ -68,4 +71,6 @@ sleep 3
 
 $(which ardour3)
 
+$(which ardour)
 
+sudo apt-get update && apt-get upgrade
