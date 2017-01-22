@@ -14,6 +14,8 @@ sudo apt-get install qjackctl
 sudo apt-get install a2jmidid
 sudo apt-get install ardour3
 
+sudo dpkg-reconfigure -p high jackd
+
 #Section Software Synthesizer / Sampler addons/software/plugins 
 sudo apt-get install phasex
 sudo apt-get install fluidsynth
