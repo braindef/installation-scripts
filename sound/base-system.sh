@@ -8,23 +8,22 @@ sudo apt-get install libcairo2-dev
 sudo apt-get install libglu1-mesa-dev
 sudo apt-get install lv2-dev 
 sudo apt-get install libfluidsynth-dev
+"
 sudo apt-get install jackd
 sudo apt-get install qjackctl
 sudo apt-get install a2jmidid
 sudo apt-get install ardour3
 
-"
-
 #Section Software Synthesizer / Sampler addons/software/plugins 
-#sudo apt-get install phasex
-#sudo apt-get install fluidsynth
-#sudo apt-get install qsynth
+sudo apt-get install phasex
+sudo apt-get install fluidsynth
+sudo apt-get install qsynth
 
 #$(which jackd) &
 
 $(which qjackctl) &
 
-sleep 3
+sleep 1.5
 
 echo -e "
 
