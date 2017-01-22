@@ -40,11 +40,11 @@ read $input
 
 #Section starting the jack-midi backend as a background process
 $(which a2jmidid) -j default &
-#$(which a2j_control) start &
+$(which a2j_control) start &
 
 #Secion starting the software Synthesizers
-#$(which fluidsynth) &
-#$(which phasex) &
+$(which fluidsynth) &
+$(which phasex) &
 
 echo "to compile avldrums
 
