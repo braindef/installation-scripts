@@ -1,14 +1,5 @@
 #!/bin/bash
 
-echo "
-sudo apt-get install build-essential
-sudo apt-get install libglib2.0-dev
-sudo apt-get install libpango1.0-dev
-sudo apt-get install libcairo2-dev
-sudo apt-get install libglu1-mesa-dev
-sudo apt-get install lv2-dev 
-sudo apt-get install libfluidsynth-dev
-"
 
 sudo apt-get update && sudo apt-get upgrade
 
@@ -69,8 +60,32 @@ sudo make install PREFIX=/usr
 echo -e "Starting Sequencer Software"
 sleep 3
 
-$(which ardour3)
+$(which ardour3) &
 
-$(which ardour)
+$(which ardour) &
 
-sudo apt-get update && apt-get upgrade
+
+# compiling avldrums.lv2
+echo installing prerequisites for avldrums.lv2
+
+
+sudo apt-get update && sudo apt-get upgrade
+
+sudo apt-get install build-essential
+sudo apt-get install libglib2.0-dev
+sudo apt-get install libpango1.0-dev
+sudo apt-get install libcairo2-dev
+sudo apt-get install libglu1-mesa-dev
+sudo apt-get install lv2-dev 
+sudo apt-get install libfluidsynth-dev
+
+
+git clone git://github.com/x42/avldrums.lv2.git
+cd avldrums.lv2
+make submodules
+make
+sudo make install PREFIX=/usr
+
+
+
+
