@@ -14,9 +14,18 @@ $supported_file = array(
     'png'
 );
 
+
+if (empty($_GET["width"])) {
+	 $width=100; 
+}
+else {
+	 $width=$_GET["width"];
+	 }
+
+
 $ext = strtolower(pathinfo($image, PATHINFO_EXTENSION));
 if (in_array($ext, $supported_file)) {
-    echo '<a href="./'.$image .'"><img width=100 src="'.$image .'" ></a>';
+    echo '<a href="./'.$image .'"><img width='.$width.' src="'.$image .'" ></a>';
     echo '
 ';
 
@@ -27,3 +36,5 @@ if (in_array($ext, $supported_file)) {
 }
 
 ?>
+
+display.php?width=$width
