@@ -167,7 +167,10 @@ apt-get -y install quassel
 apt-get -y install libreoffice-l10n-de
 apt-get -y install pidgin
 apt-get -y install cups-pdf
-apt-get -y install xserver-xorg-input-multitouch
+#apt-get -y install xserver-xorg-input-multitouch
+#apt-get -y install xserver-xorg-input-synaptics
+apt-get -y install xserver-xorg-input-all
+
 
 apt-get -y install arduro alsa-gnome alsa-base bluez
 apt-get -y install xmms
