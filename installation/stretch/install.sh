@@ -87,7 +87,9 @@ apt-get -y install sudo
 apt-get -y install gdm3
 apt-get -y install lightdm lxde
 apt-get -y install gnome gnome-shell
-apt-get -y install inkscape gimp libreoffice
+apt-get -y install inkscape 
+apt-get -y install gimp
+apt-get -y install libreoffice
 apt-get -y install nmap
 apt-get -y install keepassx 
 apt-get -y install vim
@@ -226,10 +228,9 @@ gsettings set org.gnome.nautilus.preferences always-use-location-entry true
 echo -e "generell Bunt einschalten im vim"
 echo "syntax on" >>$HOME/.vimrc
 
-#sudo apt-get -y install youtube-dl
 apt-get install -y python-pip
 pip install youtube-dl
-youtube-dl -U
+youtube-dl --update
 
 #printf "install torbrowser-launcher 
 #continue? (y/n)"
