@@ -133,6 +133,7 @@ apt-get -y install libreoffice-l10n-de
 apt-get -y install pidgin
 apt-get -y install cups-pdf
 apt-get -y install xserver-xorg-input-all
+apt-get -y install lmms
 
 echo
 echo
@@ -249,4 +250,4 @@ youtube-dl --update
 #sudo apt-get -y install torbrowser-launcher
 
 
-
+apt-get autoremove
