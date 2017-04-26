@@ -1,9 +1,5 @@
 #!/bin/bash
 
-#lmms qSynth mixxx
-
-clear
-
 #codename=jessie
 codename=stretch
 
@@ -26,7 +22,8 @@ fi
 
 apt-get update
 apt-get upgrade
-
+apt-get install vim sudo git
+vim /etc/apt/sources.list
 
 echo -e "\e[91mDebian Repository Index\e[39m über \e[33mTor\e[39m runterladen, was dann apt automatisch vergleicht (y/n)?"
 echo -e "Donwload \e[91mDebian repository Index\e[39m über \e[33mTor\e[39m, apt would say if someone changed them (y/n)?"
@@ -35,37 +32,36 @@ printf "use TOR (The Onion Router)? (y/n)"
 
 read answer
 if echo "$answer" | grep -iq "^y" ;then
-apt-get -y install torsocks apt-transport-tor
-mv /etc/apt/sources.list /etc/apt/sources.list.bak$(date +%y%m%d%H%M%S)
+  apt-get -y install torsocks apt-transport-tor
+  mv /etc/apt/sources.list /etc/apt/sources.list.bak$(date +%y%m%d%H%M%S)
 
-echo "
+  echo "
 deb tor+http://vwakviie2ienjx6t.onion/debian/ $codename main contrib
 deb tor+http://earthqfvaeuv5bla.onion/debian/ $codename main contrib
 " >> /etc/apt/sources.list
-apt-get update
-apt-get upgrade
-else
+  apt-get update
+  apt-get upgrade
+  else
     echo Benutzer das Tor-Netzwerk nicht
     echo Not using Tor-Network
-fi
 
-apt-get -y install tor tor-arm
+  apt-get -y install tor tor-arm
 
-echo
-echo
-echo -e "Wieder den normalen \e[91mhttpredir.debian.org\e[39m verwenden der \e[33mschneller\e[39m ist also über das Tor-Netzwerk?"
-echo -e "Switch back to normale \e[91mhttpredir.debian.org\e[39m mirror, normally \e[33mfaster\e[39m than with Tor-Netzwork?"
+  echo
+  echo
+  echo -e "Wieder den normalen \e[91mhttpredir.debian.org\e[39m verwenden der \e[33mschneller\e[39m ist also über das Tor-Netzwerk?"
+  echo -e "Switch back to normale \e[91mhttpredir.debian.org\e[39m mirror, normally \e[33mfaster\e[39m than with Tor-Netzwork?"
 
-printf "use normal mirror? (y/n)"
+  printf "use normal mirror? (y/n)"
 
-read answer
-if echo "$answer" | grep -iq "^y" ;then
+  read answer2
+  if echo "$answer2" | grep -iq "^y" ;then
 
-#Sicherheitskopie vom sources.list machen
-mv /etc/apt/sources.list /etc/apt/sources.list.bak$(date +%y%m%d%H%M%S)
+  #Sicherheitskopie vom sources.list machen
+  mv /etc/apt/sources.list /etc/apt/sources.list.bak$(date +%y%m%d%H%M%S)
 
-#neue sources,list schreiben
-echo "
+  #neue sources,list schreiben
+  echo "
 deb http://httpredir.debian.org/debian/ $codename main contrib
 deb-src http://httpredir.debian.org/debian/ $codename main contrib
 
@@ -76,9 +72,10 @@ deb http://httpredir.debian.org/debian/ $codename-updates main contrib
 deb-src http://httpredir.debian.org/debian/ $codename-updates main contrib
 " >>/etc/apt/sources.list
 
-else
-  echo -e "Verwende weiter das Tor-Netzwerk"
-  echo -e "Continuing using apt-transport-tor"
+  else
+    echo -e "Verwende weiter das Tor-Netzwerk"
+    echo -e "Continuing using apt-transport-tor"
+  fi
 fi
 
 #update && upgrade
@@ -142,9 +139,10 @@ echo -e "Install \e[91mMulti-Factor authentication\e[39m \e[33mdafür bitte eine
 
 printf "install pamusb (y/n)"
 
-read answer
-if echo "$answer" | grep -iq "^y" ;then
-
+read answer3
+if echo "$answer3" | grep -iq "^y" 
+then
+echo not installing pamusb
 #xgd-open https://en.wikipedia.org/wiki/Multi-factor_authentication &
 #xgd-open https://de.wikipedia.org/wiki/Zwei-Faktor-Authentifizierung &
 
@@ -188,8 +186,10 @@ vim "+:syntax on" /etc/sudoers
 #printf "install tripwire?"
 
 read answer
-if echo "$answer" | grep -iq "^y" ;then
-#apt-get -f install tripwire
+if echo "$answer" | grep -iq "^y" 
+then
+
+echo #apt-get -f install tripwire
 #tripwire -m i
 #tripwire -m u
 else
@@ -229,8 +229,23 @@ echo "syntax on" >>$HOME/.vimrc
 #sudo apt-get -y install youtube-dl
 apt-get install -y python-pip
 pip install youtube-dl
+youtube-dl -U
 
-sudo apt-get -y install torbrowser-launcher
+#printf "install torbrowser-launcher 
+#continue? (y/n)"
+#read answer4
+#if echo "$answer4" | grep -iq "^y" ;
+#then
+#  echo "you need non-free (press [ENTER])"
+#  read temp
+#  vim /etc/apt/sources.list
+#  apt-get update
+#  apt-get -y install torbrowser-launcher
+#  else
+#  echo "not installing tor-browser-launcher"
+#fi
+
+#sudo apt-get -y install torbrowser-launcher
 
 
 
