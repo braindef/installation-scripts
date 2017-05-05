@@ -68,7 +68,7 @@ read answer
 if echo "$answer" | grep -iq "^y" ;
 then
 echo "
-NodeID=0
+#NodeID=0
 ListenPort=10051
 DBHost=localhost
 DBName=zabbix
