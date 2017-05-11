@@ -33,6 +33,8 @@ else
 fi
 
 dpkg --configure -a
+dpkg-reconfigure keyboard-configuration
+echo changing keyboard configuration needs reboot or new shell [Press ENTER to continue]
 apt-get update
 apt-get upgrade
 apt-get install nmap vim sudo snmp snmpd
