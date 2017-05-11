@@ -32,13 +32,10 @@ else
   exit
 fi
 
+dpkg --configure -a
 apt-get update
-
 apt-get upgrade
-
-apt-get install nmap vim sudo snmp 
-
-apt-get install snmpd
+apt-get install nmap vim sudo snmp snmpd
 
 echo
 echo -e "\e[91mzabbix-server-pgsql und zabbix-frontend-php\e[39m installieren? (y/n)?"
