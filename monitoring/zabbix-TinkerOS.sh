@@ -57,7 +57,8 @@ then
   read -p "Press [Enter] after adding it in /etc/apt/sources.list an an apt-get update && apt-get upgrade on another virtal console ([ctrl][alt][F2-F6])"
 
   apt-get install snmp-mibs-downloader
-  echo -e "\e[91mpostgresql\e[39m reachable? (next line should show it, port 5432)"
+  echo -e "\e[91mpostgresql\e[39m reachable? (next line should show it, port 5432)
+"
   nmap localhost | grep 5432
   read -p "Press [Enter] to continue"
 
@@ -82,7 +83,7 @@ echo -e "\e[91minstall\e[39m database? (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
   sudo -u postgres  psql -c "CREATE DATABASE zabbix;"
-  sudo -u postgres  psql -c "CREATE USER zabbix WITH PASSWORD \'$1\';"
+  sudo -u postgres  psql -c "CREATE USER zabbix WITH PASSWORD '$1';"
   sudo -u postgres  psql -c "GRANT ALL PRIVILEGES ON DATABASE zabbix to zabbix;"
   gunzip --stdout /usr/share/zabbix-server-pgsql/schema.sql.gz | psql -h localhost -U zabbix -d zabbix -W
   gunzip --stdout /usr/share/zabbix-server-pgsql/images.sql.gz | psql -h localhost -U zabbix -d zabbix -W 
@@ -143,6 +144,7 @@ post_max_size = 16M
 upload_max_filesize = 2M
 max_input_time = 300
 date.timezone = Europe/Zurich
+always_populate_raw_post_data = -1
 " >> /etc/php5/apache2/php.ini
 
 echo "
@@ -152,7 +154,6 @@ post_max_size = 16M
 upload_max_filesize = 2M
 max_input_time = 300
 date.timezone = Europe/Zurich
-php_flag always_populate_raw_post_data = -1
 " >> /etc/php/7.0/apache2/php.ini
 
 /usr/sbin/a2enmod php
@@ -166,10 +167,14 @@ php_flag always_populate_raw_post_data = -1
 
 chmod o+w /etc/zabbix
 
+xdg-open http://localhost/zabbix
 read -p "Press [Enter] after doing zabbix frontend installation on http://<Server IP>/zabbix/"
 
 chmod o-w /etc/zabbix
 
+echo -e "
+default user is \e[91mAdmin\e[39m (case sensitiv)
+default password is \e[91myabbix\e[39m (case sensitiv)
 
 echo
 echo -e "\e[91mZabbix-Agent\e[39m installieren? (y/n)?"
