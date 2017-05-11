@@ -41,7 +41,7 @@ then
   dpkg-reconfigure keyboard-configuration
   echo changing keyboard configuration needs reboot [Press ENTER to continue]
 else
-  exit
+  echo leaving keyboard as it is
 fi
 
 
