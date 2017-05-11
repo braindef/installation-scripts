@@ -33,8 +33,18 @@ else
 fi
 
 dpkg --configure -a
-dpkg-reconfigure keyboard-configuration
-echo changing keyboard configuration needs reboot or new shell [Press ENTER to continue]
+
+printf "configure keyboard? (y/n)"
+read answer
+if echo "$answer" | grep -iq "^y" ;
+then
+  dpkg-reconfigure keyboard-configuration
+  echo changing keyboard configuration needs reboot [Press ENTER to continue]
+else
+  exit
+fi
+
+
 apt-get update
 apt-get upgrade
 apt-get install nmap vim sudo snmp snmpd
