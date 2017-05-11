@@ -184,7 +184,8 @@ chmod o-w /etc/zabbix
 
 echo -e "
 default user is \e[91mAdmin\e[39m (case sensitiv)
-default password is \e[91myabbix\e[39m (case sensitiv)
+default password is \e[91mzabbix\e[39m (case sensitiv)
+"
 
 echo
 echo -e "\e[91mZabbix-Agent\e[39m installieren? (y/n)?"
