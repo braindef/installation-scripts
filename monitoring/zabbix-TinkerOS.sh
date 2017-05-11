@@ -83,7 +83,7 @@ echo -e "\e[91minstall\e[39m database? (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
   sudo -u postgres  psql -c "CREATE DATABASE zabbix;"
-  sudo -u postgres  psql -c "CREATE USER zabbix WITH PASSWORD $1;"
+  sudo -u postgres  psql -c "CREATE USER zabbix WITH PASSWORD \'$1\';"
   sudo -u postgres  psql -c "GRANT ALL PRIVILEGES ON DATABASE zabbix to zabbix;"
   gunzip --stdout /usr/share/zabbix-server-pgsql/schema.sql.gz | psql -h localhost -U zabbix -d zabbix -W
   gunzip --stdout /usr/share/zabbix-server-pgsql/images.sql.gz | psql -h localhost -U zabbix -d zabbix -W 
