@@ -1,5 +1,13 @@
 #!/bin/bash
 
+
+function ShowAndExecute {
+echo -e "executing \e[91m
+echo $1
+echo -e "\e[39m"
+$1
+}  
+
 codename=jessie
 
 if  [ "$1" = "" ]
@@ -13,9 +21,9 @@ Enter the (new) Database Password as parameter \e[36msudo ./zabbix.sh 123456\e[3
 exit 0
 fi
 
-ls -la /var/lib/dpkg |grep lock
+ShowAndExecute "ls -la /var/lib/dpkg |grep lock"
 
-dpkg --configure -a
+ShowAndExecute "dpkg --configure -a"
 
 echo "script for Debian $codename"
 
@@ -177,8 +185,8 @@ default user is \e[91mAdmin\e[39m (case sensitiv)
 default password is \e[91mzabbix\e[39m (case sensitiv)
 "
 
-echo
-echo -e "\e[91mZabbix-Agent\e[39m installieren? (y/n)?"
+echo -e "
+install \e[91mZabbix-Agent\e[39m (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
   apt-get install zabbix-agent
@@ -187,3 +195,4 @@ if echo "$answer" | grep -iq "^y" ;then
 else
   echo "not installing zabbix-agent"
 fi
+
