@@ -13,6 +13,8 @@ Enter the (new) Database Password as parameter \e[36msudo ./zabbix.sh 123456\e[3
 exit 0
 fi
 
+ls -la /var/lib/dpkg |grep lock
+
 dpkg --configure -a
 
 echo "script for Debian $codename"
@@ -22,7 +24,8 @@ read answer
 if echo "$answer" | grep -iq "^y" ;
 then
   dpkg-reconfigure keyboard-configuration
-  echo changing keyboard configuration sometime needs reboot [Press ENTER to continue]
+  echo changing keyboard configuration sometime needs reboot please test and restart script
+  exit 0
 else
   echo leaving keyboard as it is
 fi
