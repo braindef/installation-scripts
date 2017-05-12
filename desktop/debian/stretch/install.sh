@@ -23,9 +23,22 @@ distro=stretch
 #Helper Function to show first the command that is beeing executed
 #-----------------------------------------------------------------
 function ShowAndExecute {
-echo -e -n "Running: ${red} $1 ${default}"
+echo -e "Running: ${red} $1 ${default}"
 $1
 }
+##test if everything worked
+
+
+#Helper Function for YES or NO Answers
+function ExecutionChooser {
+echo -e ${red}$1${default}? [y/N]
+read -d'' -s -n1 answer
+if  [ "$answer" = "y" ] || [ "$answer" = "Y" ] 
+then
+ShowAndExecute "$2"
+fi
+}
+
 
 #Test if script runs as root
 #---------------------------
@@ -40,7 +53,9 @@ fi
 
 #Test if enough parameters given
 #-------------------------------
-if  [ "$3" = "" ]; then
+
+if "$1" = ""
+then
 echo -e "
 Usage:
 ------
@@ -56,8 +71,20 @@ echo
 exit 0
 fi
 
+echo -e "${red}${0} ${@}${default}"
 
-ShowAndExecute "ls -la" $1
+ShowAndExecute "cat -e /var/lib/dpkg/lock"
 
+ShowAndExecute "dpkg --configure -a"
+
+ShowAndExecute "apt-get -y update"
+
+ShowAndExecute "apt-get -y upgrade"
+
+ShowAndExecute "apt-get -y dist-upgrade"
+
+ShowAndExecute "apt-get -y install vim sudo git"
+
+ExecutionChooser "Edit /etc/apt/sources.list" "vim /etc/apt/sources.list"
 
 
