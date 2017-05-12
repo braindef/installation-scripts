@@ -60,7 +60,7 @@ then
 
   echo -e "
   Requires \e[91mnon-free\e[39m for snmp-mibs-downloader"
-  read -p "Press [Enter] after adding if missing it in /etc/apt/sources.list an an apt-get update "
+  read -p "Press [Enter] after adding if missing it in /etc/apt/sources.list an apt-get update "
 
   apt-get install snmp-mibs-downloader
   echo -e "\e[91mpostgresql\e[39m reachable? (next line should show it, port 5432)
