@@ -13,27 +13,16 @@ Enter the (new) Database Password as parameter \e[36msudo ./zabbix.sh 123456\e[3
 exit 0
 fi
 
+dpkg --configure -a
 
 echo "script for Debian $codename"
-
-printf "continue? (y/n)"
-read answer
-if echo "$answer" | grep -iq "^y" ;
-then
-  echo "weiter..."
-  echo "continuing..."
-else
-  exit
-fi
-
-dpkg --configure -a
 
 printf "configure keyboard? (y/n)"
 read answer
 if echo "$answer" | grep -iq "^y" ;
 then
   dpkg-reconfigure keyboard-configuration
-  echo changing keyboard configuration needs reboot [Press ENTER to continue]
+  echo changing keyboard configuration sometime needs reboot [Press ENTER to continue]
 else
   echo leaving keyboard as it is
 fi
@@ -53,20 +42,21 @@ then
   apt-get install postgresql
   apt-get install zabbix-server-pgsql
   apt-get install apache2
-  apt-get install php
-
-  apt-get install php-pgsql
   apt-get install libapache2-mod-php
+  apt-get install php
+  apt-get install php-pgsql
   apt-get install zabbix-frontend-php
 
-  echo -e "\e[91mnon-free\e[39m required for snmp-mibs-downloader"
-  read -p "Press [Enter] after adding it in /etc/apt/sources.list an an apt-get update && apt-get upgrade on another virtal console ([ctrl][alt][F2-F6])"
+  echo -e "
+  Requires \e[91mnon-free\e[39m for snmp-mibs-downloader"
+  read -p "Press [Enter] after adding if missing it in /etc/apt/sources.list an an apt-get update "
 
   apt-get install snmp-mibs-downloader
   echo -e "\e[91mpostgresql\e[39m reachable? (next line should show it, port 5432)
 "
   nmap localhost | grep 5432
-  read -p "Press [Enter] to continue"
+  read -p "
+  Press [Enter] to continue"
 
 else
   echo "not installing zabbix-server and frontend"
@@ -129,8 +119,6 @@ echo -e "\e[91m/etc/zabbix/zabbix_server.conf\e[39m kompillieren? (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
   /usr/sbin/zabbix_server -c /etc/zabbix/zabbix_server.conf
-  /usr/sbin/zabbix_server -n 1 -c /etc/zabbix/zabbix_server.conf
- 
   echo press [ENTER] to continue
   read answer 
 else
@@ -163,11 +151,11 @@ date.timezone = Europe/Zurich
 " >> /etc/php/7.0/apache2/php.ini
 
 
-apt-get install libapache2-mpm-itk
+#apt-get install libapache2-mpm-itk
 
 /usr/sbin/a2enmod php
 
-/usr/sbin/a2dismod mpm_event
+#/usr/sbin/a2dismod mpm_event
 /usr/sbin/a2enmod php7.0
 
 /usr/sbin/apache2ctl restart
@@ -196,5 +184,3 @@ if echo "$answer" | grep -iq "^y" ;then
 else
   echo "not installing zabbix-agent"
 fi
-
-sudo apt-get install libapache2-mod-php
