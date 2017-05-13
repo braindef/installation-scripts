@@ -34,11 +34,15 @@ distro=stretch
 #==============================================================================
 
 
-#Helper Function to show first the command that is beeing executed
+# Helper Function to show first the command that is beeing executed
 #==============================================================================
 function ShowAndExecute {
-echo -e "Running: ${red} $1 ${default}"
+#show command
+echo -e "${red} $1 ${default}"
+#execute command
 $1
+#test if it worked or give an ERROR Message in red, return code of apt is stored in $?
+rc=$?; if [[ $rc != 0 ]]; then echo -e ${red}ERROR${default} $rc; fi
 }
 ##test if everything worked
 #==============================================================================
@@ -131,7 +135,7 @@ then
   echo "
 deb tor+http://vwakviie2ienjx6t.onion/debian/ $codename main contrib
 deb tor+http://earthqfvaeuv5bla.onion/debian/ $codename main contrib
-" >> /etc/apt/sources.list
+" > /etc/apt/sources.list
 
 ShowAndExecute "apt-get -y update"
 
@@ -152,11 +156,8 @@ deb-src http://security.debian.org/ $distro/updates main contrib
 
 deb http://httpredir.debian.org/debian/ $distro-updates main contrib
 deb-src http://httpredir.debian.org/debian/ $distro-updates main contrib
-" >>/etc/apt/sources.list
+" >/etc/apt/sources.list
 
-ShowAndExecute "apt-get -y update"
-
-ShowAndExecute "apt-get -y upgrade"
 fi
 
 # edit repository list after modification
@@ -164,6 +165,10 @@ fi
 if YESNO "Edit /etc/apt/sources.list?"
 then
 ShowAndExecute "$EDITOR /etc/apt/sources.list"
+
+ShowAndExecute "apt-get -y update"
+
+ShowAndExecute "apt-get -y upgrade"
 fi
 
 # edit repository list after modification
@@ -211,7 +216,7 @@ ShowAndExecute "apt-get -y install gconf-editor"
 ShowAndExecute "apt-get -y install mumble"
 ShowAndExecute "apt-get -y install font-manager"
 ShowAndExecute "apt-get -y install quassel "
-ShowAndExecute "apt-get -y install pidgin"
+ShowAndExecute "apt-get -y install pidginnnnnnn"
 
 #ShowAndExecute "apt-get -y install xserver-xorg-input-all"
 #ShowAndExecute "apt-get -y install gnome-commander"
