@@ -109,6 +109,8 @@ echo -e "${red}${0} ${@}${default}"
 #==============================================================================
 ShowAndExecute "cat -e /var/lib/dpkg/lock"
 
+ShowAndExecute "apt --fix-broken install"
+
 ShowAndExecute "dpkg --configure -a"
 
 ShowAndExecute "apt-get -y update"

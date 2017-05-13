@@ -110,6 +110,8 @@ ShowAndExecute "cat -e /var/lib/dpkg/lock"
 
 ShowAndExecute "dpkg --configure -a"
 
+ShowAndExecute "apt --fix-broken install"
+
 ShowAndExecute "apt-get -y update"
 
 ShowAndExecute "apt-get -y upgrade"
