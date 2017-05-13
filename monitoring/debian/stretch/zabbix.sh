@@ -38,7 +38,8 @@ distro=stretch
 #==============================================================================
 function ShowAndExecute {
 #show command
-echo -e "${red} $1 ${default}"
+echo -e "
+${red}● $1 ${default}"
 #execute command
 $1
 #test if it worked or give an ERROR Message in red, return code of apt is stored in $?
@@ -84,7 +85,7 @@ fi
 
 # Test if user has given enough parameters
 #==============================================================================
-if "$1" = ""
+if  [ "$1" = "" ] 
 then
 echo -e "
 Usage:
@@ -131,8 +132,10 @@ ShowAndExecute "apt-get -y install snmpd"
 ShowAndExecute "apt-get -y install nmap"
 
 ShowAndExecute "apt-get -y install postgresql"
+ShowAndExecute "apt-get -y install postgresql-all"
 ShowAndExecute "apt-get -y install zabbix-server-pgsql"
 ShowAndExecute "apt-get -y install apache2"
+ShowAndExecute "apt-get -y install libapache2-mod-php"
 ShowAndExecute "apt-get -y install php"
 ShowAndExecute "apt-get -y install php-pgsql"
 ShowAndExecute "apt-get -y install zabbix-frontend-php"
@@ -143,6 +146,9 @@ ShowAndExecute "nmap localhost"
 if YESNO "The snmp-mibs-downloader needs non-free edit /etc/apt/sources.list?"
 then
 vim -c ":%s/main/main non-free/g" /etc/apt/sources.list
+ShowAndExecute "apt-get -y update"
+ShowAndExecute "apt-get -y upgrade"
+ShowAndExecute "apt-get -y install snmp-mibs-downloader"
 fi
 
 if YESNO "drop old database completely?"
@@ -152,8 +158,9 @@ fi
 
 if YESNO "install new database? Password you entered is $1"
 then
+password=\'${1}\' #ugly but no better idea at the moment
 sudo -u postgres  psql -c "CREATE DATABASE zabbix;"
-sudo -u postgres  psql -c "CREATE USER zabbix WITH PASSWORD $1;"
+sudo -u postgres  psql -c "CREATE USER zabbix WITH PASSWORD ${password};"
 sudo -u postgres  psql -c "GRANT ALL PRIVILEGES ON DATABASE zabbix to zabbix;"
 gunzip --stdout /usr/share/zabbix-server-pgsql/schema.sql.gz | psql -h localhost -U zabbix -d zabbix -W
 gunzip --stdout /usr/share/zabbix-server-pgsql/images.sql.gz | psql -h localhost -U zabbix -d zabbix -W 
@@ -176,6 +183,8 @@ fi
 
 ln -s /usr/share/zabbix /var/www/html
 
+if YESNO "modify /etc/php5/apache2/php.ini?"
+then
 echo "
 max_execution_time = 300
 memory_limit = 128M
@@ -184,7 +193,10 @@ upload_max_filesize = 2M
 max_input_time = 300
 date.timezone = Europe/Zurich
 " >> /etc/php5/apache2/php.ini
+fi
 
+if YESNO "modify /etc/php/7.0/apache2/php.ini?"
+then
 echo "
 max_execution_time = 300
 memory_limit = 128M
@@ -193,11 +205,10 @@ upload_max_filesize = 2M
 max_input_time = 300
 date.timezone = Europe/Zurich
 " >> /etc/php/7.0/apache2/php.ini
-
+fi
 
 /usr/sbin/a2enmod php
-/usr/sbin/a2dismod mpm_event
-/usr/sbin/a2enmod php7.0
+
 /usr/sbin/apache2ctl restart
 
 chmod o+w /etc/zabbix
@@ -214,7 +225,7 @@ ShowAndExecute "vim /etc/zabbix/zabbix_agentd.conf"
 ShowAndExecute "/etc/init.d/zabbix-agent restart"
 fi
 
-if YESNO "modify snmpd.conf?"
+if YESNO "edit snmpd.conf?"
 then
 vim /etc/default/zabbix-server
 vim /etc/default/snmpd
