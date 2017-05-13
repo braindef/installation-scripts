@@ -1,71 +1,166 @@
 #!/bin/bash
 
-apt-get update
+#Script for installing zabbix automated
+#==============================================================================
+#title           :
+#description     :
+#author		 :Marc Landolt, @FailDef
+#date            :
+#version         :0.1
+#usage		 :
+#notes           :
+#bash_version    :
+#==============================================================================
 
-apt-get upgrade
 
-apt-get install nmap vim sudo snmp 
+# Define Editor
+#==============================================================================
+#EDITOR=$(which nano)
+EDITOR=$(which vim)
+#==============================================================================
 
-apt-get install snmpd
 
+# Color Definitions
+#==============================================================================
+red="\e[91m"
+default="\e[39m"
+#==============================================================================
+
+
+# Define which Linux Distribution
+#==============================================================================
+#distro=jessie
+distro=stretch
+#==============================================================================
+
+
+# Helper Function to show first the command that is beeing executed
+#==============================================================================
+function ShowAndExecute {
+#show command
+echo -e "${red} $1 ${default}"
+#execute command
+$1
+#test if it worked or give an ERROR Message in red, return code of apt is stored in $?
+rc=$?; if [[ $rc != 0 ]]; then echo -e ${red}ERROR${default} $rc; fi
+}
+##test if everything worked
+#==============================================================================
+
+
+# Helper Function for YES or NO Answers
+#------------------------------------------------------------------------------
+# Example YESNO "Question to ask" "command to be executed"
+#==============================================================================
+function YESNO {
+echo -e -n "
+${red}$1 [y/N]${default} "
+read -d'' -s -n1 answer
 echo
-echo -e "\e[91mzabbix-server-pgsql und zabbix-frontend-php\e[39m installieren? (y/n)?"
-read answer
-
-if echo "$answer" | grep -iq "^y" ;
+if  [ "$answer" = "y" ] || [ "$answer" = "Y" ]
 then
-  apt-get install postgresql-all
-  apt-get install zabbix-server-pgsql
-  apt-get install apache2
-  apt-get install php
-
-  apt-get install php-pgsql
-  apt-get install zabbix-frontend-php
-
-  echo -e "\e[91mnon-free\e[39m required for snmp-mibs-downloader"
-  read -p "Press [Enter] after adding it in /etc/apt/sources.list an an apt-get update && apt-get upgrade on another virtal console ([ctrl][alt][F2-F6])"
-
-  apt-get install snmp-mibs-downloader
-  echo -e "\e[91mpostgresql\e[39m reachable? (next line should show it, port 5432)"
-  nmap localhost | grep 5432
-  read -p "Press [Enter] to continue"
-
+return 0
 else
-  echo "not installing zabbix-server and frontend"
+echo -e "
+"
+return 1
+fi
+}
+#==============================================================================
+
+
+# Test if script runs as root otherweise exit with exit code 1
+#==============================================================================
+if [[ $EUID -ne 0 ]]; then
+  echo -e -n "
+${red}You must be a root user to run this script${default}
+at the moment you are " 2>&1
+  id | cut -d " " -f1
+  echo
+  exit 1
+fi
+#==============================================================================
+
+
+# Test if user has given enough parameters
+#==============================================================================
+if "$1" = ""
+then
+echo -e "
+Usage:
+------
+Enter the (new) Database Password as parameter e.g. ${red}sudo ${0} 123456${default} "
+echo
+echo " arguments ---------------->  ${@}     "
+echo " \$1 ----------------------->  $1       "
+echo " \$2 ----------------------->  $2       "
+echo " path to script ----------->  ${0}     "
+echo " parent path -------------->  ${0%/*}  "
+echo " script name -------------->  ${0##*/} "
+echo
+exit 0
+fi
+#==============================================================================
+
+echo -e "${red}${0} ${@}${default}"
+
+# get the newest updates
+#==============================================================================
+ShowAndExecute "cat -e /var/lib/dpkg/lock"
+
+ShowAndExecute "dpkg --configure -a"
+
+ShowAndExecute "apt-get -y update"
+
+ShowAndExecute "apt-get -y upgrade"
+
+ShowAndExecute "apt-get -y dist-upgrade"
+
+ShowAndExecute "apt-get -y install sudo git vim nano"
+#==============================================================================
+
+# edit repository list
+#==============================================================================
+if YESNO "Edit /etc/apt/sources.list?"
+then
+ShowAndExecute "$EDITOR /etc/apt/sources.list"
 fi
 
+ShowAndExecute "apt-get -y install snmp"
+ShowAndExecute "apt-get -y install snmpd"
+ShowAndExecute "apt-get -y install nmap"
 
-cd /var/lib/postgresql/
+ShowAndExecute "apt-get -y install postgresql"
+ShowAndExecute "apt-get -y install zabbix-server-pgsql"
+ShowAndExecute "apt-get -y install apache2"
+ShowAndExecute "apt-get -y install php"
+ShowAndExecute "apt-get -y install php-pgsql"
+ShowAndExecute "apt-get -y install zabbix-frontend-php"
 
-echo
-echo -e "\e[91mdrop old\e[39m database? (y/n)?"
-read answer
-if echo "$answer" | grep -iq "^y" ;then
+echo postfix should be open on port 5432
+ShowAndExecute "nmap localhost"
+
+if YESNO "The snmp-mibs-downloader needs non-free edit /etc/apt/sources.list?"
+then
+vim -c ":%s/main/main non-free/g" /etc/apt/sources.list
+fi
+
+if YESNO "drop old database completely?"
+then
 sudo -u postgres  psql -c "drop database zabbix;"
-else
-    echo "not dropping old db"
 fi
 
-echo
-echo -e "\e[91minstall\e[39m database? (y/n)?"
-read answer
-if echo "$answer" | grep -iq "^y" ;then
-  sudo -u postgres  psql -c "CREATE DATABASE zabbix;"
-  sudo -u postgres  psql -c "CREATE USER zabbix WITH PASSWORD '1234';"
-  sudo -u postgres  psql -c "GRANT ALL PRIVILEGES ON DATABASE zabbix to zabbix;"
-  gunzip --stdout /usr/share/zabbix-server-pgsql/schema.sql.gz | psql -h localhost -U zabbix -d zabbix -W
-  gunzip --stdout /usr/share/zabbix-server-pgsql/images.sql.gz | psql -h localhost -U zabbix -d zabbix -W 
+if YESNO "install new database? Password you entered is $1"
+then
+sudo -u postgres  psql -c "CREATE DATABASE zabbix;"
+sudo -u postgres  psql -c "CREATE USER zabbix WITH PASSWORD $1;"
+sudo -u postgres  psql -c "GRANT ALL PRIVILEGES ON DATABASE zabbix to zabbix;"
+gunzip --stdout /usr/share/zabbix-server-pgsql/schema.sql.gz | psql -h localhost -U zabbix -d zabbix -W
+gunzip --stdout /usr/share/zabbix-server-pgsql/images.sql.gz | psql -h localhost -U zabbix -d zabbix -W 
   gunzip --stdout /usr/share/zabbix-server-pgsql/data.sql.gz | psql -h localhost -U zabbix -d zabbix -W
-else
-  echo "not installing db"
 fi
 
-echo
-
-
-echo -e "\e[91m/etc/zabbix/zabbix_server.conf\e[39m modifiziere? (y/n)?"
-read answer
-if echo "$answer" | grep -iq "^y" ;
+if YESNO "modify /etc/zabbix/zabbix_server.conf?"
 then
 echo "
 #NodeID=0
@@ -73,35 +168,11 @@ ListenPort=10051
 DBHost=localhost
 DBName=zabbix
 DBUser=zabbix
-DBPassword=1234
+DBPassword=$1
 " >> /etc/zabbix/zabbix_server.conf
+vim -c ":9999" /etc/zabbix/zabbix_server.conf
+/usr/sbin/zabbix_server -c /etc/zabbix/zabbix_server.conf
 fi
-
-echo
-echo -e "\e[91m/etc/zabbix/zabbix_server.conf\e[39m editieren? (y/n)?"
-read answer
-if echo "$answer" | grep -iq "^y" ;then
-  vim /etc/zabbix/zabbix_server.conf
-else
-    echo "not editing /etc/zabbix/zabbix_server.conf"
-fi
-
-echo
-echo -e "\e[91m/etc/zabbix/zabbix_server.conf\e[39m kompillieren? (y/n)?"
-read answer
-if echo "$answer" | grep -iq "^y" ;then
-  /usr/sbin/zabbix_server -c /etc/zabbix/zabbix_server.conf
-  /usr/sbin/zabbix_server -n 1 -c /etc/zabbix/zabbix_server.conf
- 
-  echo press [ENTER] to continue
-  read answer 
-else
-  echo "not compiling /etc/zabbix/zabbix_server.conf"
-fi
-
-vim /etc/default/zabbix-server
-vim /etc/default/snmpd
-vim /etc/snmp/snmpd.conf
 
 ln -s /usr/share/zabbix /var/www/html
 
@@ -123,14 +194,11 @@ max_input_time = 300
 date.timezone = Europe/Zurich
 " >> /etc/php/7.0/apache2/php.ini
 
-/usr/sbin/a2enmod php
 
+/usr/sbin/a2enmod php
 /usr/sbin/a2dismod mpm_event
 /usr/sbin/a2enmod php7.0
-
 /usr/sbin/apache2ctl restart
-
-/etc/init.d/apache2 restart
 
 chmod o+w /etc/zabbix
 
@@ -139,14 +207,20 @@ read -p "Press [Enter] after doing zabbix frontend installation on http://<Serve
 chmod o-w /etc/zabbix
 
 
-echo
-echo -e "\e[91mZabbix-Agent\e[39m installieren? (y/n)?"
-read answer
-if echo "$answer" | grep -iq "^y" ;then
-  apt-get install zabbix-agent
-  vim /etc/zabbix/zabbix_agentd.conf
-  /etc/init.d/zabbix-agent restart
-else
-  echo "not installing zabbix-agent"
+if YESNO "install zabbix agent?"
+then
+ShowAndExecute "apt-get -y install zabbix-agent"
+ShowAndExecute "vim /etc/zabbix/zabbix_agentd.conf"
+ShowAndExecute "/etc/init.d/zabbix-agent restart"
 fi
+
+if YESNO "modify snmpd.conf?"
+then
+vim /etc/default/zabbix-server
+vim /etc/default/snmpd
+vim /etc/snmp/snmpd.conf
+fi
+
+ShowAndExecute "apt-get autoremove"
+
 
