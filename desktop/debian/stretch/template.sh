@@ -12,17 +12,20 @@
 #bash_version    :
 #==============================================================================
 
+
 # Define Editor
 #==============================================================================
 #EDITOR=$(which nano)
 EDITOR=$(which vim)
 #==============================================================================
 
+
 # Color Definitions
 #==============================================================================
 red="\e[91m"
 default="\e[39m"
 #==============================================================================
+
 
 # Define which Linux Distribution
 #==============================================================================
@@ -61,6 +64,7 @@ fi
 }
 #==============================================================================
 
+
 # Test if script runs as root otherweise exit with exit code 1
 #==============================================================================
 if [[ $EUID -ne 0 ]]; then
@@ -72,6 +76,7 @@ at the moment you are " 2>&1
   exit 1
 fi
 #==============================================================================
+
 
 # Test if user has given enough parameters
 #==============================================================================
@@ -95,6 +100,8 @@ fi
 
 echo -e "${red}${0} ${@}${default}"
 
+# get the newest updates
+#==============================================================================
 ShowAndExecute "cat -e /var/lib/dpkg/lock"
 
 ShowAndExecute "dpkg --configure -a"
@@ -106,23 +113,13 @@ ShowAndExecute "apt-get -y upgrade"
 ShowAndExecute "apt-get -y dist-upgrade"
 
 ShowAndExecute "apt-get -y install sudo git vim nano"
+#==============================================================================
 
+# edit repository list
+#==============================================================================
 if YESNO "Edit /etc/apt/sources.list?"
 then
 ShowAndExecute "$EDITOR /etc/apt/sources.list"
-fi
-
-if YESNO "Use TOR (The Onion Router) for APT Transport?"
-then
-  cp /etc/apt/sources.list /etc/apt/sources.list-$(date +%Y%m%d-%H%M%S.bak)
-  echo "
-deb tor+http://vwakviie2ienjx6t.onion/debian/ $codename main contrib
-deb tor+http://earthqfvaeuv5bla.onion/debian/ $codename main contrib
-" >> /etc/apt/sources.list
-
-ShowAndExecute "apt-get -y update"
-
-ShowAndExecute "apt-get -y upgrade"
 fi
 
 if YESNO "Use TOR (The Onion Router) for APT Transport?"
@@ -142,5 +139,101 @@ ShowAndExecute "apt-get -y upgrade"
 
 ShowAndExecute "apt-get -y install tor tor-arm"
 fi
+
+if YESNO "Use normal httpredir.debian.org for APT Transport?"
+then
+  cp /etc/apt/sources.list /etc/apt/sources.list-$(date +%Y%m%d-%H%M%S.bak)
+  echo "
+deb http://httpredir.debian.org/debian/ $distro main contrib
+deb-src http://httpredir.debian.org/debian/ $distro main contrib
+
+deb http://security.debian.org/ $distro/updates main contrib
+deb-src http://security.debian.org/ $distro/updates main contrib
+
+deb http://httpredir.debian.org/debian/ $distro-updates main contrib
+deb-src http://httpredir.debian.org/debian/ $distro-updates main contrib
+" >>/etc/apt/sources.list
+
+ShowAndExecute "apt-get -y update"
+
+ShowAndExecute "apt-get -y upgrade"
+fi
+
+# edit repository list after modification
+#==============================================================================
+if YESNO "Edit /etc/apt/sources.list?"
+then
+ShowAndExecute "$EDITOR /etc/apt/sources.list"
+fi
+
+# edit repository list after modification
+#==============================================================================
+ShowAndExecute "apt-get -y install md5deep"
+ShowAndExecute "apt-get -y install rdfind"
+ShowAndExecute "apt-get -y install nmap"
+ShowAndExecute "apt-get -y install rsync"
+ShowAndExecute "apt-get -y install snmp"
+ShowAndExecute "apt-get -y install jigdo-file"
+ShowAndExecute "apt-get -y install build-essential"
+ShowAndExecute "apt-get -y install pkg-config "
+ShowAndExecute "apt-get -y install libdbus-1-dev"
+ShowAndExecute "apt-get -y install apt-file"
+ShowAndExecute "apt-file update"
+ShowAndExecute "apt-get -y install figlet"
+ShowAndExecute "apt-get -y install git"
+ShowAndExecute "apt-get -y install tcpdump"
+ShowAndExecute "apt-get -y install iptraf"
+ShowAndExecute "apt-get -y install gparted"
+ShowAndExecute "apt-get -y install lightdm lxde"
+ShowAndExecute "apt-get -y install gdm3 gnome gnome-shell"
+ShowAndExecute "apt-get -y install gconf-editor"
+ShowAndExecute "gsettings set org.gnome.nautilus.preferences always-use-location-entry true"
+ShowAndExecute "apt-get -y install chromium"
+ShowAndExecute "apt-get -y install inkscape"
+ShowAndExecute "apt-get -y install gimp"
+ShowAndExecute "apt-get -y install libreoffice"
+ShowAndExecute "apt-get -y install libreoffice-help-de"
+ShowAndExecute "apt-get -y install libreoffice-l10n-de"
+ShowAndExecute "apt-get -y install cups-pdf"
+ShowAndExecute "apt-get -y install keepassx "
+ShowAndExecute "apt-get -y install icedove"
+ShowAndExecute "apt-get -y install vlc"
+ShowAndExecute "apt-get -y install kdenlive"
+ShowAndExecute "apt-get -y install screenkey"
+ShowAndExecute "apt-get -y install simplescreenrecorder"
+ShowAndExecute "apt-get -y install virtualbox"
+
+#ShowAndExecute "apt-get -y install audacity"
+#ShowAndExecute "apt-get -y install lmms" +ladspa delay zynfx?
+
+ShowAndExecute "apt-get -y install posterazor"
+ShowAndExecute "apt-get -y install gconf-editor"
+ShowAndExecute "apt-get -y install mumble"
+ShowAndExecute "apt-get -y install font-manager"
+ShowAndExecute "apt-get -y install quassel "
+ShowAndExecute "apt-get -y install pidgin"
+
+#ShowAndExecute "apt-get -y install xserver-xorg-input-all"
+#ShowAndExecute "apt-get -y install gnome-commander"
+#ShowAndExecute "#apt-get -y install mc"
+#ShowAndExecute "#apt-get -y install xsane"
+#ShowAndExecute "apt-get -y install redshift"
+#ShowAndExecute "apt-get -y install extundelete"
+#ShowAndExecute "apt-get -y install qrencode "
+#ShowAndExecute "apt-get -y install apt-xapian-index"
+
+#printf "install pamusb (y/n)"
+#gparted
+#/usr/bin/pamusb-conf --add-device seven
+#/usr/bin/pamusb-conf --add-user $(id -u 1000 -n)
+
+#printf "install tripwire?"
+#echo -e "Benutzer \e[92mguest\e[39m erstellen mit zweitem mini MemoryStick, den man auch stecken lassen kann und keine Admin-rechte hat (y/n)?"
+
+#echo -e "generell Bunt einschalten im vim"
+#echo "syntax on" >>$HOME/.vimrc
+#printf "install torbrowser-launcher non-free"
+
+ShowAndExecute "apt-get autoremove"
 
 
