@@ -215,7 +215,10 @@ fi
 
 chmod o+w /etc/zabbix
 
-read -p "Press [Enter] after doing zabbix frontend installation on http://<Server IP>/zabbix/"
+ifconfig |grep inet |grep netmask
+
+read -p "
+Press [Enter] after doing zabbix frontend installation on http://<Server IP>/zabbix/"
 
 chmod o-w /etc/zabbix
 
