@@ -158,7 +158,7 @@ then
 sudo -u postgres  psql -c "drop database zabbix;"
 fi
 
-if YESNO "install new database? Password you entered is $1"
+if YESNO "install new database? (Password you entered is $1)"
 then
 password=\'${1}\' #ugly but no better idea at the moment
 sudo -u postgres  psql -c "CREATE DATABASE zabbix;"
