@@ -93,6 +93,12 @@ fi
 # v v v v v v v v v v v  v Script starts here v v v v v v v v v v v v v v v 
 #==============================================================================
 echo -e "${red}${0} ${@}${default}"
-cat $1 | tr ' ' '\012' | tr '[:upper:]' '[:lower:]' | tr -d '[:punct:]' | tr -d '[0-9]' | sort | uniq -c | sort -n | tee $1.$(date +%y%m%d%H%M).count | tail -n 100
 
+echo $1
+
+for i in $1
+do
+	echo $i
+	cat $i | tr ' ' '\012' | tr '[:upper:]' '[:lower:]' | tr -d '[:punct:]' | tr -d '[0-9]' | sort | uniq -c | sort -n | tee $i.$(date +%y%m%d%H%M).count | tail -n 100
+done
 

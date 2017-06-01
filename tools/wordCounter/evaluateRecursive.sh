@@ -92,7 +92,29 @@ fi
 #==============================================================================
 # v v v v v v v v v v v  v Script starts here v v v v v v v v v v v v v v v 
 #==============================================================================
-echo -e "${red}${0} ${@}${default}"
-cat $1 | tr ' ' '\012' | tr '[:upper:]' '[:lower:]' | tr -d '[:punct:]' | tr -d '[0-9]' | sort | uniq -c | sort -n | tee $1.$(date +%y%m%d%H%M).count | tail -n 100
+#echo -e "${red}${0} ${@}${default}"
+#cat $1 | tr ' ' '\012' | tr '[:upper:]' '[:lower:]' | tr -d '[:punct:]' | tr -d '[0-9]' | sort | uniq -c | sort -n | tee $1.$(date +%y%m%d%H%M).count | tail -n 100
 
+rm *.all
+
+for i in $(seq 1999 1 2017)
+do
+	for j in $(echo januar Januar februar Februar maerz Maerz april April mai Mai juni Juni juli Juli august August september September oktober Oktober november November dezember Dezember) 
+	do
+		echo $i ---- $j >> count.all
+		find $i/$j -name '*.txt' |grep -v sum |grep -v chromium >files.$i.$j.all
+		IFS=$'\n'
+		for f in $(cat files.$i.$j.all)
+		do
+			echo "****** $f" >>words.$i.$j.all
+			cat $f >>words.$i.$j.all
+		done
+		IFS=" "
+		cat words.$i.$j.all | tr ' ' '\012' | tr '[:upper:]' '[:lower:]' | tr -d '[:punct:]' | tr -d '[0-9]' | sort | uniq -c | sort -n | tee $1.$(date +%y%m%d%H%M).count |egrep -v "$(cat fuellwoerter.txt)" | tail -n 20 >>count.all
+	IFS=" "
+	echo ******** $i $j ********
+	#cat count.$i.$j.all
+	
+	done
+done
 
