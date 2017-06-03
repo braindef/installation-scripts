@@ -6,4 +6,6 @@ Should also work on
 * Rasbian
 * Raspberry PI 3 bootstrapped with https://github.com/braindef/debian_base_on_raspberry3
 * Armbian
+
+
 ARM Systems seem to have a startup issue, you have to start the Service after boot with **/etc/init.d/zabbix-server start**
