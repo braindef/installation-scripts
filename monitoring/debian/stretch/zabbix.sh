@@ -145,13 +145,13 @@ ShowAndExecute "apt-get -y install zabbix-frontend-php"
 echo postfix should be open on port 5432
 ShowAndExecute "nmap localhost"
 
-if YESNO "The snmp-mibs-downloader needs non-free edit /etc/apt/sources.list?"
+if YESNO "The snmp-mibs-downloader needs non-free edit /etc/apt/sources.list for you? (in Ubuntu press NO)"
 then
 vim -c ":%s/main/main non-free/g" /etc/apt/sources.list
 ShowAndExecute "apt-get -y update"
 ShowAndExecute "apt-get -y upgrade"
-ShowAndExecute "apt-get -y install snmp-mibs-downloader"
 fi
+ShowAndExecute "apt-get -y install snmp-mibs-downloader"
 
 if YESNO "drop old database completely?"
 then
