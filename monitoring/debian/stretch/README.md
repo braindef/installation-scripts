@@ -2,7 +2,7 @@
 
 Should also work on
 * Ubuntu 17.x Server
-* Tinkeros
+* TinkerOS
 * Rasbian
 * Raspberry PI 3 bootstrapped with https://github.com/braindef/debian_base_on_raspberry3
 * Armbian
