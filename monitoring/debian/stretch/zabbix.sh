@@ -10,6 +10,11 @@
 #usage		 :
 #notes           :
 #bash_version    :
+#documentation   : /usr/share/doc/zabbix-server-mysql/README.Debian
+#                  /usr/share/doc/zabbix-server-pgsql/README.Debian
+#                  /usr/share/doc/zabbix-frontend-php/README.Debian
+#                  /usr/share/doc/zabbix-agent/README.Debian
+#                  https://www.zabbix.com/documentation/3.0/manual
 #==============================================================================
 
 
