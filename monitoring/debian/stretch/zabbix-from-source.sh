@@ -141,6 +141,11 @@ ShowAndExecute "apt-get -y install postgresql-all"
 ShowAndExecute "apt-get -y install apache2"
 ShowAndExecute "apt-get -y install libapache2-mod-php"
 ShowAndExecute "apt-get -y install php"
+ShowAndExecute "apt-get -y install php-bcmath"
+ShowAndExecute "apt-get -y install php-mbstring"
+ShowAndExecute "apt-get -y install php-gd"
+ShowAndExecute "apt-get -y install php-xml"
+
 ShowAndExecute "apt-get -y install php-pgsql"
 #ShowAndExecute "apt-get -y install zabbix-frontend-php"
 
