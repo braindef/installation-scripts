@@ -8,7 +8,7 @@
 # Description:       Zabbix Server PostgreSQL
 ### END INIT INFO
 
-SCRIPT=zabbix-server-psql
+SCRIPT=/usr/local/sbin/zabbix_server
 RUNAS=zabbix
 
 PIDFILE=/var/run/zabbix-server-psql.pid
