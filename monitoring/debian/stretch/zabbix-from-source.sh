@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo not working yet
-exit 0
+#exit 0
 
 
 #Script for installing zabbix automated
@@ -211,7 +211,7 @@ sudo -u postgres  psql -c "GRANT ALL PRIVILEGES ON DATABASE zabbix to zabbix;"
 #gunzip --stdout /usr/share/zabbix-server-pgsql/schema.sql.gz | psql -h localhost -U zabbix -d zabbix -W
 #gunzip --stdout /usr/share/zabbix-server-pgsql/images.sql.gz | psql -h localhost -U zabbix -d zabbix -W 
 #  gunzip --stdout /usr/share/zabbix-server-pgsql/data.sql.gz | psql -h localhost -U zabbix -d zabbix -W
-zcat /root/zabbix-source/zabbix-3.2.6/database/postgresql/{schema,images,data}.sql.gz | psql -h localhost $1 zabbix
+cat /root/zabbix-source/zabbix-3.2.6/database/postgresql/{schema,images,data}.sql | psql -h localhost zabbix zabbix
 
 fi
 
