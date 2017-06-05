@@ -146,7 +146,7 @@ ShowAndExecute "apt-get -y install php-pgsql"
 
 
 
-ShowAndExecute "apt-get -y install subversion automake"
+ShowAndExecute "apt-get -y install subversion automake build-essential libsnmp-dev"
 
 
 mkdir ~/zabbix-source
@@ -211,7 +211,7 @@ sudo -u postgres  psql -c "GRANT ALL PRIVILEGES ON DATABASE zabbix to zabbix;"
 #gunzip --stdout /usr/share/zabbix-server-pgsql/schema.sql.gz | psql -h localhost -U zabbix -d zabbix -W
 #gunzip --stdout /usr/share/zabbix-server-pgsql/images.sql.gz | psql -h localhost -U zabbix -d zabbix -W 
 #  gunzip --stdout /usr/share/zabbix-server-pgsql/data.sql.gz | psql -h localhost -U zabbix -d zabbix -W
-cat /root/zabbix-source/zabbix-3.2.6/database/postgresql/{schema,images,data}.sql | psql -h localhost zabbix zabbix
+cat ~/zabbix-source/zabbix-3.2.6/database/postgresql/{schema,images,data}.sql | psql -h localhost zabbix zabbix
 
 fi
 
