@@ -149,7 +149,9 @@ ShowAndExecute "apt-get -y install php-xml"
 ShowAndExecute "apt-get -y install php-pgsql"
 #ShowAndExecute "apt-get -y install zabbix-frontend-php"
 
+cp zabbix-server /etc/init.d/
 
+adduser zabbix
 
 ShowAndExecute "apt-get -y install subversion automake build-essential libsnmp-dev"
 
@@ -291,3 +293,4 @@ fi
 ShowAndExecute "apt-get autoremove"
 
 
+ShowAndExecute "update-rc.d zabbix-server defaults"
