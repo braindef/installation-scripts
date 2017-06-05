@@ -8,11 +8,11 @@
 # Description:       Zabbix Server PostgreSQL
 ### END INIT INFO
 
-SCRIPT=/usr/local/sbin/zabbix_server
+SCRIPT="/usr/local/sbin/zabbix_server -f"
 RUNAS=zabbix
 
 PIDFILE=/var/run/zabbix-server-psql.pid
-LOGFILE=/var/log/zabbix-server-psql.log
+LOGFILE=/tmp/zabbix-server-psql.log
 
 start() {
   if [ -f /var/run/$PIDNAME ] && kill -0 $(cat /var/run/$PIDNAME); then
