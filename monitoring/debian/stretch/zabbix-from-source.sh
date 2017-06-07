@@ -232,6 +232,7 @@ DBHost=localhost
 DBName=zabbix
 DBUser=zabbix
 DBPassword=$1
+FpingLocation=/usr/bin/fping
 " >> /usr/local/etc/zabbix_server.conf
 vim -c ":9999" /usr/local/etc/zabbix_server.conf
 /usr/local/sbin/zabbix_server -c /usr/local/etc/zabbix_server.conf
