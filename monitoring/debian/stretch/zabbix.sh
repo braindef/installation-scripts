@@ -138,6 +138,8 @@ ShowAndExecute "apt-get -y install snmp"
 ShowAndExecute "apt-get -y install snmpd"
 ShowAndExecute "apt-get -y install nmap"
 ShowAndExecute "apt-get -y install fping"
+ShowAndExecute "chmod u+s /usr/bin/fping"
+
 
 ShowAndExecute "apt-get -y install postgresql"
 ShowAndExecute "apt-get -y install postgresql-all"
