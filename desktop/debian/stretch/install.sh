@@ -229,6 +229,7 @@ ShowAndExecute "apt-get -y install checksecurity"
 #ShowAndExecute "apt-get -y install extundelete"
 #ShowAndExecute "apt-get -y install qrencode "
 #ShowAndExecute "apt-get -y install apt-xapian-index"
+#ShowAndExecute "apt-get -y install mesa-vulkan-drivers"
 
 #printf "install pamusb (y/n)"
 #gparted
