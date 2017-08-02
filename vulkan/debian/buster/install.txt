@@ -1,0 +1,15 @@
+sudo apt-get install git
+git clone https://github.com/SaschaWillems/Vulkan
+sudo apt-get install libgli-dev
+sudo apt-get install libglm-dev
+sudo apt-get install libassimp-dev
+sudo apt-get install make cmake cmake-curses-gui build-essential 
+cd Vulkan/
+sudo apt-get install libxcb1-dev 
+ccmake .
+make
+cd bin/
+sudo apt-get install mesa-vulkan-drivers 
+./radialblur 
+
+echo for debian stretch dont take the libgli/glm from debian repo but release from github repository
