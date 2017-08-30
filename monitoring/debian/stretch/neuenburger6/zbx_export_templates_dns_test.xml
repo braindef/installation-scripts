@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>3.0</version>
+    <date>2017-08-30T23:46:13Z</date>
+    <groups>
+        <group>
+            <name>Linux servers</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template DNS Test</template>
+            <name>Template DNS Test</name>
+            <description/>
+            <groups>
+                <group>
+                    <name>Linux servers</name>
+                </group>
+            </groups>
+            <applications/>
+            <items>
+                <item>
+                    <name>Google DNS</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>dns_check.sh[&quot;{HOST.CONN}&quot;,&quot;8.8.8.8&quot;]</key>
+                    <delay>90</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units>ms</units>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description>#!/bin/bash&#13;
+dns_server=$2&#13;
+#echo $1 $2&#13;
+dns_query=$(dig $1 | grep &quot;^$1&quot;)&#13;
+if [[ $dns_query == *&quot;$1&quot;* ]]&#13;
+then&#13;
+        dig $1 @$dns_server | grep &quot;Query&quot;|cut -d: -f2 |cut -dm -f1 |bc -l&#13;
+else&#13;
+        exit 1&#13;
+fi</description>
+                    <inventory_link>0</inventory_link>
+                    <applications/>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>cablecom3</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>dns_check.sh[&quot;{HOST.CONN}&quot;,&quot;62.2.17.60&quot;]</key>
+                    <delay>90</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units>ms</units>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description>#!/bin/bash&#13;
+dns_server=$2&#13;
+#echo $1 $2&#13;
+dns_query=$(dig $1 | grep &quot;^$1&quot;)&#13;
+if [[ $dns_query == *&quot;$1&quot;* ]]&#13;
+then&#13;
+        dig $1 @$dns_server | grep &quot;Query&quot;|cut -d: -f2 |cut -dm -f1 |bc -l&#13;
+else&#13;
+        exit 1&#13;
+fi</description>
+                    <inventory_link>0</inventory_link>
+                    <applications/>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>cablecom1</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>dns_check.sh[&quot;{HOST.CONN}&quot;,&quot;62.2.17.61&quot;]</key>
+                    <delay>90</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units>ms</units>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description>#!/bin/bash&#13;
+dns_server=$2&#13;
+#echo $1 $2&#13;
+dns_query=$(dig $1 | grep &quot;^$1&quot;)&#13;
+if [[ $dns_query == *&quot;$1&quot;* ]]&#13;
+then&#13;
+        dig $1 @$dns_server | grep &quot;Query&quot;|cut -d: -f2 |cut -dm -f1 |bc -l&#13;
+else&#13;
+        exit 1&#13;
+fi</description>
+                    <inventory_link>0</inventory_link>
+                    <applications/>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>cablecom2</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>dns_check.sh[&quot;{HOST.CONN}&quot;,&quot;62.2.24.158&quot;]</key>
+                    <delay>90</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units>ms</units>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications/>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>cablecom4</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>dns_check.sh[&quot;{HOST.CONN}&quot;,&quot;62.2.24.162&quot;]</key>
+                    <delay>90</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units>ms</units>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description>#!/bin/bash&#13;
+dns_server=$2&#13;
+#echo $1 $2&#13;
+dns_query=$(dig $1 | grep &quot;^$1&quot;)&#13;
+if [[ $dns_query == *&quot;$1&quot;* ]]&#13;
+then&#13;
+        dig $1 @$dns_server | grep &quot;Query&quot;|cut -d: -f2 |cut -dm -f1 |bc -l&#13;
+else&#13;
+        exit 1&#13;
+fi</description>
+                    <inventory_link>0</inventory_link>
+                    <applications/>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>Homerouter</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>dns_check.sh[&quot;{HOST.CONN}&quot;,&quot;192.168.0.1&quot;]</key>
+                    <delay>60</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units>ms</units>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description>#!/bin/bash&#13;
+dns_server=$2&#13;
+#echo $1 $2&#13;
+dns_query=$(dig $1 | grep &quot;^$1&quot;)&#13;
+if [[ $dns_query == *&quot;$1&quot;* ]]&#13;
+then&#13;
+        dig $1 @$dns_server | grep &quot;Query&quot;|cut -d: -f2 |cut -dm -f1 |bc -l&#13;
+else&#13;
+        exit 1&#13;
+fi</description>
+                    <inventory_link>0</inventory_link>
+                    <applications/>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+            </items>
+            <discovery_rules/>
+            <macros/>
+            <templates/>
+            <screens/>
+        </template>
+    </templates>
+</zabbix_export>
