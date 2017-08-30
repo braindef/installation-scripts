@@ -9,3 +9,4 @@ else
 	exit 1
 fi
 
+#allenfalls muss man noch das timeout in der zabbix_server.conf anpassen
