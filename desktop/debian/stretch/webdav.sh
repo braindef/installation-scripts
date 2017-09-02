@@ -27,6 +27,7 @@ echo '
             AuthName "webdav"
             AuthUserFile /home/marc/passwd.dav
             Require valid-user
+	    Options +Indexes
         </Directory>
 
          ErrorLog  /home/marc/error.log
@@ -34,6 +35,12 @@ echo '
  </VirtualHost>
 
 ' >>/etc/apache2/sites-enabled/000-default.conf
+
+
+#echo '
+#Options +Indexes
+#IndexOptions FancyIndexing FoldersFirst NameWidth=* DescriptionWidth=*
+#' >>/home/marc/disk/.htaccess
 
 apachectl configtest
 
