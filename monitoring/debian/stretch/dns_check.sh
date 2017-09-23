@@ -1,6 +1,6 @@
 #!/bin/bash
-dns_server=212.60.61.246
-
+dns_server=$2
+#echo $1 $2
 dns_query=$(dig $1 | grep "^$1")
 if [[ $dns_query == *"$1"* ]]
 then
@@ -8,5 +8,6 @@ then
 else
 	exit 1
 fi
+
 
 #allenfalls muss man noch das timeout in der zabbix_server.conf anpassen
