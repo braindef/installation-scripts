@@ -1,0 +1,4 @@
+ls /sys/class/drm/*/status
+xrandr --setprovideroutputsource 1 0
+xrandr --output VGA-1-2 --auto
+
