@@ -177,6 +177,7 @@ fi
 #==============================================================================
 ShowAndExecute "apt-get -y install md5deep"
 ShowAndExecute "apt-get -y install rdfind"
+ShowAndExecute "apt-get -y install xdg-utils"
 ShowAndExecute "apt-get -y install nmap"
 ShowAndExecute "apt-get -y install rsync"
 ShowAndExecute "apt-get -y install snmp"
