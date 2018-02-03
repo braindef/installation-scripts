@@ -246,4 +246,5 @@ ShowAndExecute "apt-get -y install checksecurity"
 
 ShowAndExecute "apt-get autoremove"
 
+sudo -u $(logname) gsettings set org.gnome.nautilus.preferences always-use-location-entry true
 
