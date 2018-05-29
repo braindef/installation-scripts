@@ -221,6 +221,8 @@ ShowAndExecute "apt-get -y install font-manager"
 ShowAndExecute "apt-get -y install quassel "
 ShowAndExecute "apt-get -y install pidgin"
 ShowAndExecute "apt-get -y install checksecurity"
+ShowAndExecute "apt-get -y install spyder"
+ShowAndExecute "apt-get -y install spyder3"
 
 #ShowAndExecute "apt-get -y install xserver-xorg-input-all"
 #ShowAndExecute "apt-get -y install gnome-commander"
