@@ -130,6 +130,8 @@ emerge net-misc/rsync
 
 emerge --autounmask-write -avuDN gnome
 etc-update
+NINJAOPTS="-j2" emerge webkit-gtk
+NINJAOPTS="-j1" emerge webkit-gtk
 emerge gnome
 
 exit 0
