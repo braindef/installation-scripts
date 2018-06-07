@@ -104,21 +104,8 @@ fi
 
 echo -e "${red}${0} ${@}${default}"
 
-# get the newest updates
-#==============================================================================
-#ShowAndExecute "cat -e /var/lib/dpkg/lock"
 
-#ShowAndExecute "apt --fix-broken install"
 
-#ShowAndExecute "dpkg --configure -a"
-
-#ShowAndExecute "apt-get -y update"
-
-#ShowAndExecute "apt-get -y upgrade"
-
-#ShowAndExecute "apt-get -y dist-upgrade"
-
-#ShowAndExecute "apt-get -y install sudo git vim nano"
 ip link set enp1s0f0 up
 ip addr add 192.168.179.165/255.255.255.0 dev enp1s0f0
 ip route add default via 192.168.179.1
@@ -140,6 +127,10 @@ emerge -s nano
 
 emerge net-analyzer/nmap
 emerge net-misc/rsync
+
+emerge --autounmask-write -avuDN gnome
+etc-update
+emerge gnome
 
 exit 0
 
