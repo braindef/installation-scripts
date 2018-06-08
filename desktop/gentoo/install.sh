@@ -104,73 +104,18 @@ fi
 
 echo -e "${red}${0} ${@}${default}"
 
+#ip link set enp1s0f0 up
+#ip addr add 192.168.179.165/255.255.255.0 dev enp1s0f0
+#ip route add default via 192.168.179.1
 
+for i in $(cat /proc/net/dev |cut -d: -f1 |grep -v lo |grep enp)
+do
+ dhcpcd $i -t 20
+done
 
-ip link set enp1s0f0 up
-ip addr add 192.168.179.165/255.255.255.0 dev enp1s0f0
-ip route add default via 192.168.179.1
-
-if YESNO "select mirror and add to /etc/portage/make.conf?"
-then
-mirrorselect -i -o >>/etc/portage/make.conf
-
-mkdir /etc/portage/repos.conf
-cp /usr/share/portage/repos.conf /etc/portage/gentoo.conf
-echo "nameserver 8.8.8.8" >>/etc/resolv.conf
-fi
-
-emerge app-admin/sudo
-emerge dev-vcs/git
-emerge app-editors/vim
-emerge app-editors/gedit
-emerge -s nano
-
-emerge net-analyzer/nmap
-emerge net-misc/rsync
-
-emerge --autounmask-write -avuDN gnome
+emerge --autounmask-write -avuDN gnome chromium gnome-terminal nautilus rsync gedit vim git sudo
 etc-update
-NINJAOPTS="-j2" emerge webkit-gtk
-NINJAOPTS="-j1" emerge webkit-gtk
-emerge gnome
-
-exit 0
-
-ShowAndExecute "apt-get -y install snmp"
-ShowAndExecute "apt-get -y install pkg-config "
-ShowAndExecute "apt-get -y install libdbus-1-dev"
-ShowAndExecute "apt-get -y install apt-file"
-ShowAndExecute "apt-file update"
-ShowAndExecute "apt-get -y install figlet"
-ShowAndExecute "apt-get -y install tcpdump"
-ShowAndExecute "apt-get -y install iptraf"
-ShowAndExecute "apt-get -y install gparted"
-ShowAndExecute "apt-get -y install lightdm lxde"
-ShowAndExecute "apt-get -y install gdm3 gnome gnome-shell"
-ShowAndExecute "apt-get -y install gconf-editor"
-ShowAndExecute "gsettings set org.gnome.nautilus.preferences always-use-location-entry true"
-ShowAndExecute "apt-get -y install chromium"
-ShowAndExecute "apt-get -y install inkscape"
-ShowAndExecute "apt-get -y install gimp"
-ShowAndExecute "apt-get -y install libreoffice"
-ShowAndExecute "apt-get -y install libreoffice-help-de"
-ShowAndExecute "apt-get -y install libreoffice-l10n-de"
-ShowAndExecute "apt-get -y install cups-pdf"
-ShowAndExecute "apt-get -y install keepassx "
-ShowAndExecute "apt-get -y install icedove"
-ShowAndExecute "apt-get -y install vlc"
-ShowAndExecute "apt-get -y install kdenlive"
-ShowAndExecute "apt-get -y install screenkey"
-ShowAndExecute "apt-get -y install simplescreenrecorder"
-ShowAndExecute "apt-get -y install virtualbox"
-
-ShowAndExecute "apt-get -y install posterazor"
-ShowAndExecute "apt-get -y install gconf-editor"
-ShowAndExecute "apt-get -y install mumble"
-ShowAndExecute "apt-get -y install font-manager"
-ShowAndExecute "apt-get -y install quassel "
-ShowAndExecute "apt-get -y install pidgin"
-ShowAndExecute "apt-get -y install checksecurity"
-
+NINJAOPTS="-j1" emerge webkit-gtk gnome gnome-terminal nautilus rsync gedit vim git sudo
+emerge gnome chromium gnome-terminal nautilus rsync gedit vim git sudo
 
 
