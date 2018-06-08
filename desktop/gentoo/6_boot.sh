@@ -1,2 +1,2 @@
 mkdir /boot
-mount /dev/sda2 /boot
+mount /dev/sdc2 /boot
