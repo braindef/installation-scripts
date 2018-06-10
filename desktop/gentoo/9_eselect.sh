@@ -4,5 +4,12 @@ make menuconfig
 
 make -j8 && make modules_install && make install
 
+emerge --ask sys-kernel/genkernel
 
-#NINJAOPTS="-j1" emerge webkit-gtk gnome gnome-terminal nautilus rsync gedit vim git sudo
+vim /etc/fstab
+
+genkernel all
+
+emerge --ask sys-kernel/linux-firmware
+
+
