@@ -2,13 +2,12 @@ USE="systemd" emerge --ask sys-kernel/gentoo-sources
 
 cd /usr/src/linux
 
-echo NEDD SYSTEMD
+echo NEDs SYSTEMD
 
 make menuconfig
 
 make -j8 && make modules-install
 make install
-
 
 USE="systemd" emerge --ask --update --newuse --verbose sys-boot/grub:2
 
