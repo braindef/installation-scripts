@@ -13,3 +13,7 @@ echo 'add_dracutmodules+="usrmount"' >> /etc/dracut
 emerge --update sys-kernel/genkernel-next
 
 genkernel --no-clean all
+
+grub-mkconfig -o /boot/grub/grub.cfg
+
+grub-install /dev/sdc
