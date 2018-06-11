@@ -1,14 +1,14 @@
-emerge --ask app-admin/sysklogd
+emerge --update app-admin/sysklogd
 
-rc-update add sysklogd default
+systemctl enable sysklogd
 
-emerge --ask sys-process/cronie
+emerge --update sys-process/cronie
 
 rc-update add cronie default
 
-emerge --ask net-misc/dhcpcd
+emerge --update net-misc/dhcpcd
 
-emerge --ask net-wireless/iw net-wireless/wpa_supplicant networkmanager
+emerge --update net-wireless/iw net-wireless/wpa_supplicant networkmanager
 
 systemctl enable NetworkManager
 
