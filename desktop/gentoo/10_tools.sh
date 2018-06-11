@@ -4,7 +4,9 @@ systemctl enable sysklogd
 
 emerge --update sys-process/cronie
 
-rc-update add cronie default
+systemctl enable cronie
+
+systemctl enable cron.target
 
 emerge --update net-misc/dhcpcd
 
@@ -26,6 +28,6 @@ systemctl --all --full
 
 systemctl --failed
 
-systemctl enable cron.target
+
 
 
