@@ -10,17 +10,14 @@ make menuconfig
 make -j8 && make modules-install
 make install
 
-emerge --ask --update --newuse --verbose sys-boot/grub:2
+emerge --update --newuse --verbose sys-boot/grub:2
 
-emerge --ask --unmerge sys-kernel/genkernel
+emerge --unmerge sys-kernel/genkernel
 
-emerge --ask sys-kernel/dracut
-
-emerge --ask sys-kernel/genkernel-next
-
-genkernel --install all
+emerge --update sys-kernel/dracut
 
 echo 'add_dracutmodules+="usrmount"' >> /etc/dracut
 
+emerge --update sys-kernel/genkernel-next
 
-
+genkernel --install all
