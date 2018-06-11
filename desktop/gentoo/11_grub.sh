@@ -2,7 +2,7 @@ USE="systemd" emerge --ask sys-kernel/gentoo-sources
 
 cd /usr/src/linux
 
-echo NEDs SYSTEMD
+echo asus croshair VI Board needs the IGB (intel network driver) need to CONFIG_IGB=y and then menuconfig again
 
 make menuconfig
 
