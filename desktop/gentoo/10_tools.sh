@@ -8,7 +8,9 @@ rc-update add cronie default
 
 emerge --ask net-misc/dhcpcd
 
-emerge --ask net-wireless/iw net-wireless/wpa_supplicant
+emerge --ask net-wireless/iw net-wireless/wpa_supplicant networkmanager
+
+systemctl enable NetworkManager
 
 echo 'GRUB_CMD_LINUX="init=/lib/systemd/systemd"' >> /etc/default/grub
 
