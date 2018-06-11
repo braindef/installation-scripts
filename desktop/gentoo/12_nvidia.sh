@@ -7,3 +7,5 @@ echo dann make install
 echo dann genkernel (der genkernel-next) 
 echo genkernel --no-clean all
 
+echo go to nvidia website download the latest drivers, and install them
+
