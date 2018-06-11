@@ -12,4 +12,4 @@ echo 'add_dracutmodules+="usrmount"' >> /etc/dracut
 
 emerge --update sys-kernel/genkernel-next
 
-genkernel --install all
+genkernel --no-clean all
