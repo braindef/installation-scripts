@@ -4,7 +4,7 @@ make menuconfig
 
 make -j8 && make modules_install && make install
 
-emerge --ask sys-kernel/genkernel
+emerge --ask sys-kernel/genkernel-next
 
 vim /etc/fstab
 
