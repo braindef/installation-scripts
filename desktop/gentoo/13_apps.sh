@@ -1,3 +1,3 @@
 #!/bin/bash
-emerge inkscape gimp thunderbird vlc libreoffice keepass
-emerge app-portage/gentoolkit
+emerge --update inkscape gimp thunderbird vlc libreoffice keepass
+emerge --update app-portage/gentoolkit-next
