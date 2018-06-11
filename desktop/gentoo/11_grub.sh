@@ -1,4 +1,4 @@
-USE="systemd" emerge --ask sys-kernel/gentoo-sources
+emerge --ask sys-kernel/gentoo-sources
 
 cd /usr/src/linux
 
