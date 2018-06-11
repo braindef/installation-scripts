@@ -10,7 +10,7 @@ make menuconfig
 make -j8 && make modules-install
 make install
 
-USE="systemd" emerge --ask --update --newuse --verbose sys-boot/grub:2
+emerge --ask --update --newuse --verbose sys-boot/grub:2
 
 emerge --ask --unmerge sys-kernel/genkernel
 
