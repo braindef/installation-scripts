@@ -1,3 +1,5 @@
+emerge --update sys-kernel/gentoo-sources
+
 cd /usr/src/linux
 
 make menuconfig
