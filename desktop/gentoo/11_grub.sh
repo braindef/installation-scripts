@@ -1,6 +1,6 @@
 
-echo asus croshair VI Board needs the IGB (intel network driver) need to CONFIG_IGB=y and then menuconfig again
-echo edimax usb needs CONFIG_RTL8192CU=m and also a make menuconfig again
+echo "asus croshair VI Board needs the IGB (intel network driver) need to CONFIG_IGB=y and then menuconfig again"
+echo "edimax usb needs CONFIG_RTL8192CU=m and also a make menuconfig again"
 
 emerge --update --newuse --verbose sys-boot/grub:2
 

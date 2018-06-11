@@ -13,5 +13,5 @@ emerge --update vim dev-vcs/git sudo
 
 emerge --update --deep --newuse @world
 
-emerge --update gdm gnome gnome-terminal nautilus chromium
+emerge --update gdm gnome gnome-terminal nautilus
 
