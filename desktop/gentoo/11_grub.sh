@@ -9,6 +9,8 @@ emerge --update --newuse --verbose os-prober
 
 emerge --update sys-kernel/genkernel-next
 
+echo 'GRUB_CMD_LINUX="init=/lib/systemd/systemd"' >> /etc/default/grub
+
 grub-mkconfig -o /boot/grub/grub.cfg
 
 grub-install /dev/sdc
