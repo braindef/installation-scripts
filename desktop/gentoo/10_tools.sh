@@ -14,7 +14,7 @@ emerge --update net-wireless/iw net-wireless/wpa_supplicant networkmanager
 
 systemctl enable NetworkManager
 
-echo 'GRUB_CMD_LINUX="init=/lib/systemd/systemd"' >> /etc/default/grub
+#echo 'GRUB_CMD_LINUX="init=/lib/systemd/systemd"' >> /etc/default/grub
 
 systemctl daemon-reexec
 
