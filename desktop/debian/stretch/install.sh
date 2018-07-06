@@ -40,9 +40,14 @@ function ShowAndExecute {
 #show command
 echo -e "${red} $1 ${default}"
 #execute command
-$1
+sudo $1
 #test if it worked or give an ERROR Message in red, return code of apt is stored in $?
-rc=$?; if [[ $rc != 0 ]]; then echo -e ${red}ERROR${default} $rc; fi
+rc=$?;
+if [[ $rc != 0 ]]
+  then
+	  echo -e ${red}ERROR${default} $rc
+	  echo $1 >>fail.txt
+fi
 }
 ##test if everything worked
 #==============================================================================
@@ -71,14 +76,14 @@ fi
 
 # Test if script runs as root otherweise exit with exit code 1
 #==============================================================================
-if [[ $EUID -ne 0 ]]; then
-  echo -e -n "
-${red}You must be a root user to run this script${default}
-at the moment you are " 2>&1
-  id | cut -d " " -f1
-  echo
-  exit 1
-fi
+#if [[ $EUID -ne 0 ]]; then
+#  echo -e -n "
+#${red}You must be a root user to run this script${default}
+#at the moment you are " 2>&1
+#  id | cut -d " " -f1
+#  echo
+#  exit 1
+#fi
 #==============================================================================
 
 
@@ -197,6 +202,7 @@ ShowAndExecute "apt-get -y install gdm3 gnome gnome-shell"
 ShowAndExecute "apt-get -y install gconf-editor"
 ShowAndExecute "gsettings set org.gnome.nautilus.preferences always-use-location-entry true"
 ShowAndExecute "apt-get -y install chromium"
+ShowAndExecute "apt-get -y install chromium-browser"
 ShowAndExecute "apt-get -y install inkscape"
 ShowAndExecute "apt-get -y install gimp"
 ShowAndExecute "apt-get -y install libreoffice"
@@ -205,6 +211,7 @@ ShowAndExecute "apt-get -y install libreoffice-l10n-de"
 ShowAndExecute "apt-get -y install cups-pdf"
 ShowAndExecute "apt-get -y install keepassx "
 ShowAndExecute "apt-get -y install icedove"
+ShowAndExecute "apt-get -y install thunderbird"
 ShowAndExecute "apt-get -y install vlc"
 ShowAndExecute "apt-get -y install kdenlive"
 ShowAndExecute "apt-get -y install screenkey"
@@ -250,4 +257,5 @@ ShowAndExecute "apt-get autoremove"
 
 ShowAndExecute "sudo -u $(logname) gsettings set org.gnome.nautilus.preferences always-use-location-entry true"
 
+gsettings set org.gnome.nautilus.preferences always-use-location-entry true
 
