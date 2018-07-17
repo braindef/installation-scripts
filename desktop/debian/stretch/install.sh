@@ -259,3 +259,5 @@ ShowAndExecute "sudo -u $(logname) gsettings set org.gnome.nautilus.preferences 
 
 gsettings set org.gnome.nautilus.preferences always-use-location-entry true
 
+ShowAndExecute "/usr/bin/keepassx"
+
