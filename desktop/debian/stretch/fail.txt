@@ -2,3 +2,79 @@ apt-get -y install chromium
 apt-get -y install icedove
 apt-get -y install chromium-browser
 apt-get -y install virtualbox
+apt --fix-broken install
+dpkg --configure -a
+apt-get -y update
+apt-get -y upgrade
+apt-get -y dist-upgrade
+apt-get -y install sudo git vim nano
+apt-get -y install md5deep
+apt-get -y install rdfind
+apt-get -y install xdg-utils
+apt-get -y install nmap
+apt-get -y install rsync
+apt-get -y install snmp
+apt-get -y install jigdo-file
+apt-get -y install build-essential
+apt-get -y install pkg-config
+apt-get -y install libdbus-1-dev
+apt-get -y install apt-file
+apt-file update
+apt-get -y install figlet
+apt-get -y install git
+apt-get -y install tcpdump
+apt-get -y install iptraf
+apt-get -y install gparted
+apt-get -y install lightdm lxde
+apt-get -y install gdm3 gnome gnome-shell
+apt-get -y install gconf-editor
+apt-get -y install chromium
+apt-get -y install chromium-browser
+apt-get -y install inkscape
+apt-get -y install gimp
+apt-get -y install libreoffice
+apt-get -y install libreoffice-help-de
+apt-get -y install libreoffice-l10n-de
+apt-get -y install cups-pdf
+apt-get -y install keepassx
+apt-get -y install icedove
+apt-get -y install thunderbird
+apt-get -y install vlc
+apt-get -y install kdenlive
+apt-get -y install screenkey
+apt-get -y install simplescreenrecorder
+apt-get -y install virtualbox
+apt-get -y install posterazor
+apt-get -y install gconf-editor
+apt-get -y install mumble
+apt-get -y install font-manager
+apt-get -y install quassel
+apt-get -y install pidgin
+apt-get -y install checksecurity
+apt-get -y install spyder
+apt-get -y install spyder3
+apt-get autoremove
+apt --fix-broken install
+dpkg --configure -a
+apt-get -y update
+apt-get -y upgrade
+apt-get -y dist-upgrade
+apt-get -y install sudo git vim nano
+cat -e /var/lib/dpkg/lock
+apt --fix-broken install
+dpkg --configure -a
+apt-get -y update
+apt-get -y upgrade
+apt-get -y dist-upgrade
+apt-get -y install sudo git vim nano
+apt-get -y install md5deep
+apt-get -y install rdfind
+apt-get -y install xdg-utils
+apt-get -y install nmap
+apt-get -y install rsync
+apt-get -y install snmp
+apt-get -y install jigdo-file
+apt-get -y install build-essential
+apt-get -y install pkg-config
+apt-get -y install chromium
+apt-get -y install icedove
