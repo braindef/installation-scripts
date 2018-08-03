@@ -180,6 +180,8 @@ fi
 
 # edit repository list after modification
 #==============================================================================
+
+ShowAndExecute "apt-get -y install build-essential linux-headers-$(uname -r)"
 ShowAndExecute "apt-get -y install md5deep"
 ShowAndExecute "apt-get -y install rdfind"
 ShowAndExecute "apt-get -y install xdg-utils"
