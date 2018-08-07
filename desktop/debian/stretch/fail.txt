@@ -1,0 +1,2 @@
+apt-get -y install chromium
+apt-get -y install icedove
