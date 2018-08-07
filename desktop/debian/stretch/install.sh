@@ -180,6 +180,8 @@ fi
 
 # edit repository list after modification
 #==============================================================================
+
+ShowAndExecute "apt-get -y install build-essential linux-headers-$(uname -r)"
 ShowAndExecute "apt-get -y install md5deep"
 ShowAndExecute "apt-get -y install rdfind"
 ShowAndExecute "apt-get -y install xdg-utils"
@@ -258,4 +260,8 @@ ShowAndExecute "apt-get autoremove"
 ShowAndExecute "sudo -u $(logname) gsettings set org.gnome.nautilus.preferences always-use-location-entry true"
 
 gsettings set org.gnome.nautilus.preferences always-use-location-entry true
+
+sudo update-alternatives --config gdm3.css
+
+ShowAndExecute "/usr/bin/keepassx"
 
