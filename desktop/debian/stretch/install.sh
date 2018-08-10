@@ -181,6 +181,7 @@ fi
 # edit repository list after modification
 #==============================================================================
 
+ShowAndExecute "apt-get -y install keepassx "
 ShowAndExecute "apt-get -y install build-essential linux-headers-$(uname -r)"
 ShowAndExecute "apt-get -y install md5deep"
 ShowAndExecute "apt-get -y install rdfind"
@@ -211,7 +212,6 @@ ShowAndExecute "apt-get -y install libreoffice"
 ShowAndExecute "apt-get -y install libreoffice-help-de"
 ShowAndExecute "apt-get -y install libreoffice-l10n-de"
 ShowAndExecute "apt-get -y install cups-pdf"
-ShowAndExecute "apt-get -y install keepassx "
 ShowAndExecute "apt-get -y install icedove"
 ShowAndExecute "apt-get -y install thunderbird"
 ShowAndExecute "apt-get -y install vlc"
