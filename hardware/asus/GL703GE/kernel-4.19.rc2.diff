@@ -1,0 +1,5 @@
+1014a1015
+> #if 0
+1018a1020,1021
+> #endif
+> 	dev_info(pctrl->dev, "pin %u for irq (hwirq=%ld)\n", pin, irqd_to_hwirq(d));
