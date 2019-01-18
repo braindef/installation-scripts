@@ -11,3 +11,5 @@ apt-get -y install chromium-browser
 apt-get -y install virtualbox
 apt-get -y install chromium-browser
 apt-get -y install virtualbox
+apt-get -y install chromium
+apt-get -y install icedove

@@ -263,5 +263,7 @@ gsettings set org.gnome.nautilus.preferences always-use-location-entry true
 
 sudo update-alternatives --config gdm3.css
 
+sudo apt remove gnome-shell-extension-ubuntu-dock
+
 ShowAndExecute "/usr/bin/keepassx"
 
