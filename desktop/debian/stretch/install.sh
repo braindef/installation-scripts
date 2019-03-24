@@ -220,8 +220,8 @@ ShowAndExecute "apt-get -y install screenkey"
 ShowAndExecute "apt-get -y install simplescreenrecorder"
 ShowAndExecute "apt-get -y install virtualbox"
 
-#ShowAndExecute "apt-get -y install audacity"
-#ShowAndExecute "apt-get -y install lmms" +ladspa delay zynfx?
+ShowAndExecute "apt-get -y install audacity"
+#ShowAndExecute apt-get -y install lmms +ladspa delay zynfx?
 
 ShowAndExecute "apt-get -y install posterazor"
 ShowAndExecute "apt-get -y install gconf-editor"
@@ -233,27 +233,7 @@ ShowAndExecute "apt-get -y install checksecurity"
 ShowAndExecute "apt-get -y install spyder"
 ShowAndExecute "apt-get -y install spyder3"
 
-#ShowAndExecute "apt-get -y install xserver-xorg-input-all"
-#ShowAndExecute "apt-get -y install gnome-commander"
-#ShowAndExecute "#apt-get -y install mc"
-#ShowAndExecute "#apt-get -y install xsane"
-#ShowAndExecute "apt-get -y install redshift"
-#ShowAndExecute "apt-get -y install extundelete"
-#ShowAndExecute "apt-get -y install qrencode "
-#ShowAndExecute "apt-get -y install apt-xapian-index"
-#ShowAndExecute "apt-get -y install mesa-vulkan-drivers"
 
-#printf "install pamusb (y/n)"
-#gparted
-#/usr/bin/pamusb-conf --add-device seven
-#/usr/bin/pamusb-conf --add-user $(id -u 1000 -n)
-
-#printf "install tripwire?"
-#echo -e "Benutzer \e[92mguest\e[39m erstellen mit zweitem mini MemoryStick, den man auch stecken lassen kann und keine Admin-rechte hat (y/n)?"
-
-#echo -e "generell Bunt einschalten im vim"
-#echo "syntax on" >>$HOME/.vimrc
-#printf "install torbrowser-launcher non-free"
 
 ShowAndExecute "apt-get autoremove"
 
@@ -266,6 +246,15 @@ sudo update-alternatives --config gdm3.css
 sudo apt remove gnome-shell-extension-ubuntu-dock
 
 gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 0
+
+#firefox https://extensions.gnome.org/extension/517/caffeine/
+#firefox https://extensions.gnome.org/extension/826/suspend-button/
+
+sudo apt-get install gnome-shell-extension-caffeine
+sudo apt-get install gnome-shell-extension-suspend-button
+
+firefox https://extensions.gnome.org/extension/755/hibernate-status-button/
+firefox https://extensions.gnome.org/extension/945/cpu-power-manager/
 
 sudo -H -u marc bash -c '/usr/bin/keepassx'
 
