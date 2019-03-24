@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -size +50M -exec ffmpeg -i '{}' -acodec libmp3lame '{}'.mp3 \;
+find . -size +20M -exec ffmpeg -i '{}' -acodec libmp3lame '{}'.mp3 \;

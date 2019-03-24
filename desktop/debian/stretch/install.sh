@@ -267,5 +267,7 @@ sudo apt remove gnome-shell-extension-ubuntu-dock
 
 gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 0
 
+firefox https://extensions.gnome.org/extension/690/easyscreencast/
+
 ShowAndExecute "/usr/bin/keepassx"
 
