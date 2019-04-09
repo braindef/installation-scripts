@@ -232,6 +232,8 @@ ShowAndExecute "apt-get -y install pidgin"
 ShowAndExecute "apt-get -y install checksecurity"
 ShowAndExecute "apt-get -y install spyder"
 ShowAndExecute "apt-get -y install spyder3"
+#kali like environment
+ShowAndExecute "apt-get -y install forensics-all"
 
 
 
