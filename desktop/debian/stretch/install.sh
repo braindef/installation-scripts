@@ -235,7 +235,8 @@ ShowAndExecute "apt-get -y install spyder3"
 #kali like environment
 ShowAndExecute "apt-get -y install forensics-all"
 
-
+//streaming software
+ShowAndExecute "apt-get -y install obs-studio"
 
 ShowAndExecute "apt-get autoremove"
 
