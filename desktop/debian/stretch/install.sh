@@ -38,7 +38,9 @@ distro=buster
 #==============================================================================
 function ShowAndExecute {
 #show command
+echo ================================================================================
 echo -e "${red} $1 ${default}"
+echo --------------------------------------------------------------------------------
 #execute command
 sudo $1
 #test if it worked or give an ERROR Message in red, return code of apt is stored in $?
@@ -247,7 +249,7 @@ ShowAndExecute "apt-get -y install obs-studio"
 ShowAndExecute "apt-get install arp-scan"
 for i in $(echo 0 1 2 179 180 192)
 do
-  echo ${red}scanning 192.168.$i.0/24${default}
+  echo -e ${red}scanning 192.168.$i.0/24${default}
   echo ========================
   sudo arp-scan 192.168.$i.0/24 #--interface enp1s0f1 
 done
@@ -271,8 +273,8 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length
 sudo apt-get install gnome-shell-extension-caffeine
 sudo apt-get install gnome-shell-extension-suspend-button
 
-firefox https://extensions.gnome.org/extension/755/hibernate-status-button/
-firefox https://extensions.gnome.org/extension/945/cpu-power-manager/
+sudo -u $(logname) firefox https://extensions.gnome.org/extension/755/hibernate-status-button/
+sudo -u $(logname) firefox https://extensions.gnome.org/extension/945/cpu-power-manager/
 
 sudo -H -u marc bash -c '/usr/bin/keepassx'
 

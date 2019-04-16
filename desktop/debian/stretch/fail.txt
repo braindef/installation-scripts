@@ -22,3 +22,6 @@ apt-get -y dist-upgrade
 apt-get -y install sudo git vim nano
 apt-get -y install chromium
 apt-get -y install icedove
+apt-get -y install chromium-browser
+apt-get -y install chromium-browser
+apt-get -y install chromium-browser
