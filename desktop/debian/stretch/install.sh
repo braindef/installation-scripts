@@ -238,6 +238,8 @@ ShowAndExecute "apt-get -y install forensics-all"
 //streaming software
 ShowAndExecute "apt-get -y install obs-studio"
 
+sudo apt-get install arp-scan
+
 ShowAndExecute "apt-get autoremove"
 
 ShowAndExecute "sudo -u $(logname) gsettings set org.gnome.nautilus.preferences always-use-location-entry true"
