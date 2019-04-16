@@ -239,6 +239,7 @@ ShowAndExecute "apt-get -y install forensics-all"
 ShowAndExecute "apt-get -y install obs-studio"
 
 sudo apt-get install arp-scan
+sudo arp-scan --interface enp1s0f1 192.168.0.0/24
 
 ShowAndExecute "apt-get autoremove"
 
