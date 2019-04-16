@@ -30,7 +30,7 @@ default="\e[39m"
 # Define which Linux Distribution
 #==============================================================================
 #distro=jessie
-distro=stretch
+distro=buster
 #==============================================================================
 
 
@@ -181,7 +181,7 @@ fi
 # edit repository list after modification
 #==============================================================================
 
-ShowAndExecute "apt-get -y install keepassx "
+ShowAndExecute "apt-get -y install keepassx"
 ShowAndExecute "apt-get -y install build-essential linux-headers-$(uname -r)"
 ShowAndExecute "apt-get -y install md5deep"
 ShowAndExecute "apt-get -y install rdfind"
@@ -215,13 +215,17 @@ ShowAndExecute "apt-get -y install cups-pdf"
 ShowAndExecute "apt-get -y install icedove"
 ShowAndExecute "apt-get -y install thunderbird"
 ShowAndExecute "apt-get -y install vlc"
+#video Editing
 ShowAndExecute "apt-get -y install kdenlive"
+#display typed keys
 ShowAndExecute "apt-get -y install screenkey"
-ShowAndExecute "apt-get -y install simplescreenrecorder"
-ShowAndExecute "apt-get -y install virtualbox"
 
+ShowAndExecute "apt-get -y install simplescreenrecorder"
+#ShowAndExecute "apt-get -y install virtualbox"
+
+#music software
 ShowAndExecute "apt-get -y install audacity"
-#ShowAndExecute apt-get -y install lmms +ladspa delay zynfx?
+ShowAndExecute "apt-get -y install lmms"
 
 ShowAndExecute "apt-get -y install posterazor"
 ShowAndExecute "apt-get -y install gconf-editor"
@@ -232,21 +236,29 @@ ShowAndExecute "apt-get -y install pidgin"
 ShowAndExecute "apt-get -y install checksecurity"
 ShowAndExecute "apt-get -y install spyder"
 ShowAndExecute "apt-get -y install spyder3"
+
 #kali like environment
 ShowAndExecute "apt-get -y install forensics-all"
 
-//streaming software
+#streaming software
 ShowAndExecute "apt-get -y install obs-studio"
 
-sudo apt-get install arp-scan
-sudo arp-scan --interface enp1s0f1 192.168.0.0/24
+#Network Discovery
+ShowAndExecute "apt-get install arp-scan"
+for i in $(echo 0 1 2 179 180 192)
+do
+  echo ${red}scanning 192.168.$i.0/24${default}
+  echo ========================
+  sudo arp-scan 192.168.$i.0/24 #--interface enp1s0f1 
+done
 
 ShowAndExecute "apt-get autoremove"
 
+#always show the complete path in nautilus
 ShowAndExecute "sudo -u $(logname) gsettings set org.gnome.nautilus.preferences always-use-location-entry true"
-
 gsettings set org.gnome.nautilus.preferences always-use-location-entry true
 
+#change theme of ubuntu to more debian like theme
 sudo update-alternatives --config gdm3.css
 
 sudo apt remove gnome-shell-extension-ubuntu-dock
