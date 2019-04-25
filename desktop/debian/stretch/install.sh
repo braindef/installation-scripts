@@ -33,6 +33,8 @@ default="\e[39m"
 distro=buster
 #==============================================================================
 
+# Define ipv4 for Apt
+ip="-o Acquire::ForceIPv4=true"
 
 # Helper Function to show first the command that is beeing executed
 #==============================================================================
@@ -115,17 +117,17 @@ echo -e "${red}${0} ${@}${default}"
 #==============================================================================
 ShowAndExecute "cat -e /var/lib/dpkg/lock"
 
-ShowAndExecute "apt --fix-broken install"
+ShowAndExecute "apt --fix-broken $ip install"
 
 ShowAndExecute "dpkg --configure -a"
 
-ShowAndExecute "apt-get -y update"
+ShowAndExecute "apt-get -y $ip update"
 
-ShowAndExecute "apt-get -y upgrade"
+ShowAndExecute "apt-get -y $ip upgrade"
 
-ShowAndExecute "apt-get -y dist-upgrade"
+ShowAndExecute "apt-get -y $ip dist-upgrade"
 
-ShowAndExecute "apt-get -y install sudo git vim nano"
+ShowAndExecute "apt-get -y $ip install sudo git vim nano"
 #==============================================================================
 
 # edit repository list
@@ -138,7 +140,7 @@ fi
 if YESNO "Use TOR (The Onion Router) for APT Transport?"
 then
 
-  ShowAndExecute "apt-get -y install torsocks apt-transport-tor"
+  ShowAndExecute "apt-get -y $ip install torsocks apt-transport-tor"
 
   cp /etc/apt/sources.list /etc/apt/sources.list-$(date +%Y%m%d-%H%M%S.bak)
   echo "
@@ -150,7 +152,7 @@ ShowAndExecute "apt-get -y update"
 
 ShowAndExecute "apt-get -y upgrade"
 
-ShowAndExecute "apt-get -y install tor tor-arm"
+ShowAndExecute "apt-get -y $ip install tor tor-arm"
 fi
 
 if YESNO "Use normal httpredir.debian.org for APT Transport?"
@@ -183,70 +185,70 @@ fi
 # edit repository list after modification
 #==============================================================================
 
-ShowAndExecute "apt-get -y install keepassx"
-ShowAndExecute "apt-get -y install build-essential linux-headers-$(uname -r)"
-ShowAndExecute "apt-get -y install md5deep"
-ShowAndExecute "apt-get -y install rdfind"
-ShowAndExecute "apt-get -y install xdg-utils"
-ShowAndExecute "apt-get -y install nmap"
-ShowAndExecute "apt-get -y install rsync"
-ShowAndExecute "apt-get -y install snmp"
-ShowAndExecute "apt-get -y install jigdo-file"
-ShowAndExecute "apt-get -y install build-essential"
-ShowAndExecute "apt-get -y install pkg-config "
-ShowAndExecute "apt-get -y install libdbus-1-dev"
-ShowAndExecute "apt-get -y install apt-file"
+ShowAndExecute "apt-get -y $ip install keepassx"
+ShowAndExecute "apt-get -y $ip install build-essential linux-headers-$(uname -r)"
+ShowAndExecute "apt-get -y $ip install md5deep"
+ShowAndExecute "apt-get -y $ip install rdfind"
+ShowAndExecute "apt-get -y $ip install xdg-utils"
+ShowAndExecute "apt-get -y $ip install nmap"
+ShowAndExecute "apt-get -y $ip install rsync"
+ShowAndExecute "apt-get -y $ip install snmp"
+ShowAndExecute "apt-get -y $ip install jigdo-file"
+ShowAndExecute "apt-get -y $ip install build-essential"
+ShowAndExecute "apt-get -y $ip install pkg-config "
+ShowAndExecute "apt-get -y $ip install libdbus-1-dev"
+ShowAndExecute "apt-get -y $ip install apt-file"
 ShowAndExecute "apt-file update"
-ShowAndExecute "apt-get -y install figlet"
-ShowAndExecute "apt-get -y install git"
-ShowAndExecute "apt-get -y install tcpdump"
-ShowAndExecute "apt-get -y install iptraf"
-ShowAndExecute "apt-get -y install gparted"
-ShowAndExecute "apt-get -y install lightdm lxde"
-ShowAndExecute "apt-get -y install gdm3 gnome gnome-shell"
-ShowAndExecute "apt-get -y install gconf-editor"
+ShowAndExecute "apt-get -y $ip install figlet"
+ShowAndExecute "apt-get -y $ip install git"
+ShowAndExecute "apt-get -y $ip install tcpdump"
+ShowAndExecute "apt-get -y $ip install iptraf"
+ShowAndExecute "apt-get -y $ip install gparted"
+ShowAndExecute "apt-get -y $ip install lightdm lxde"
+ShowAndExecute "apt-get -y $ip install gdm3 gnome gnome-shell"
+ShowAndExecute "apt-get -y $ip install gconf-editor"
 ShowAndExecute "gsettings set org.gnome.nautilus.preferences always-use-location-entry true"
-ShowAndExecute "apt-get -y install chromium"
-ShowAndExecute "apt-get -y install chromium-browser"
-ShowAndExecute "apt-get -y install inkscape"
-ShowAndExecute "apt-get -y install gimp"
-ShowAndExecute "apt-get -y install libreoffice"
-ShowAndExecute "apt-get -y install libreoffice-help-de"
-ShowAndExecute "apt-get -y install libreoffice-l10n-de"
-ShowAndExecute "apt-get -y install cups-pdf"
-ShowAndExecute "apt-get -y install icedove"
-ShowAndExecute "apt-get -y install thunderbird"
-ShowAndExecute "apt-get -y install vlc"
+ShowAndExecute "apt-get -y $ip install chromium"
+ShowAndExecute "apt-get -y $ip install chromium-browser"
+ShowAndExecute "apt-get -y $ip install inkscape"
+ShowAndExecute "apt-get -y $ip install gimp"
+ShowAndExecute "apt-get -y $ip install libreoffice"
+ShowAndExecute "apt-get -y $ip install libreoffice-help-de"
+ShowAndExecute "apt-get -y $ip install libreoffice-l10n-de"
+ShowAndExecute "apt-get -y $ip install cups-pdf"
+ShowAndExecute "apt-get -y $ip install icedove"
+ShowAndExecute "apt-get -y $ip install thunderbird"
+ShowAndExecute "apt-get -y $ip install vlc"
 #video Editing
-ShowAndExecute "apt-get -y install kdenlive"
+ShowAndExecute "apt-get -y $ip install kdenlive"
 #display typed keys
-ShowAndExecute "apt-get -y install screenkey"
+ShowAndExecute "apt-get -y $ip install screenkey"
 
-ShowAndExecute "apt-get -y install simplescreenrecorder"
-#ShowAndExecute "apt-get -y install virtualbox"
+ShowAndExecute "apt-get -y $ip install simplescreenrecorder"
+#ShowAndExecute "apt-get -y $ip install virtualbox"
 
 #music software
-ShowAndExecute "apt-get -y install audacity"
-ShowAndExecute "apt-get -y install lmms"
+ShowAndExecute "apt-get -y $ip install audacity"
+ShowAndExecute "apt-get -y $ip install lmms"
 
-ShowAndExecute "apt-get -y install posterazor"
-ShowAndExecute "apt-get -y install gconf-editor"
-ShowAndExecute "apt-get -y install mumble"
-ShowAndExecute "apt-get -y install font-manager"
-ShowAndExecute "apt-get -y install quassel "
-ShowAndExecute "apt-get -y install pidgin"
-ShowAndExecute "apt-get -y install checksecurity"
-ShowAndExecute "apt-get -y install spyder"
-ShowAndExecute "apt-get -y install spyder3"
+ShowAndExecute "apt-get -y $ip install posterazor"
+ShowAndExecute "apt-get -y $ip install gconf-editor"
+ShowAndExecute "apt-get -y $ip install mumble"
+ShowAndExecute "apt-get -y $ip install font-manager"
+ShowAndExecute "apt-get -y $ip install quassel "
+ShowAndExecute "apt-get -y $ip install pidgin"
+ShowAndExecute "apt-get -y $ip install checksecurity"
+ShowAndExecute "apt-get -y $ip install spyder"
+ShowAndExecute "apt-get -y $ip install spyder3"
 
 #kali like environment
-ShowAndExecute "apt-get -y install forensics-all"
+ShowAndExecute "apt-get -y $ip install forensics-all"
 
 #streaming software
-ShowAndExecute "apt-get -y install obs-studio"
+ShowAndExecute "apt-get -y $ip install obs-studio"
 
 #Network Discovery
-ShowAndExecute "apt-get install arp-scan"
+ShowAndExecute "apt-get $ip install arp-scan"
 for i in $(echo 0 1 2 179 180 192)
 do
   echo -e ${red}scanning 192.168.$i.0/24${default}
@@ -270,8 +272,8 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length
 #firefox https://extensions.gnome.org/extension/517/caffeine/
 #firefox https://extensions.gnome.org/extension/826/suspend-button/
 
-sudo apt-get install gnome-shell-extension-caffeine
-sudo apt-get install gnome-shell-extension-suspend-button
+sudo apt-get $ip install gnome-shell-extension-caffeine
+sudo apt-get $ip install gnome-shell-extension-suspend-button
 
 sudo -u $(logname) firefox https://extensions.gnome.org/extension/755/hibernate-status-button/
 sudo -u $(logname) firefox https://extensions.gnome.org/extension/945/cpu-power-manager/
