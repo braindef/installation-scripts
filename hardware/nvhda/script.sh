@@ -5,5 +5,5 @@ make
 sudo make install
 sudo make -f Makefile.dkms
 
-sudo apt-get install nvidia-384
+#sudo apt-get install nvidia-384
 
