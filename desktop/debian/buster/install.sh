@@ -30,6 +30,7 @@ default="\e[39m"
 # Define which Linux Distribution
 #==============================================================================
 #distro=jessie
+#distro=stretch
 distro=buster
 #==============================================================================
 
@@ -176,9 +177,7 @@ fi
 if YESNO "Edit /etc/apt/sources.list?"
 then
 ShowAndExecute "$EDITOR /etc/apt/sources.list"
-
 ShowAndExecute "apt-get -y update"
-
 ShowAndExecute "apt-get -y upgrade"
 fi
 
@@ -198,7 +197,7 @@ ShowAndExecute "apt-get -y $ip install build-essential"
 ShowAndExecute "apt-get -y $ip install pkg-config "
 ShowAndExecute "apt-get -y $ip install libdbus-1-dev"
 ShowAndExecute "apt-get -y $ip install apt-file"
-ShowAndExecute "apt-file update"
+ShowAndExecute "apt-file  $ip update"
 ShowAndExecute "apt-get -y $ip install figlet"
 ShowAndExecute "apt-get -y $ip install git"
 ShowAndExecute "apt-get -y $ip install tcpdump"
@@ -207,7 +206,6 @@ ShowAndExecute "apt-get -y $ip install gparted"
 ShowAndExecute "apt-get -y $ip install lightdm lxde"
 ShowAndExecute "apt-get -y $ip install gdm3 gnome gnome-shell"
 ShowAndExecute "apt-get -y $ip install gconf-editor"
-ShowAndExecute "gsettings set org.gnome.nautilus.preferences always-use-location-entry true"
 ShowAndExecute "apt-get -y $ip install chromium"
 ShowAndExecute "apt-get -y $ip install chromium-browser"
 ShowAndExecute "apt-get -y $ip install inkscape"
@@ -247,12 +245,14 @@ ShowAndExecute "apt-get -y $ip install forensics-all"
 #streaming software
 ShowAndExecute "apt-get -y $ip install obs-studio"
 
-
 ShowAndExecute "apt-get purge youtube-dl"
 ShowAndExecute "pip install youtube-dl"
 
-#Network Discovery
 ShowAndExecute "apt-get $ip install arp-scan"
+
+ShowAndExecute "apt-get autoremove"
+
+#Network Discovery
 for i in $(echo 0 1 2 179 180 192)
 do
   echo -e ${red}scanning 192.168.$i.0/24${default}
@@ -260,38 +260,28 @@ do
   sudo arp-scan 192.168.$i.0/24 #--interface enp1s0f1 
 done
 
-ShowAndExecute "apt-get autoremove"
 
-#always show the complete path in nautilus
-ShowAndExecute "sudo -u $(logname) gsettings set org.gnome.nautilus.preferences always-use-location-entry true"
-gsettings set org.gnome.nautilus.preferences always-use-location-entry true
 
 #change theme of ubuntu to more debian like theme
 sudo update-alternatives --config gdm3.css
 
+#always show the complete path in nautilus and eternal gnome-Screencast (CTRL-ALT-SHIFT R)
+sudo -u $(logname) gsettings set org.gnome.nautilus.preferences always-use-location-entry true
+sudo -u $(logname) gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 0
+                   
+
+
 ShowAndExecute "apt remove gnome-shell-extension-ubuntu-dock"
 ShowAndExecute "apt-get $ip install chrome-gnome-shell"
-
-
-gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 0
-
-#firefox https://extensions.gnome.org/extension/517/caffeine/
-#firefox https://extensions.gnome.org/extension/826/suspend-button/
-
-ShowAndExecute "apt-get $ip install gnome-shell-extension-caffeine"
-
-ShowAndExecute "apt-get $ip install gnome-shell-extension-suspend-button"
 
 sudo -u $(logname) chromium https://chrome.google.com/webstore/search/gnomeshell%20integration
 
 sudo -u $(logname) chromium https://extensions.gnome.org/extension/751/audio-output-switcher/
-
 sudo -u $(logname) chromium https://extensions.gnome.org/extension/768/audio-input-switcher/
-
+sudo -u $(logname) chromium https://extensions.gnome.org/extension/517/caffeine/
 sudo -u $(logname) chromium https://extensions.gnome.org/extension/826/suspend-button/
-
 sudo -u $(logname) chromium https://extensions.gnome.org/extension/755/hibernate-status-button/
 sudo -u $(logname) chromium https://extensions.gnome.org/extension/945/cpu-power-manager/
 
-sudo -H -u marc bash -c '/usr/bin/keepassx'
+sudo -u $(logname) bash -c '/usr/bin/keepassx'
 
