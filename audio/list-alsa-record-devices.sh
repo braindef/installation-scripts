@@ -1,1 +1,0 @@
-arecord -l
