@@ -227,6 +227,7 @@ ShowAndExecute "apt-get -y $ip install simplescreenrecorder"
 
 #music software
 ShowAndExecute "apt-get -y $ip install audacity"
+ShowAndExecute "apt-get -y $ip install mixxx"
 ShowAndExecute "apt-get -y $ip install lmms"
 
 ShowAndExecute "apt-get -y $ip install posterazor"
