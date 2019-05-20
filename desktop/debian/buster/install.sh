@@ -262,15 +262,12 @@ do
 done
 
 
-
 #change theme of ubuntu to more debian like theme
 sudo update-alternatives --config gdm3.css
 
 #always show the complete path in nautilus and eternal gnome-Screencast (CTRL-ALT-SHIFT R)
 sudo -u $(logname) gsettings set org.gnome.nautilus.preferences always-use-location-entry true
 sudo -u $(logname) gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 0
-                   
-
 
 ShowAndExecute "apt remove gnome-shell-extension-ubuntu-dock"
 ShowAndExecute "apt-get $ip install chrome-gnome-shell"
@@ -283,6 +280,12 @@ sudo -u $(logname) chromium https://extensions.gnome.org/extension/517/caffeine/
 sudo -u $(logname) chromium https://extensions.gnome.org/extension/826/suspend-button/
 sudo -u $(logname) chromium https://extensions.gnome.org/extension/755/hibernate-status-button/
 sudo -u $(logname) chromium https://extensions.gnome.org/extension/945/cpu-power-manager/
+
+sudo -u $(logname) chromium https://chrome.google.com/webstore/search/ublock%20origin?hl=de
+sudo -u $(logname) chromium https://chrome.google.com/webstore/search/read%20aloud
+
+sudo -u $(logname) firefox https://addons.mozilla.org/nl/firefox/addon/uaswitcher
+sudo -u $(logname) firefox https://addons.mozilla.org/de/firefox/addon/ublock-origin/
 
 sudo -u $(logname) bash -c '/usr/bin/keepassx'
 
