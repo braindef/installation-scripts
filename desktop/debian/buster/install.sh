@@ -269,15 +269,18 @@ gsettings set org.gnome.nautilus.preferences always-use-location-entry true
 #change theme of ubuntu to more debian like theme
 sudo update-alternatives --config gdm3.css
 
-sudo apt remove gnome-shell-extension-ubuntu-dock
+ShowAndExecute "apt remove gnome-shell-extension-ubuntu-dock"
+ShowAndExecute "apt-get $ip install chrome-gnome-shell"
+
 
 gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 0
 
 #firefox https://extensions.gnome.org/extension/517/caffeine/
 #firefox https://extensions.gnome.org/extension/826/suspend-button/
 
-sudo apt-get $ip install gnome-shell-extension-caffeine
-sudo apt-get $ip install gnome-shell-extension-suspend-button
+ShowAndExecute "apt-get $ip install gnome-shell-extension-caffeine"
+
+ShowAndExecute "apt-get $ip install gnome-shell-extension-suspend-button"
 
 sudo -u $(logname) firefox https://extensions.gnome.org/extension/755/hibernate-status-button/
 sudo -u $(logname) firefox https://extensions.gnome.org/extension/945/cpu-power-manager/
