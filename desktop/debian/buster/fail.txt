@@ -7,3 +7,6 @@ apt-get -y -o Acquire::ForceIPv4=true dist-upgrade
 apt-get -y -o Acquire::ForceIPv4=true install sudo git vim nano
 apt-get -y -o Acquire::ForceIPv4=true install chromium-browser
 apt-get -y -o Acquire::ForceIPv4=true install icedove
+apt-get -y -o Acquire::ForceIPv4=true install chromium-browser
+apt-get -y -o Acquire::ForceIPv4=true install icedove
+apt remove gnome-shell-extension-ubuntu-dock

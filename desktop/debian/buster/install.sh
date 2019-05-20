@@ -282,8 +282,16 @@ ShowAndExecute "apt-get $ip install gnome-shell-extension-caffeine"
 
 ShowAndExecute "apt-get $ip install gnome-shell-extension-suspend-button"
 
-sudo -u $(logname) firefox https://extensions.gnome.org/extension/755/hibernate-status-button/
-sudo -u $(logname) firefox https://extensions.gnome.org/extension/945/cpu-power-manager/
+sudo -u $(logname) chromium https://chrome.google.com/webstore/search/gnomeshell%20integration
+
+sudo -u $(logname) chromium https://extensions.gnome.org/extension/751/audio-output-switcher/
+
+sudo -u $(logname) chromium https://extensions.gnome.org/extension/768/audio-input-switcher/
+
+sudo -u $(logname) chromium https://extensions.gnome.org/extension/826/suspend-button/
+
+sudo -u $(logname) chromium https://extensions.gnome.org/extension/755/hibernate-status-button/
+sudo -u $(logname) chromium https://extensions.gnome.org/extension/945/cpu-power-manager/
 
 sudo -H -u marc bash -c '/usr/bin/keepassx'
 
