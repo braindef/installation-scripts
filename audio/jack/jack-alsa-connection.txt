@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo start jack2 server please, then press enter
+read
+
+
+#this 2 lines can be added to qjackCtl: 
+#pactl load-module module-jack-sink channels=2 && pactl load-module module-jack-source channels=2
+
+#for the alsa imput, eg browser or vlc.... (goes to jackd)
+#pactl load-module module-jack-sink channels=2
+
+#useless except you maybe  want to record with a programm that does just supports alsa
+#pactl load-module module-jack-source channels=2
+
+
+
+Jamulus --server &
+Jamulus &
