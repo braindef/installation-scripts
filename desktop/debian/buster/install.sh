@@ -247,6 +247,10 @@ ShowAndExecute "apt-get -y $ip install forensics-all"
 #streaming software
 ShowAndExecute "apt-get -y $ip install obs-studio"
 
+
+ShowAndExecute "apt-get purge youtube-dl"
+ShowAndExecute "pip install youtube-dl"
+
 #Network Discovery
 ShowAndExecute "apt-get $ip install arp-scan"
 for i in $(echo 0 1 2 179 180 192)

@@ -1,0 +1,9 @@
+cat -e /var/lib/dpkg/lock
+apt --fix-broken -o Acquire::ForceIPv4=true install
+dpkg --configure -a
+apt-get -y -o Acquire::ForceIPv4=true update
+apt-get -y -o Acquire::ForceIPv4=true upgrade
+apt-get -y -o Acquire::ForceIPv4=true dist-upgrade
+apt-get -y -o Acquire::ForceIPv4=true install sudo git vim nano
+apt-get -y -o Acquire::ForceIPv4=true install chromium-browser
+apt-get -y -o Acquire::ForceIPv4=true install icedove
