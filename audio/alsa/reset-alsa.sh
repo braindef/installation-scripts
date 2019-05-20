@@ -1,2 +1,2 @@
 #!/bin/bash
-/sbin/alsactl --force restore
+sudo /sbin/alsactl --force restore
