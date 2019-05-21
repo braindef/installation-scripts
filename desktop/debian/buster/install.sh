@@ -274,6 +274,8 @@ ShowAndExecute "apt-get $ip install chrome-gnome-shell"
 
 sudo -u $(logname) chromium https://chrome.google.com/webstore/search/gnomeshell%20integration
 
+sudo -u $(logname) chromium https://extensions.gnome.org/extension/1092/audio-switcher/
+
 sudo -u $(logname) chromium https://extensions.gnome.org/extension/751/audio-output-switcher/
 sudo -u $(logname) chromium https://extensions.gnome.org/extension/768/audio-input-switcher/
 sudo -u $(logname) chromium https://extensions.gnome.org/extension/517/caffeine/
