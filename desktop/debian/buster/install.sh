@@ -181,6 +181,11 @@ ShowAndExecute "apt-get -y update"
 ShowAndExecute "apt-get -y upgrade"
 fi
 
+if YESNO "install r8168-dkms?"
+then
+  ShowAndExecute "apt-get install r8168-dkms"
+fi
+
 # edit repository list after modification
 #==============================================================================
 
@@ -241,6 +246,8 @@ ShowAndExecute "apt-get -y $ip install spyder"
 ShowAndExecute "apt-get -y $ip install spyder3"
 
 ShowAndExecute "apt-get -y $ip install gnome-disk-utility"
+
+
 
 #kali like environment
 ShowAndExecute "apt-get -y $ip install forensics-all"
