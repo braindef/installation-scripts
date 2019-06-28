@@ -247,7 +247,7 @@ ShowAndExecute "apt-get -y $ip install spyder3"
 
 ShowAndExecute "apt-get -y $ip install gnome-disk-utility"
 
-
+ShowAndExecute "apt-get -y $ip install whois"
 
 #kali like environment
 ShowAndExecute "apt-get -y $ip install forensics-all"
