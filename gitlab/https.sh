@@ -17,3 +17,4 @@ sudo openssl x509 -req -days 1460 -in /etc/gitlab/ssl/git.0x8.ch.csr -signkey /e
 sudo rm -v /etc/gitlab/ssl/git.0x8.ch.csr
 
 sudo chmod 600 /etc/gitlab/ssl/git.0x8.ch.*
+echo YOU NEED TO DO THE LAST COMMAND AS root
