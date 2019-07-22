@@ -18,3 +18,9 @@ sudo rm -v /etc/gitlab/ssl/git.0x8.ch.csr
 
 sudo chmod 600 /etc/gitlab/ssl/git.0x8.ch.*
 echo YOU NEED TO DO THE LAST COMMAND AS root
+
+echo install the cert for the runner
+sudo mkdir /usr/local/share/ca-certificates/extra
+sudo cp /etc/gitlab/ssl/git.0x8.ch.crt /usr/local/share/ca-certificates/extra/
+sudo update-ca-certificates 
+
