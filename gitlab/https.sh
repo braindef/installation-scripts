@@ -24,3 +24,5 @@ sudo mkdir /usr/local/share/ca-certificates/extra
 sudo cp /etc/gitlab/ssl/git.0x8.ch.crt /usr/local/share/ca-certificates/extra/
 sudo update-ca-certificates 
 
+sudo cp gitlab-runner.service /lib/systemd/system/
+sudo systemctl enable gitlab-runner.service
