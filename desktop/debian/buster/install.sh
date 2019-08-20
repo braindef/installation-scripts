@@ -222,6 +222,10 @@ ShowAndExecute "apt-get -y $ip install cups-pdf"
 ShowAndExecute "apt-get -y $ip install icedove"
 ShowAndExecute "apt-get -y $ip install thunderbird"
 ShowAndExecute "apt-get -y $ip install vlc"
+ShowAndExecute "apt-get -y $ip install valkyrie"
+ShowAndExecute "apt-get -y $ip install valgrind"
+
+
 #video Editing
 ShowAndExecute "apt-get -y $ip install kdenlive"
 #display typed keys

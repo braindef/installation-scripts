@@ -7,3 +7,6 @@ apt-file -o Acquire::ForceIPv4=true update
 apt-get -y -o Acquire::ForceIPv4=true install gdm3 gnome gnome-shell
 apt-get -y -o Acquire::ForceIPv4=true install chromium
 apt-get -y -o Acquire::ForceIPv4=true install icedove
+apt-get -y -o Acquire::ForceIPv4=true install chromium-browser
+apt-get -y -o Acquire::ForceIPv4=true install icedove
+apt remove gnome-shell-extension-ubuntu-dock
