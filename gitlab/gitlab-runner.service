@@ -7,7 +7,7 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=1
-User=jamulus
+User=root
 ExecStart=/bin/bash -c 'sleep 200 && gitlab-runner run'
 
 [Install]
