@@ -224,6 +224,7 @@ ShowAndExecute "apt-get -y $ip install thunderbird"
 ShowAndExecute "apt-get -y $ip install vlc"
 ShowAndExecute "apt-get -y $ip install valkyrie"
 ShowAndExecute "apt-get -y $ip install valgrind"
+ShowAndExecute "apt-get -y $ip install blender"
 
 
 #video Editing
@@ -301,6 +302,20 @@ sudo -u $(logname) chromium https://chrome.google.com/webstore/search/read%20alo
 
 sudo -u $(logname) firefox https://addons.mozilla.org/nl/firefox/addon/uaswitcher
 sudo -u $(logname) firefox https://addons.mozilla.org/de/firefox/addon/ublock-origin/
+
+if grep -q LESS_TERMCAP "/etc/apt/sources.list"
+then echo "~/.bashrc already modified"
+else
+echo "
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
+" >~/.bashrc
+fi
 
 sudo -u $(logname) bash -c '/usr/bin/keepassx'
 
