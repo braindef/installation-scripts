@@ -4,9 +4,6 @@ red="\e[91m"
 cyan="\e[36m"
 default="\e[39m"
 
-URL="https://git.0x8.ch/"
-URL="https://git.0x8.ch/"
-
 if [ $# -eq 0 ]
   then
     echo "No arguments supplied, you need to pass the gitlab-runner-token"
@@ -15,6 +12,7 @@ if [ $# -eq 0 ]
     echo -e marc@debian:~/$ ${cyan}./register-runner.sh ${red}pVCDczkaYKUNzwMnH5gZ${default}
     exit
 fi
+
 
 sudo apt-get install curl
 
@@ -33,13 +31,13 @@ sudo docker run -ti ubuntu bash -c "uname -a && cat /etc/apt/sources.list"
 sudo docker run -ti centos bash -c "uname -a && yum --version"
 
 
-sudo gitlab-runner register --url $URL --registration-token $1 --executor "docker" --docker-image debian:stretch --description "stretch" --tag-list "stretch" --run-untagged="false" --locked="false"
+sudo gitlab-runner register --url "https://192.168.192.234/" --registration-token $1 --tls-ca-file /usr/share/ca-certificates/gitlab/git.0x8.ch.crt --executor "docker" --docker-image debian:stretch --description "stretch" --tag-list "stretch" --run-untagged="false" --locked="false"
 
-sudo gitlab-runner register --url $URL --registration-token $1 --executor "docker" --docker-image debian:buster --description "buster" --tag-list "buster" --run-untagged="false" --locked="false"
+sudo gitlab-runner register --url "https://192.168.192.234/" --registration-token $1 --tls-ca-file /usr/share/ca-certificates/gitlab/git.0x8.ch.crt --executor "docker" --docker-image debian:buster --description "buster" --tag-list "buster" --run-untagged="false" --locked="false"
 
-sudo gitlab-runner register --url $URL --registration-token $1 --executor "docker" --docker-image ubuntu --description "ubuntu" --tag-list "ubuntu" --run-untagged="false" --locked="false"
+sudo gitlab-runner register --url "https://192.168.192.234/" --registration-token $1 --tls-ca-file /usr/share/ca-certificates/gitlab/git.0x8.ch.crt --executor "docker" --docker-image ubuntu --description "ubuntu" --tag-list "ubuntu" --run-untagged="false" --locked="false"
 
-sudo gitlab-runner register --url $URL --registration-token $1 --executor "docker" --docker-image centos --description "centos" --tag-list "centos" --run-untagged="false" --locked="false"
+sudo gitlab-runner register --url "https://192.168.192.234/" --registration-token $1 --tls-ca-file /usr/share/ca-certificates/gitlab/git.0x8.ch.crt --executor "docker" --docker-image centos --description "centos" --tag-list "centos" --run-untagged="false" --locked="false"
 
 
 sudo gitlab-runner list
