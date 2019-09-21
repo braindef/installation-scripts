@@ -138,15 +138,16 @@ then
 ShowAndExecute "$EDITOR /etc/apt/sources.list"
 fi
 
-if YESNO "Use TOR (The Onion Router) for APT Transport?"
+
+if YESNO "Use TOR (The Onion Router) for APT Transport? (only debian, needs sudo)"
 then
 
   ShowAndExecute "apt-get -y $ip install torsocks apt-transport-tor"
 
   cp /etc/apt/sources.list /etc/apt/sources.list-$(date +%Y%m%d-%H%M%S.bak)
   echo "
-deb tor+http://vwakviie2ienjx6t.onion/debian/ $codename main contrib
-deb tor+http://earthqfvaeuv5bla.onion/debian/ $codename main contrib
+deb tor+http://vwakviie2ienjx6t.onion/debian/ $distro main contrib
+deb tor+http://earthqfvaeuv5bla.onion/debian/ $distro main contrib
 " > /etc/apt/sources.list
 
 ShowAndExecute "apt-get -y update"

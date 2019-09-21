@@ -4,3 +4,8 @@ apt-get -y -o Acquire::ForceIPv4=true install chromium
 apt-get -y -o Acquire::ForceIPv4=true install icedove
 apt-get -y -o Acquire::ForceIPv4=true install chromium
 apt-get -y -o Acquire::ForceIPv4=true install icedove
+apt-get -y -o Acquire::ForceIPv4=true install md5deep
+apt-get -y update
+apt-get -y -o Acquire::ForceIPv4=true install tor tor-arm
+apt-get -y update
+apt-get -y -o Acquire::ForceIPv4=true install tor tor-arm
