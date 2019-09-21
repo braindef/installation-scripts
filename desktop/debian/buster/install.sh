@@ -141,6 +141,7 @@ fi
 
 if YESNO "Use TOR (The Onion Router) for APT Transport? (only debian, needs sudo)"
 then
+  cp /etc/apt/sources.list /etc/apt/sources.list.$(date +%y%m%d%H%m%s)
 
   ShowAndExecute "apt-get -y $ip install torsocks apt-transport-tor"
 
@@ -317,6 +318,8 @@ export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 " >~/.bashrc
 fi
+
+ShowAndExecute "sudo apt install vanilla-gnome-desktop"
 
 sudo -u $(logname) bash -c '/usr/bin/keepassx'
 
