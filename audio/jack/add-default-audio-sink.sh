@@ -1,3 +1,4 @@
+sudo apt-get install pulseaudio-module-jack qjackctl
 
 pactl unload-module module-jack-sink
 pactl unload-module module-jack-source
