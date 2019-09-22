@@ -139,6 +139,14 @@ ShowAndExecute "$EDITOR /etc/apt/sources.list"
 fi
 
 
+# edit repository list
+#==============================================================================
+if YESNO "add pamblue or pamusb"
+then
+ShowAndExecute "apt-get -y libpam-blue"
+#TODO: revive libusb for poor children
+fi
+
 if YESNO "Use TOR (The Onion Router) for APT Transport? (only debian, needs sudo)"
 then
   cp /etc/apt/sources.list /etc/apt/sources.list.$(date +%y%m%d%H%m%s)
