@@ -144,6 +144,30 @@ fi
 if YESNO "add pamblue or pamusb"
 then
 ShowAndExecute "apt-get -y libpam-blue"
+vim /etc/pam.d/common-auth
+echo "
+  general {
+   # the normal timeout for scanning
+   # watch out for a tiny timeslot for scanning
+   # values ​​between 3 and 15 seconds are valid
+   timeout = 3;
+ }
+ # configuration for user korzendorfer
+
+ korzendorfer = {
+  
+     # bluetooth device name
+     name = tux;
+  
+     # bluetooth mac address
+     bluemac = 54: 34: 34: 34: 34: 34;
+
+     # a seaparate timeout
+     timeout = 10;
+ }
+" >> /etc/security/bluesscan.conf
+vim /etc/security/bluesscan.conf
+#TODO: add sudo for echo and vim
 #TODO: revive libusb for poor children
 fi
 
