@@ -259,7 +259,7 @@ ShowAndExecute "apt-get -y $ip install vlc"
 ShowAndExecute "apt-get -y $ip install valkyrie"
 ShowAndExecute "apt-get -y $ip install valgrind"
 ShowAndExecute "apt-get -y $ip install blender"
-
+ShowAndExecute "apt-get -y $ip install qrencode"
 
 #video Editing
 ShowAndExecute "apt-get -y $ip install kdenlive"
