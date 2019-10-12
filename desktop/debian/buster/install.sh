@@ -353,5 +353,7 @@ fi
 
 ShowAndExecute "sudo apt install vanilla-gnome-desktop"
 
+gsettings set org.gnome.nautilus.preferences always-use-location-entry true
+
 sudo -u $(logname) bash -c '/usr/bin/keepassx'
 
