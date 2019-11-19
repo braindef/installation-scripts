@@ -354,6 +354,7 @@ fi
 ShowAndExecute "sudo apt install vanilla-gnome-desktop"
 
 gsettings set org.gnome.nautilus.preferences always-use-location-entry true
+gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 0
 
 sudo -u $(logname) bash -c '/usr/bin/keepassx'
 
