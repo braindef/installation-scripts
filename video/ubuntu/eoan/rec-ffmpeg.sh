@@ -3,7 +3,10 @@
 dir=$(date +%y%m%d%H%M%s)
 
 red="\e[91m"
+green="\e[92m"
+iBlue="\e[44m"
 default="\e[39m"
+iDefault="\e[49m"
 
 echo -e "
 
@@ -18,7 +21,8 @@ ${red}WARNING${default}: they often put old pedophile people in your stream when
          consumed your content would be or at least feel guilty too. Since
          i don't feel bad if younger and equal aged people consume my content,
          at least the younger people are not guilty, but the older are.
-
+         Details you can find in ${green}HackersCardagme${default}
+	 ${iBlue}https://marclandolt.ch/HackersCardgame3/jpg/EN/#mos2${iDefault} (if my webserver is gone -> archive.org)
 
 "
 
