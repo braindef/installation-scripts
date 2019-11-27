@@ -61,11 +61,17 @@ done
 
 read -n 1 -s -r -p "Press any KEY to stop"
 killall ffmpeg
+sleep 10
+
+echo
+echo
+echo
 
 echo after you recorded, you can edit it, the pedophile 1960er generation
-echo bricked kdenlive for this usecase. you can use ./convert <dir>
-echo to work around the problem, denoiser (both 50%) white balance (30%)
+echo 'bricked kdenlive for this usecase. you can use ./convert <dir>'
+echo 'to work around the problem'
 echo 
 echo still some color, issues to fix, but maybe you could do this with
-echo a video filter so far
-
+echo 'a video filter so far eg. denoiser (both 50%) white balance (30%)'
+echo you know that maybe betther than i
+echo
