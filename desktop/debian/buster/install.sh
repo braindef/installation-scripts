@@ -296,6 +296,7 @@ ShowAndExecute "apt-get -y $ip install obs-studio"
 
 ShowAndExecute "apt-get purge youtube-dl"
 ShowAndExecute "pip install youtube-dl"
+ShowAndExecute "pip3 install music-dl"
 
 ShowAndExecute "apt-get $ip install arp-scan"
 
