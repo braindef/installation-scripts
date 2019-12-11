@@ -283,6 +283,7 @@ ShowAndExecute "apt-get -y $ip install pidgin"
 ShowAndExecute "apt-get -y $ip install checksecurity"
 ShowAndExecute "apt-get -y $ip install spyder"
 ShowAndExecute "apt-get -y $ip install spyder3"
+ShowAndExecute "apt-get -y install fontforge"
 
 ShowAndExecute "apt-get -y $ip install gnome-disk-utility"
 
