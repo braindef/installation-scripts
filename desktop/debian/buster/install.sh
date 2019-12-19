@@ -300,6 +300,8 @@ ShowAndExecute "pip install youtube-dl"
 ShowAndExecute "pip3 install music-dl"
 
 ShowAndExecute "apt-get $ip install arp-scan"
+ShowAndExecute "apt-get $ip install sshfs"
+
 
 ShowAndExecute "apt-get autoremove"
 
@@ -357,6 +359,10 @@ ShowAndExecute "sudo apt install vanilla-gnome-desktop"
 
 gsettings set org.gnome.nautilus.preferences always-use-location-entry true
 gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 0
+
+echo "add the following line to /etc/fstab
+sshfs#marcland@ftp.marclandolt.ch:/ /mnt/hostpoint
+"
 
 sudo -u $(logname) bash -c '/usr/bin/keepassx'
 
