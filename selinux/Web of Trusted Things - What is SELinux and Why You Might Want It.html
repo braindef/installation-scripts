@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- dynamically fixing the title for tag/author pages -->
+
+
+
+
+
+  <title>Web of Trusted Things - What is SELinux and Why You Might Want It</title>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	 
+	<link rel="stylesheet" type="text/css" href="Web%20of%20Trusted%20Things%20-%20What%20is%20SELinux%20and%20Why%20You%20Might%20Want%20It_files/style.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="description" content="Seamless security audit of Linux systems for DevOps teams.">
+	
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://wott.io/assets/style/favicon/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://wott.io/assets/style/favicon/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://wott.io/assets/style/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://wott.io/assets/style/favicon/apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon-precomposed" sizes="60x60" href="https://wott.io/assets/style/favicon/apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://wott.io/assets/style/favicon/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="https://wott.io/assets/style/favicon/apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://wott.io/assets/style/favicon/apple-touch-icon-152x152.png">
+	<link rel="icon" type="image/png" href="https://wott.io/assets/style/favicon/favicon-196x196.png" sizes="196x196">
+	<link rel="icon" type="image/png" href="https://wott.io/assets/style/favicon/favicon-96x96.png" sizes="96x96">
+	<link rel="icon" type="image/png" href="https://wott.io/assets/style/favicon/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="https://wott.io/assets/style/favicon/favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="https://wott.io/assets/style/favicon/favicon-128.png" sizes="128x128">
+	<meta name="application-name" content="Web of Trusted Things">
+	<meta name="msapplication-TileColor" content="#FFFFFF">
+	<meta name="msapplication-TileImage" content="https://wott.io/assets/style/favicon/mstile-144x144.png">
+	<meta name="msapplication-square70x70logo" content="https://wott.io/assets/style/favicon/mstile-70x70.png">
+	<meta name="msapplication-square150x150logo" content="https://wott.io/assets/style/favicon/mstile-150x150.png">
+	<meta name="msapplication-wide310x150logo" content="https://wott.io/assets/style/favicon/mstile-310x150.png">
+	<meta name="msapplication-square310x310logo" content="https://wott.io/assets/style/favicon/mstile-310x310.png">
+
+    <link rel="canonical" href="https://wott.io/blog/tutorials/2019/10/15/what-is-selinux">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+
+    <meta property="og:site_name" content="Web of Trusted Things">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Web of Trusted Things - What is SELinux and Why You Might Want It">
+    <meta property="og:description" content="Seamless security audit of Linux systems for DevOps teams.">
+    <meta property="og:url" content="https://wott.io/blog/tutorials/2019/10/15/what-is-selinux">
+	<meta property="og:image" content="https://wott.io/assets/df5813-75c024c80b8b1cb44b73aa5e27fbd6e7660a0a1c8d49532d3bda39fc5b33309f.jpg">
+    <meta property="article:publisher" content="https://www.facebook.com/wott">
+    <meta property="article:tag" content="tutorials">
+ 
+	<!-- Twitter cards -->
+	<meta name="twitter:site" content="@wottsecurity">
+	<meta name="twitter:creator" content="@wottsecurity">
+	<meta name="twitter:title" content="Web of Trusted Things - What is SELinux and Why You Might Want It">
+	<meta name="twitter:description" content="Seamless security audit of Linux systems for DevOps teams.">
+	<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://wott.io/assets/df5813-75c024c80b8b1cb44b73aa5e27fbd6e7660a0a1c8d49532d3bda39fc5b33309f.jpg">
+	<!-- end of Twitter cards -->
+	
+    <script type="text/javascript" async="" src="Web%20of%20Trusted%20Things%20-%20What%20is%20SELinux%20and%20Why%20You%20Might%20Want%20It_files/mixpanel-2-latest.js"></script><script async="" src="Web%20of%20Trusted%20Things%20-%20What%20is%20SELinux%20and%20Why%20You%20Might%20Want%20It_files/analytics.js"></script><script async="" src="Web%20of%20Trusted%20Things%20-%20What%20is%20SELinux%20and%20Why%20You%20Might%20Want%20It_files/fbevents.js"></script><script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Web of Trusted Things",
+        "logo": "https://wott.io/"
+    },
+    "url": "https://wott.io/blog/tutorials/2019/10/15/what-is-selinux",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://wott.io/server-room.jpg",
+        "width": 2000,
+        "height": 666
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://wott.io/blog/tutorials/2019/10/15/what-is-selinux"
+    },
+    "description": "Seamless security audit of Linux systems for DevOps teams."
+}
+    </script>
+
+
+
+    <meta name="generator" content="Jekyll 3.6.2">
+    <link rel="alternate" type="application/rss+xml" title="What is SELinux and Why You Might Want It" href="https://wott.io/feed.xml">
+
+<script src="Web%20of%20Trusted%20Things%20-%20What%20is%20SELinux%20and%20Why%20You%20Might%20Want%20It_files/l.js" async=""></script><link href="https://client.relay.crisp.chat/" rel="dns-prefetch" crossorigin=""><link href="https://settings.crisp.chat/" rel="preconnect" crossorigin=""><link href="https://client.crisp.chat/" rel="preconnect" crossorigin=""><link href="https://image.crisp.chat/" rel="preconnect" crossorigin=""><script src="Web%20of%20Trusted%20Things%20-%20What%20is%20SELinux%20and%20Why%20You%20Might%20Want%20It_files/client.js" type="text/javascript" async=""></script><link href="Web%20of%20Trusted%20Things%20-%20What%20is%20SELinux%20and%20Why%20You%20Might%20Want%20It_files/client_default.css" type="text/css" rel="stylesheet"></head>
+<body>
+<header class="b_header"><div class="head_nav" data-open-menu="0">
+<a class="mobile_menu_button"></a>
+<a class="logo" href="https://wott.io/" title="Home page"></a>
+
+<ul class="nav_m">
+<li><a href="https://wott.io/product" title="">product</a></li>
+<li><a href="https://wott.io/about" title="">about us</a></li>
+<li><a href="https://wott.io/pricing" title="">pricing</a></li>
+<li><a href="https://wott.io/documentation" title="">documentation</a></li>
+<li><a href="https://wott.io/blog" title="">blog</a></li>
+</ul>
+
+<div class="ls_button">
+<a class="log_in" href="https://dash.wott.io/accounts/login" ga-clv="1" ga-track-name="Log In">log in</a>
+<a class="sign_up" href="https://dash.wott.io/accounts/register/" ga-clv="1" ga-track-name="Sign Up">sign up</a>
+</div>
+
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+ fbq('init', '625551821523223');
+fbq('track', 'PageView');
+</script>
+<noscript>
+ <img height="1" width="1"
+src="https://www.facebook.com/tr?id=605130316291227&ev=PageView
+&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel Code -->
+
+</div>
+</header>
+  <div class="b_content post-template ">
+    <div class="blog_page">
+<div class="blog_info">
+<span class="t_i1">What is SELinux and Why You Might Want It</span>
+<span class="t_m2">By Fiona McAllister on October 15, 2019 | 0 Comments</span>
+</div>
+<img class="blog_image" src="Web%20of%20Trusted%20Things%20-%20What%20is%20SELinux%20and%20Why%20You%20Might%20Want%20It_files/219782-8648b3fe26ab0d601df59b4f3da5cf9ba8793be5d95e0118e8b60.jpg" alt="Main image for post - What is SELinux and Why You Might Want It"><div class="blog_image_bg"></div>
+<div class="blog_tags"><a href="https://wott.io//tag/tutorials">tutorials</a></div>
+
+<div class="social_network">
+<div class="title_b">share</div>
+<ul>
+
+<li style="background-image:url(https://wott.io/assets/style/img/facebook.svg);"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://wott.io/blog/tutorials/2019/10/15/what-is-selinux" title=""></a></li>
+<li style="background-image:url(https://wott.io/assets/style/img/twitter.svg);"><a target="_blank" href="https://twitter.com/share?url=https://wott.io/blog/tutorials/2019/10/15/what-is-selinux&amp;text=What%20is%20SELinux%20and%20Why%20You%20Might%20Want%20It" title=""></a></li>
+<li style="background-image:url(https://wott.io/assets/style/img/send.svg);"><a target="_blank" href="mailto:?subject=What is SELinux and Why You Might Want It&amp;body=/blog/tutorials/2019/10/15/what-is-selinux" title=""></a></li>
+<li style="background-image:url(https://wott.io/assets/style/img/pinterest.svg);"><a target="_blank" href="http://pinterest.com/pin/create/button/?url=https://wott.io/blog/tutorials/2019/10/15/what-is-selinux&amp;media=https://wott.io/assets/images/blogcover/full/server-room.jpg&amp;description=%20Introduction%20Today%20we%E2%80%99re%20going%20to%20talk%20about%20SELinux%20-%20Security%20Enhanced%20Linux.%20For%20the%20everyday%20layman%20SELinux%20maybe%20daunting%20to%20setup,%20but%20is%20a%20good%20introduction%20into%20different%20ways%20to%20manage%20access%20control%20to%20your%20systems.%20More%20and%20more%20we%20give%20companies%20our%20precious%20data%20and%20the%20onus%20should%20be%20placed%20on..." title=""></a></li>
+<li style="background-image:url(https://wott.io/assets/style/img/linkedin.svg);"><a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://wott.io/blog/tutorials/2019/10/15/what-is-selinux&amp;title=What%20is%20SELinux%20and%20Why%20You%20Might%20Want%20It" title=""></a></li>
+</ul>
+<div class="arrow_b"></div>
+</div>
+
+<div class="blog_content content_info_block">
+<h2 id="introduction">Introduction</h2>
+
+<p>Today we’re going to talk about SELinux - Security Enhanced Linux. 
+For the everyday layman SELinux maybe daunting to setup, but is a good 
+introduction into different ways to manage access control to your 
+systems. More and more we give companies our precious data and the onus 
+should be placed on developers to protect this data with growing 
+cybersecurity threats. So we’re going to show you how to implement 
+SELinux for the security-conscious developer (and talk a little on 
+AppArmor).</p>
+
+<p>Proceed with caution though - SELinux and AppArmor are MAC protocols 
+(more on that later) and you run the risk of locking yourself out of 
+your own system. If you’re interested in learning a bit more about 
+SELinux and MAC protocols, read on below. If you just want to jump 
+straight into the bare-bones edition, skip straight ahead to the <a href="#tutorial">tutorial</a> itself.</p>
+
+<p><strong>Required Skill Level</strong>: Medium</p>
+
+<p><strong>Time to Complete</strong>: 30 minutes - 1 hour</p>
+
+<p><strong>Prerequisites</strong>:</p>
+
+<ul>
+  <li>Either:
+    <ul>
+      <li>have SELinux installed</li>
+      <li>use a Red Hat distribution of Linux</li>
+    </ul>
+  </li>
+  <li>follow guide to install SELinux for Debian based Linux (Debian, Ubuntu, etc) using <code class="highlighter-rouge">apt</code> package</li>
+  <li><strong>have a virtual machine with your Linux distribution installed</strong></li>
+  <li>an understanding on MAC protocols (will make the tutorial easier) we give a brief introduction if you are not familiar.</li>
+</ul>
+
+<p>But <em>please</em> test this out first on a VM to get familiar with MAC protocols as we do not want you locked out of your system.</p>
+
+<h2 id="so-what-is-selinux-and-what-is-a-mac-model">So what is SELinux and what is a MAC Model?</h2>
+
+<p>SELinux is a US National Security Agency project aimed at improving 
+security in the Linux kernel (more specifically, kernel 2.6.x). You will
+ already be familiar with Discretionary Access Control as it is the 
+system employed by most consumer Operating Systems. File permissions are
+ determined by the creator/user, in Linux this is the ‘Access Control 
+List’ - think about times where you have used <code class="highlighter-rouge">chmod</code> or <code class="highlighter-rouge">sudo</code> to assign read or write permissions.</p>
+
+<p>Mandatory Access Control, or MAC (not to be confused with Media Access Control) is different. Basically, the <em>operating system</em>
+ determines access based on a security label (rules for access can be 
+managed by a security officer- usually a single system administrator), 
+not the user that created the file. For Linux, this system exists as 
+SELinux.</p>
+
+<p>The control is taken away from the user?! Why on Earth would you want
+ that?! Many organisations deal with sensitive data like military or 
+government. Within a military organisation, some information is reserved
+ for specific individuals with associated security labels (need to know,
+ top secret, etc;).</p>
+
+<p>But beyond that, we tend to entrust our data to many corporations 
+which we don’t want everyone seeing. As a result, enterprise oriented 
+Linux systems, like RedHat Enterprise Linux (RHEL) automatically have 
+SELinux pre-installed. Familiarising yourself with it is absolutely the 
+way to go.</p>
+
+<p>Think of it this way: let’s say you work for a hospital; you want to 
+manage records of patients. Typically there are a few trusted 
+individuals who have explicit access to these records (to update them, 
+or manage them), but it is the governing board of regulations or the 
+company itself that dictates how this information is shared. Of course, 
+in a hospital, patient records should be confidential and strictly 
+between patient and doctor. You may want another doctor to access your 
+records, but you wouldn’t want your employer or other hospital admin to.</p>
+
+<p>In other words, there is a hierarchy that defines who has access to 
+certain resources and information. At an organisation level, this is set
+ by regulations. These regulations dictate MAC access.</p>
+
+<h2 id="--setting-up-selinux-for-yourself"><a name="tutorial"> </a> Setting up SELinux for yourself</h2>
+
+<p>SELinux is milder than most MAC models and a good introduction into 
+implementing MAC for your own security. In SELinux, the system 
+administrator is the security officer.</p>
+
+<p><strong>Note</strong>: There are Linux distributions that have SELinux preinstalled, such as RedHat Enterprise Linux (RHEL) and CentOS.</p>
+
+<p>It’s useful to have SELinux on your servers as it protects your 
+server from malicious or flawed programs. The ‘strength’ of SELinux is 
+at the discretion of the system administrator. It comes in 3 modes:</p>
+
+<ul>
+  <li>Disabled</li>
+  <li>Permissive</li>
+  <li>Enforcing</li>
+</ul>
+
+<p>Permissive prints system warnings but does not enforce the protocol (useful for testing).</p>
+
+<h2 id="setting-up-on-ubuntudebian">Setting Up on Ubuntu/Debian</h2>
+
+<p><img alt="Install SELinux" src="Web%20of%20Trusted%20Things%20-%20What%20is%20SELinux%20and%20Why%20You%20Might%20Want%20It_files/selinux-install-72f65214b02923c21821d6911cbdf60173e581ee34cb.png" integrity="sha256-cvZSFLApI8IYIdaRHL32AXPlge40y3PC6Sj2yWkosUk=" crossorigin="anonymous" srcset="https://wott.io/assets/a5153f-06badf9fd1e9447960fa0202152277c7f6d61ffa826007cd78be9f9189ae491c.png 2x, https://wott.io/assets/be60c1-54e86951e7df85b4c498f806f5f1c1f85829a59d7d01fc0eea54fcea159c9bb9.png 1x"></p>
+
+<p>On Ubuntu or Debian, you need to install the required packages by running:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ apt-get install selinux-basics selinux-policy-default auditd
+</code></pre></div></div>
+
+<p>If you’re using Ubuntu, download <a href="https://wiki.debian.org/SELinux/Setup?action=AttachFile&amp;do=view&amp;target=_load_selinux_policy">this</a> taken from the Debian Wiki. Copy it into: <code class="highlighter-rouge">/usr/share/initramfs-tools/scripts/init-bottom/</code> and run <code class="highlighter-rouge">update-initramfs -u </code> in your terminal session.</p>
+
+<p>Once done, you can check SELinux is installed/running:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># getenforce
+Disabled
+</code></pre></div></div>
+
+<p>SELinux is installed but not running, you will need to activate and reboot:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># selinux-activate
+# reboot
+</code></pre></div></div>
+
+<p>This should put SELinux into Permissive mode. To check, run <code class="highlighter-rouge">sestatus</code> and you should get the following:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELinux status:                 enabled
+SELinuxfs mount:                /sys/fs/selinux
+SELinux root directory:         /etc/selinux
+Loaded policy name:             default
+Current mode:                   permissive
+Mode from config file:          permissive
+Policy MLS status:              enabled
+Policy deny_unknown status:     allowed
+Max kernel policy version:      30
+</code></pre></div></div>
+
+<h2 id="setting-modes">Setting Modes</h2>
+
+<p>Run:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># audit2why -al
+[...]
+</code></pre></div></div>
+<p>This will return would-be blocked operations since your last boot. It
+ is tedious but worth going through as SELinux has many reported bugs. 
+We would suggest going through each bug one-by-one and follow <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/security-enhanced_linux/sect-security-enhanced_linux-fixing_problems-allowing_access_audit2allow">this Red Hat guide</a> for changing access using the <code class="highlighter-rouge">audit2allow</code> command.</p>
+
+<p>If you are not confident, <strong>we strongly suggest testing this on a virtual machine</strong>.</p>
+
+<p>You can now change the mode to enforcing:</p>
+<ul>
+  <li>to test, run: <code class="highlighter-rouge">setenforce = 1</code> in your terminal</li>
+  <li>or if you are confident, add <code class="highlighter-rouge">enforcing = 1</code> to the kernel command line in your <code class="highlighter-rouge">/etc/default/grub</code> file</li>
+</ul>
+
+<p>and then reboot as earlier. You will now be running SELinux’s default
+ policy. To change this, simply manoeuvre back to the root user and set 
+it back to permissive via <code class="highlighter-rouge">setenforce = 0</code>.</p>
+
+<p>Provided you have access to the root user, you can feel free to play around with SELinux’s <a href="https://docs.fedoraproject.org/en-US/quick-docs/changing-selinux-states-and-modes/">other policies</a> until you are comfortable.</p>
+
+<h2 id="finishing-up">Finishing Up</h2>
+
+<p>And that concludes our intro to SELinux. Play around with policies 
+until you are comfortable, then you can ship SELinux to your own servers
+ with confidence. SELinux essentially acts as a sandbox protecting your 
+information from fradulent or corrupted access by external programs or 
+daemons. As for AppArmor, it’s just another MAC protocol that’s used 
+particularly for Ubuntu. It’s easier to use as it deals with pathing 
+rules; but SELinux is widely considered the more secure of the two. 
+SELinux is better for those who are very familiar with Unix based 
+systems, but AppArmor is another great introduction to MAC.</p>
+
+<p>SELinux is a great way to implement security, but it is known for its
+ bugs and disruptive mechanisms. Actual sandboxing is another 
+alternative to protecting your kernel.</p>
+
+<p>Good work getting to the end of this tutorial. You have taken a big 
+step in securing your Linux environment. There are additional steps you 
+can take to improve security posture like CVE scanning, firewall 
+management and service configuration. WoTT can help you do that with a 
+lightweight agent that scans for vulnerabilities and provides clear 
+recommended actions to fix those issues. Get started <a href="https://wott.io/documentation/getting-started">here</a>.</p>
+
+
+<h3>And while you're here...</h3>
+<p>Did you know that WoTT gives you free security audits, including CVE scanning, for your first node? <a href="http://dash.wott.io/accounts/register?utm_source=blog&amp;utm_medium=banner&amp;utm_campaign=internal">Sign up today</a>.</p>
+</div>
+
+<div class="related_articles">
+<span class="t_i1">Related articles</span>
+<div class="blog_posts"><div class="post_mini-blocks">
+       <div class="post">
+  <div class="post_img" style="background-image:url(https://wott.io/assets/78a948-1cd6ab22117c2a6ab40de3446f839ff8bbb45d170554d84d6a6324badc50b91d.png);"></div>
+  <div class="post_prewinfo">
+  <span class="category_name">thoughts</span>
+  <a class="title" href="https://wott.io/blog/thoughts/2019/11/29/the-devsecops-iceberg">The DevSecOps Iceberg</a>
+  <span class="author_time">By <a>Viktor Petersson</a> on November 29, 2019</span>
+  <span class="description">
+   Security is a complicated topic. There are countless attack vectors 
+and threat models to take into consideration when designing a security 
+strategy. Over the last year, we've spoken to companies of different 
+sizes about their security strategies and practices. Based on these 
+discussions, we've come up with something we call the DevSecOps... </span>
+  <a class="read_full" href="https://wott.io/blog/thoughts/2019/11/29/the-devsecops-iceberg">Continue reading </a>
+  </div>
+  </div>
+
+       <div class="post">
+  <div class="post_img" style="background-image:url(https://wott.io/assets/0b38d8-77d430b324f307ebf9c73a93e23825018dc112875fe73e47ddbe329bfb2ca951.jpg);"></div>
+  <div class="post_prewinfo">
+  <span class="category_name">newsthoughts</span>
+  <a class="title" href="https://wott.io/blog/news/thoughts/2019/11/27/introducing-the-wott-github-integration">Introducing WoTT's GitHub Integration</a>
+  <span class="author_time">By <a>Viktor Petersson</a> on November 27, 2019</span>
+  <span class="description">
+   There's no doubt that GitHub has become one of the most popular 
+platforms for developer collaboration and communication. Increasingly, 
+GitHub is also used for project management across developer and 
+Dev(Sec)Ops teams. Because of this, it is increasingly where the 
+security fixes are being tracked too. For instance, GitHub recently 
+announced their [Security... </span>
+  <a class="read_full" href="https://wott.io/blog/news/thoughts/2019/11/27/introducing-the-wott-github-integration">Continue reading </a>
+  </div>
+  </div>
+
+       <div class="post">
+  <div class="post_img" style="background-image:url(https://wott.io/assets/5c9612-2334dcb31cb2b826c95fcb049c275f0910f302b9eafc0b38bda1bfb5a7a2240e.jpg);"></div>
+  <div class="post_prewinfo">
+  <span class="category_name">tutorials</span>
+  <a class="title" href="https://wott.io/blog/tutorials/2019/11/24/mongodb">How to Securely Configure MongoDB</a>
+  <span class="author_time">By <a>Mahmoud Fahmy</a> on November 24, 2019</span>
+  <span class="description">
+   # How to Securely Configure MongoDB **Required Skill Level**: 
+Intermediate **Reading Time**: 15-20 Minutes ## Introduction 
+[MongoDB](https://www.mongodb.com/what-is-mongodb) is a NoSQL, document 
+database that is widely used by companies and individuals. Its 
+popularity and support makes it a contender for one of the best options 
+for database needs. Unfortunately, its popularity makes it... </span>
+  <a class="read_full" href="https://wott.io/blog/tutorials/2019/11/24/mongodb">Continue reading </a>
+  </div>
+  </div>
+
+    
+</div>
+</div>
+</div>
+
+</div>
+
+  </div>
+  <footer class="b_footer">
+<div class="top">
+<div class="logo_sn">
+<a class="logo" href="https://wott.io/" title="Home page"></a>
+<ul class="nw">
+<li style="background-image:url(https://wott.io//assets/style/img/github.svg);"><a href="https://github.com/wottsecurity" title="" target="_blank"></a></li>
+<li style="background-image:url(https://wott.io//assets/style/img/twitter.svg);"><a href="https://twitter.com/wottsecurity" title="" target="_blank"></a></li>
+<li style="background-image:url(https://wott.io//assets/style/img/linkedin.svg);"><a href="https://www.linkedin.com/company/wottsecurity" title="" target="_blank"></a></li>
+</ul>
+</div>
+<div class="menu products"><ul>
+<li><a href="https://wott.io/product" title="">products</a></li>
+</ul></div>
+<div class="menu about_us"><ul>
+<li><a href="https://wott.io/about" title="">about us</a></li>
+<li><a href="https://wott.io/pricing" title="">pricing</a></li>
+<li><a href="https://wott.io/documentation" title="">documentation</a></li>
+<li><a href="https://wott.io/blog" title="">blog</a></li>
+</ul></div>
+<div class="menu news"><ul>
+<li><a href="https://wott.io/blog" title="">latest news</a></li>
+<li><a href="https://wott.io/blog/thoughts/2019/11/29/the-devsecops-iceberg" title="The DevSecOps Iceberg">The DevSecOps Iceberg</a></li><li><a href="https://wott.io/blog/news/thoughts/2019/11/27/introducing-the-wott-github-integration" title="Introducing WoTT's GitHub Integration">Introducing WoTT's GitHub Integration</a></li><li><a href="https://wott.io/blog/tutorials/2019/11/24/mongodb" title="How to Securely Configure MongoDB">How to Securely Configure MongoDB</a></li>
+</ul></div>
+</div>
+
+<div class="bottom">
+<ul>
+<li>© Web Of Secure Things Ltd. All rights reserved</li>
+<li><a href="https://wott.io/tos" title="">Terms of Service</a></li>
+<li><a href="https://wott.io/privacy-policy" title="">Privacy Policy</a></li>
+</ul>
+<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="d50717d4-569e-4e3e-a7fc-19fdccbaf6ce";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+</div>
+</footer>
+
+  <script src="Web%20of%20Trusted%20Things%20-%20What%20is%20SELinux%20and%20Why%20You%20Might%20Want%20It_files/jquery-3.js" crossorigin="anonymous"></script>
+  <script src="Web%20of%20Trusted%20Things%20-%20What%20is%20SELinux%20and%20Why%20You%20Might%20Want%20It_files/jquery.js"></script>
+  <script src="Web%20of%20Trusted%20Things%20-%20What%20is%20SELinux%20and%20Why%20You%20Might%20Want%20It_files/main.js"></script>
+  <!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+function clickview(idview){$(idview).bind('click',function(e){var b=$(this), name=b.text(), h_from=window.location.href, h_to=false, prt=b.parent(); if(b[0].nodeName=='A'){if(b.attr('href')!==undefined){var h_to=b.attr('href');}; if(b.attr('ga-track-href')!==undefined){var h_to=b.attr('ga-track-href');};}; if(prt[0].nodeName=='FORM'){function insertinform(o){var dt=[]; o.each(function(index){var inp=$(this).children(index); if(inp.attr('name')!==undefined && inp.val()!==undefined){dt.push(inp.attr('name')+'='+inp.val());}}); return dt;}; var h_to=prt.attr('action')+'?'+insertinform(prt).join('&');}; if(b.attr('ga-track-name')!==undefined){var name=b.attr('ga-track-name');}; ga('send', 'event', 'clickbutton',name, 'click_from:'+h_from+', click_to:'+h_to); if(h_to!==false){setTimeout(function(){if(b[0].nodeName=='A'){if(b.attr('target')!==undefined){if(b.attr('target')!=='_blank'){window.open(h_to,'_self');}else{window.open(h_to);}}else{window.open(h_to,'_self');};}; if(b[0].nodeName=='BUTTON'){if(prt[0].nodeName=='FORM'){prt.submit();};};},10); return false;};});};
+ga('create', 'UA-134852372-1', 'auto'); ga('send', 'pageview'); clickview('[ga-clv="1"]');
+</script>
+<!-- End Google Analytics -->
+
+<!-- start Mixpanel --><script type="text/javascript">(function(c,a){if(!a.__SV){var b=window;try{var d,m,j,k=b.location,f=k.hash;d=function(a,b){return(m=a.match(RegExp(b+"=([^&]*)")))?m[1]:null};f&&d(f,"state")&&(j=JSON.parse(decodeURIComponent(d(f,"state"))),"mpeditor"===j.action&&(b.sessionStorage.setItem("_mpcehash",f),history.replaceState(j.desiredHash||"",c.title,k.pathname+k.search)))}catch(n){}var l,h;window.mixpanel=a;a._i=[];a.init=function(b,d,g){function c(b,i){var a=i.split(".");2==a.length&&(b=b[a[0]],i=a[1]);b[i]=function(){b.push([i].concat(Array.prototype.slice.call(arguments,
+0)))}}var e=a;"undefined"!==typeof g?e=a[g]=[]:g="mixpanel";e.people=e.people||[];e.toString=function(b){var a="mixpanel";"mixpanel"!==g&&(a+="."+g);b||(a+=" (stub)");return a};e.people.toString=function(){return e.toString(1)+".people (stub)"};l="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+for(h=0;h<l.length;h++)c(e,l[h]);var f="set set_once union unset remove delete".split(" ");e.get_group=function(){function a(c){b[c]=function(){call2_args=arguments;call2=[c].concat(Array.prototype.slice.call(call2_args,0));e.push([d,call2])}}for(var b={},d=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<f.length;c++)a(f[c]);return b};a._i.push([b,d,g])};a.__SV=1.2;b=c.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?
+MIXPANEL_CUSTOM_LIB_URL:"file:"===c.location.protocol&&"//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js";d=c.getElementsByTagName("script")[0];d.parentNode.insertBefore(b,d)}})(document,window.mixpanel||[]);
+</script><!-- end Mixpanel -->
+<script type="text/javascript" src="Web%20of%20Trusted%20Things%20-%20What%20is%20SELinux%20and%20Why%20You%20Might%20Want%20It_files/mixpanel-track.js"></script>
+
+
+<div class="crisp-client"><div class="crisp-1o7uamv"><div class="crisp-1qz76wn"><style type="text/css">.crisp-client .crisp-1rjpbb7 .crisp-12w1xmh,
+.crisp-client .crisp-1rjpbb7 .crisp-poqhnx:hover {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-1wiroug,
+.crisp-client .crisp-1rjpbb7 .crisp-ao27ue:hover {
+  color: #004AB5 !important;
+  -webkit-text-fill-color: #004AB5 !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-6mlwlm,
+.crisp-client .crisp-1rjpbb7 .crisp-q5z06s:hover {
+  color: #0057D7 !important;
+  -webkit-text-fill-color: #0057D7 !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-wcida4,
+.crisp-client .crisp-1rjpbb7 .crisp-o6w0yc:hover {
+  color: #1972F5 !important;
+  -webkit-text-fill-color: #1972F5 !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-pusm34 {
+  background-color: #FFFFFF !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-bdhv0t {
+  background-color: #004AB5 !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-9o0cq7 {
+  background-color: #055EE1 !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-ws3gf1,
+.crisp-client .crisp-1rjpbb7 .crisp-13h0akn:before,
+.crisp-client .crisp-1rjpbb7 .crisp-13h0akn:after {
+  background-color: #1972F5 !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-1gr5ak3 {
+  background-color: #EFF5FE !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-145mbcr,
+.crisp-client .crisp-1rjpbb7 .crisp-1jrqqbm:hover {
+  background-color: #F5F8FB !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-17f70m7 {
+  background-image: linear-gradient(125deg, #1972F5 -10%, #004AB5 100%) !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-111u58f,
+.crisp-client .crisp-1rjpbb7 .crisp-y1nqlk:hover {
+  border-color: #FFFFFF !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-14u434g {
+  border-color: rgba(0, 74, 181, 0.175) !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-k6ym6q,
+.crisp-client .crisp-1rjpbb7 .crisp-1hadq69:hover,
+.crisp-client .crisp-1rjpbb7 .crisp-1kqjjm4:before,
+.crisp-client .crisp-1rjpbb7 .crisp-1kqjjm4:after {
+  border-color: #1972F5 !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-1n0zdj7 {
+  border-color: rgba(25, 114, 245, 0.15) !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-rdu43e {
+  border-top-color: #1972F5 !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-ogcg7k,
+.crisp-client .crisp-1rjpbb7 .crisp-1mnx9b2:hover {
+  border-color: #EFF5FE !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-11uxe11:placeholder {
+  color: #6E9BDE !important;
+  -webkit-text-fill-color: #6E9BDE !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-11uxe11:-moz-placeholder {
+  color: #6E9BDE !important;
+  -webkit-text-fill-color: #6E9BDE !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-11uxe11::-moz-placeholder {
+  color: #6E9BDE !important;
+  -webkit-text-fill-color: #6E9BDE !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-11uxe11:-ms-input-placeholder {
+  color: #6E9BDE !important;
+  -webkit-text-fill-color: #6E9BDE !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-11uxe11::-webkit-input-placeholder {
+  color: #6E9BDE !important;
+  -webkit-text-fill-color: #6E9BDE !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-14ixsrp:placeholder {
+  color: #6E9BDE !important;
+  -webkit-text-fill-color: #6E9BDE !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-14ixsrp:-moz-placeholder {
+  color: #6E9BDE !important;
+  -webkit-text-fill-color: #6E9BDE !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-14ixsrp::-moz-placeholder {
+  color: #6E9BDE !important;
+  -webkit-text-fill-color: #6E9BDE !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-14ixsrp:-ms-input-placeholder {
+  color: #6E9BDE !important;
+  -webkit-text-fill-color: #6E9BDE !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-14ixsrp::-webkit-input-placeholder {
+  color: #6E9BDE !important;
+  -webkit-text-fill-color: #6E9BDE !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-gjhthi,
+.crisp-client .crisp-1rjpbb7 .crisp-1t1dtpc:hover,
+.crisp-client .crisp-1rjpbb7 .crisp-gjhthi:hover,
+.crisp-client .crisp-1rjpbb7 .crisp-1t1dtpc:active,
+.crisp-client .crisp-1rjpbb7 .crisp-gjhthi:active,
+.crisp-client .crisp-1rjpbb7 .crisp-1v3kwn:hover .crisp-oc2kqi,
+.crisp-client .crisp-1rjpbb7 .crisp-1v3kwn .crisp-oc2kqi:active {
+  background: #004AB5 !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-1dgibgx,
+.crisp-client .crisp-1rjpbb7 .crisp-1r2x6vr:hover {
+  background: #0057D7 !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-1dgibgx:hover,
+.crisp-client .crisp-1rjpbb7 .crisp-1r2x6vr:active {
+  background: #004FC3 !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-1dgibgx:active {
+  background: #004AB5 !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-27o9vm:hover .crisp-1ekhg1c {
+  background: #0057D7 !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-27o9vm .crisp-1ekhg1c:active {
+  background: #004FC3 !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-ox3dbf,
+.crisp-client .crisp-1rjpbb7 .crisp-1fmeyoi[data-active="true"] {
+  background: #1972F5 !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-ox3dbf:hover {
+  background: #055EE1 !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-ox3dbf:active {
+  background: #0057D7 !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-k5ll1j::-moz-selection,
+.crisp-client .crisp-1rjpbb7 .crisp-k5ll1j *::-moz-selection {
+  background-color: #E2EEFF !important;
+}
+
+.crisp-client .crisp-1rjpbb7 .crisp-k5ll1j::selection,
+.crisp-client .crisp-1rjpbb7 .crisp-k5ll1j *::selection {
+  background-color: #E2EEFF !important;
+}</style></div><div class="crisp-1nasccw"><style type="text/css">.crisp-client .crisp-1rjpbb7 {
+  z-index: 1000000;
+}
+</style></div></div><div id="crisp-chatbox" dir="ltr" translate="no" data-blocked="false" data-lock-maximized="false" data-last-operator-face="false" data-availability-tooltip="false" data-hide-vacation="false" data-hide-on-away="false" data-hide-on-mobile="false" data-position-reverse="false" data-full-view="false" data-small-view="false" data-large-view="true" data-availability="away" data-is-activity-ongoing="false" data-was-availability-online="false" data-has-local-messages="false" class="crisp-1rjpbb7" lang="en"><div class="crisp-1rf4xdh crisp-k5ll1j"><a data-maximized="false" data-is-failure="false" href="#!" class="crisp-kquevr" data-cshid="dd2b1f4f-b159-bc08-6d78-c5bbc0c7dfb6"><span class="crisp-1059tj2"><span data-id="general_entice" data-with-helpdesk="false" data-is-concealed="false" class="crisp-1xaupiq" style="display: block !important;"><span class="crisp-1sa0919"><span class="crisp-1s66m5e crisp-9dgo7z"><span class="crisp-yzclt"><span class="crisp-5me80a"><span class="crisp-bz13r8 crisp-i1yn7v"></span><span data-has-avatar="true" class="crisp-1sd4dmd"><span class="crisp-191rfs5"><span class="crisp-pkd0me crisp-13qutdl">Questions? Chat with us!</span><span data-id="online" class="crisp-h99wdo crisp-9dgo7z">Support is online.</span><span data-id="away" class="crisp-h99wdo crisp-9dgo7z">Support is away.</span></span><span class="crisp-z83vpo"><span class="crisp-bjk43g crisp-4oo1n4"><span style="background-image: url('https://image.crisp.chat/process/thumbnail/?url=https%3A%2F%2Fstorage.crisp.chat%2Fusers%2Favatar%2Foperator%2F504cb7483c335000%2Fface_co_42z8qe.png&amp;width=240&amp;height=240&amp;1572953789833') !important;" class="crisp-2tz7y crisp-1mh9nm6"></span></span></span></span></span></span><span data-when="online" class="crisp-a1mko8"><span class="crisp-vz5ota crisp-1jrqqbm"><span class="crisp-4snher"><span class="crisp-rvg3pe crisp-wcida4 crisp-13qutdl">Chat with Web of Trusted Things Team</span></span></span></span><span data-when="away" class="crisp-a1mko8"><span class="crisp-vz5ota crisp-1jrqqbm"><span class="crisp-4snher"><span class="crisp-rvg3pe crisp-wcida4 crisp-13qutdl">Chat with Web of Trusted Things Team</span></span></span></span></span></span></span></span><span class="crisp-x94m06 crisp-ws3gf1"><span data-id="chat_closed" class="crisp-16qgsyi"><span class="crisp-1t2kwsy"><span class="crisp-174tqf9 crisp-1e8tjtx"></span></span><span data-is-ongoing="false" class="crisp-101bp3x"></span></span></span></a></div></div></div></body></html>
