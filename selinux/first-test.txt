@@ -1,0 +1,22 @@
+  292  sudo vim /etc/selinux/semanage.conf 
+  296  sudo apt-get install selinux-basics selinux-policy-default auditd
+  297  sudo getenforce
+  298  selinux-activate 
+  299  sudo selinux-activate 
+  308  sestatus 
+  309  audit2why -al
+  310  sudo audit2why -al
+  314  sudo setenforce 1
+  316  sestatus 
+  317  /var/log/audit/audit.log
+  318  sudo cat /var/log/audit/audit.log
+  319  sudo cat /var/log/audit/audit.log |grep allo
+  320  sudo cat /var/log/audit/audit.log |grep alow
+  321  sudo cat /var/log/audit/audit.log |grep deni
+  322  sudo cat /var/log/audit/audit.log |wc
+  323  fgrep -ri PKCS#7 /var/
+  324  sudo fgrep -ri PKCS#7 /var/
+  325  sudo setenforce 1
+  326  sudo audit2why -al
+  327  sestatus 
+
