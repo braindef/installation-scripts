@@ -301,6 +301,8 @@ ShowAndExecute "pip3 install music-dl"
 
 ShowAndExecute "apt-get $ip install arp-scan"
 ShowAndExecute "apt-get $ip install sshfs"
+ShowAndExecute "apt-get $ip install wine64"
+ShowAndExecute "apt-get $ip install wine"
 
 
 ShowAndExecute "apt-get autoremove"

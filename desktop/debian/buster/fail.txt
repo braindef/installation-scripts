@@ -10,3 +10,7 @@ apt-get autoremove
 apt remove gnome-shell-extension-ubuntu-dock
 apt-get -o Acquire::ForceIPv4=true install chrome-gnome-shell
 sudo apt install vanilla-gnome-desktop
+apt-get -y -o Acquire::ForceIPv4=true install chromium-browser
+apt-get -y -o Acquire::ForceIPv4=true install icedove
+apt remove gnome-shell-extension-ubuntu-dock
+sudo apt install vanilla-gnome-desktop
