@@ -302,6 +302,10 @@ ShowAndExecute "pip3 install music-dl"
 ShowAndExecute "apt-get $ip install arp-scan"
 ShowAndExecute "apt-get $ip install sshfs"
 ShowAndExecute "apt-get $ip install wine64"
+ShowAndExecute "dpkg --add-architecture i386" 
+ShowAndExecute "apt-get update"
+ShowAndExecute "apt-get $ip install wine32"
+
 ShowAndExecute "apt-get $ip install wine"
 
 
