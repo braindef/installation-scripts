@@ -308,6 +308,12 @@ ShowAndExecute "apt-get $ip install wine32"
 
 ShowAndExecute "apt-get $ip install wine"
 
+ShowAndExecute "apt-get $ip install qjackctl"
+
+ShowAndExecute "apt-get $ip install jackd"
+
+ShowAndExecute "apt-get $ip install guitarix"
+
 
 ShowAndExecute "apt-get autoremove"
 
