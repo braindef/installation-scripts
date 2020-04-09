@@ -1,4 +1,6 @@
 sudo apt-get install pulseaudio-module-jack qjackctl
+sudo apt-get install jack-mixer
+
 
 pactl unload-module module-jack-sink
 pactl unload-module module-jack-source
