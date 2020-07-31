@@ -376,5 +376,9 @@ echo "add the following line to /etc/fstab
 sshfs#marcland@ftp.marclandolt.ch:/ /mnt/hostpoint
 "
 
+echo "
+
+export HISTTIMEFORMAT='%F %T ' ">> ~/.bashrc
+
 sudo -u $(logname) bash -c '/usr/bin/keepassx'
 

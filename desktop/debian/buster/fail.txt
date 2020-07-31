@@ -41,3 +41,19 @@ apt-get -y -o Acquire::ForceIPv4=true install mixxx
 pip install youtube-dl
 apt-get update
 apt remove gnome-shell-extension-ubuntu-dock
+apt-get -y -o Acquire::ForceIPv4=true install chromium-browser
+apt-get -y -o Acquire::ForceIPv4=true install icedove
+apt remove gnome-shell-extension-ubuntu-dock
+sudo apt install vanilla-gnome-desktop
+apt-get -y -o Acquire::ForceIPv4=true install chromium-browser
+apt-get -y -o Acquire::ForceIPv4=true install icedove
+apt remove gnome-shell-extension-ubuntu-dock
+sudo apt install vanilla-gnome-desktop
+apt-get -y -o Acquire::ForceIPv4=true install chromium-browser
+apt-get -y -o Acquire::ForceIPv4=true install icedove
+apt remove gnome-shell-extension-ubuntu-dock
+sudo apt install vanilla-gnome-desktop
+apt-get -y -o Acquire::ForceIPv4=true install chromium-browser
+apt-get -y -o Acquire::ForceIPv4=true install icedove
+apt remove gnome-shell-extension-ubuntu-dock
+sudo apt install vanilla-gnome-desktop
