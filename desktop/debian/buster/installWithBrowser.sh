@@ -336,6 +336,22 @@ sudo -u $(logname) gsettings set org.gnome.settings-daemon.plugins.media-keys ma
 ShowAndExecute "apt remove gnome-shell-extension-ubuntu-dock"
 ShowAndExecute "apt-get $ip install chrome-gnome-shell"
 
+sudo -u $(logname) chromium https://chrome.google.com/webstore/search/gnomeshell%20integration
+
+sudo -u $(logname) chromium https://extensions.gnome.org/extension/1092/audio-switcher/
+
+sudo -u $(logname) chromium https://extensions.gnome.org/extension/751/audio-output-switcher/
+sudo -u $(logname) chromium https://extensions.gnome.org/extension/768/audio-input-switcher/
+sudo -u $(logname) chromium https://extensions.gnome.org/extension/517/caffeine/
+sudo -u $(logname) chromium https://extensions.gnome.org/extension/826/suspend-button/
+sudo -u $(logname) chromium https://extensions.gnome.org/extension/755/hibernate-status-button/
+sudo -u $(logname) chromium https://extensions.gnome.org/extension/945/cpu-power-manager/
+
+sudo -u $(logname) chromium https://chrome.google.com/webstore/search/ublock%20origin?hl=de
+sudo -u $(logname) chromium https://chrome.google.com/webstore/search/read%20aloud
+
+sudo -u $(logname) firefox https://addons.mozilla.org/nl/firefox/addon/uaswitcher
+sudo -u $(logname) firefox https://addons.mozilla.org/de/firefox/addon/ublock-origin/
 
 if grep -q LESS_TERMCAP "/etc/apt/sources.list"
 then echo "~/.bashrc already modified"
@@ -363,36 +379,6 @@ sshfs#marcland@ftp.marclandolt.ch:/ /mnt/hostpoint
 echo "
 
 export HISTTIMEFORMAT='%F %T ' ">> ~/.bashrc
-
-ShowAndExecute "sudo apt-get install dnsmasq"
-ShowAndExecute "sudo apt-get install resolvconf"
-
-ShowAndExecute "sudo systemctl start resolvconf.service"
-ShowAndExecute "sudo systemctl enable resolvconf.service"
-ShowAndExecute "sudo systemctl status resolvconf.service"
-
-sudo bash -c '
-
-echo "
-nameserver 127.0.0.1
-nameserver 192.168.179.1
-" > /etc/resolvconf/resolv.conf.d/head
-'
-
-sudo bash -c '
-echo "
-listen-address=127.0.0.1
-
-address=/twitter.com/127.0.0.1
-address=/facebook.com/127.0.0.1
-
-" > /etc/dnsmasq.conf '
-
-
-ShowAndExecute "sudo systemctl restart dnsmasq.service"
-ShowAndExecute "sudo systemctl start resolvconf.service"
-ShowAndExecute "sudo systemctl enable resolvconf.service"
-ShowAndExecute "sudo systemctl status resolvconf.service"
 
 sudo -u $(logname) bash -c '/usr/bin/keepassx'
 
