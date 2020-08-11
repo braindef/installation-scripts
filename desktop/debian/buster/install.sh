@@ -337,7 +337,7 @@ ShowAndExecute "apt remove gnome-shell-extension-ubuntu-dock"
 ShowAndExecute "apt-get $ip install chrome-gnome-shell"
 
 
-if grep -q LESS_TERMCAP "/etc/apt/sources.list"
+if grep -q LESS_TERMCAP "~/.bashrc"
 then echo "~/.bashrc already modified"
 else
 echo "
