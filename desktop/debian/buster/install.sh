@@ -226,6 +226,7 @@ fi
 ShowAndExecute "apt-get -y $ip install keepassx"
 ShowAndExecute "apt-get -y $ip install build-essential linux-headers-$(uname -r)"
 ShowAndExecute "apt-get -y $ip install md5deep"
+ShowAndExecute "apt-get -y $ip install mixxx"
 ShowAndExecute "apt-get -y $ip install rdfind"
 ShowAndExecute "apt-get -y $ip install xdg-utils"
 ShowAndExecute "apt-get -y $ip install nmap"
@@ -280,7 +281,7 @@ ShowAndExecute "apt-get -y $ip install mumble"
 ShowAndExecute "apt-get -y $ip install font-manager"
 ShowAndExecute "apt-get -y $ip install quassel "
 ShowAndExecute "apt-get -y $ip install pidgin"
-ShowAndExecute "apt-get -y $ip install checksecurity"
+#ShowAndExecute "apt-get -y $ip install checksecurity"
 ShowAndExecute "apt-get -y $ip install spyder"
 ShowAndExecute "apt-get -y $ip install spyder3"
 ShowAndExecute "apt-get -y install fontforge"
@@ -290,7 +291,7 @@ ShowAndExecute "apt-get -y $ip install gnome-disk-utility"
 ShowAndExecute "apt-get -y $ip install whois"
 
 #kali like environment
-ShowAndExecute "apt-get -y $ip install forensics-all"
+#ShowAndExecute "apt-get -y $ip install forensics-all"
 
 #streaming software
 ShowAndExecute "apt-get -y $ip install obs-studio"
