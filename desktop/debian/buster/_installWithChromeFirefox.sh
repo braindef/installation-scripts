@@ -280,7 +280,7 @@ ShowAndExecute "apt-get -y $ip install gconf-editor"
 ShowAndExecute "apt-get -y $ip install mumble"
 ShowAndExecute "apt-get -y $ip install font-manager"
 ShowAndExecute "apt-get -y $ip install quassel "
-#ShowAndExecute "apt-get -y $ip install pidgin"
+ShowAndExecute "apt-get -y $ip install pidgin"
 #ShowAndExecute "apt-get -y $ip install checksecurity"
 ShowAndExecute "apt-get -y $ip install spyder"
 ShowAndExecute "apt-get -y $ip install spyder3"
@@ -313,7 +313,7 @@ ShowAndExecute "apt-get $ip install qjackctl"
 
 ShowAndExecute "apt-get $ip install jackd"
 
-#ShowAndExecute "apt-get $ip install guitarix"
+ShowAndExecute "apt-get $ip install guitarix"
 
 
 ShowAndExecute "apt-get autoremove"
@@ -335,7 +335,7 @@ sudo -u $(logname) gsettings set org.gnome.nautilus.preferences always-use-locat
 sudo -u $(logname) gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 0
 
 ShowAndExecute "apt remove gnome-shell-extension-ubuntu-dock"
-# ShowAndExecute "apt-get $ip install chrome-gnome-shell"
+ShowAndExecute "apt-get $ip install chrome-gnome-shell"
 
 
 if grep -q LESS_TERMCAP "~/.bashrc"
@@ -395,7 +395,5 @@ ShowAndExecute "sudo systemctl start resolvconf.service"
 ShowAndExecute "sudo systemctl enable resolvconf.service"
 ShowAndExecute "sudo systemctl status resolvconf.service"
 
-
-
-#sudo -u $(logname) bash -c '/usr/bin/keepassx'
+sudo -u $(logname) bash -c '/usr/bin/keepassx'
 
